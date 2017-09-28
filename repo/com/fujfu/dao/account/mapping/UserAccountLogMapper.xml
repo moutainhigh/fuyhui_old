@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.account.UserAccountLogMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.account.UserAccountLogVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="SMALLINT" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="total" property="total" jdbcType="DECIMAL" />
+    <result column="no_tender" property="noTender" jdbcType="DECIMAL" />
+    <result column="cash" property="cash" jdbcType="DECIMAL" />
+    <result column="frost" property="frost" jdbcType="DECIMAL" />
+    <result column="await_income" property="awaitIncome" jdbcType="DECIMAL" />
+    <result column="await_repay" property="awaitRepay" jdbcType="DECIMAL" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="apply_id" property="applyId" jdbcType="INTEGER" />
+
+   		<!--<result column="from" property="from" jdbcType="INTEGER" /> --> 
+    <!--<result column="to" property="to" jdbcType="VARCHAR" />-->
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="VARCHAR" />
+    <result column="trx_id" property="trxId" jdbcType="BIGINT" />
+    <result column="ordid" property="ordid" jdbcType="INTEGER" />
+     <result column="busiNumber" property="busiNumber" jdbcType="VARCHAR" />
+     <result column="addTimeStr" property="addTimeStr" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+    id, user_id, type, money, remark, total, no_tender, cash, frost, await_income, await_repay, 
+    from_unixtime(add_time) as addTimeStr, status, apply_id, memo, data, trx_id, ordid,busiNumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_user_account_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!--前台账户中心交易明细查询 -->
+	<select id="findUserAllUserAccountLog" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from fu_user_account_log
+			
+		<include refid="queryCondition" />
+		order by id desc
+		limit #{pageNum},7
+	</select>
+	<!-- 前台账户中心交易明细查询分页查询记录数 -->
+	<select id="countUseAccountLog" resultType="java.lang.Integer">
+		select count(*)  
+		from fu_user_account_log
+		<include refid="queryCondition" /> 
+		
+	</select>
+	
+	 <!-- 查询条件 -->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="userAccountLogQuery.userId!=null and userAccountLogQuery.userId!=''">
+				and user_id = #{userAccountLogQuery.userId} and status =0 
+			</if>
+			<if test="userAccountLogQuery.type!=null and userAccountLogQuery.type!='' and userAccountLogQuery.type!='A'.toString() and userAccountLogQuery.type!='A1'.toString()">
+				and type =#{userAccountLogQuery.type}
+			</if>
+			<if test="userAccountLogQuery.startTime!=null and userAccountLogQuery.startTime!=''">
+    <![CDATA[  and add_time >= #{userAccountLogQuery.startTime}]]>
+			</if>
+			<if test="userAccountLogQuery.endTime!=null and userAccountLogQuery.endTime!=''">
+    <![CDATA[  and add_time <= #{userAccountLogQuery.endTime}]]>
+			</if>
+			<if test="userAccountLogQuery.type!=null and userAccountLogQuery.type!='' and userAccountLogQuery.type=='A'.toString()">
+				and type in('4204')
+			</if>
+			<if test="userAccountLogQuery.type!=null and userAccountLogQuery.type!='' and userAccountLogQuery.type=='A1'.toString()">
+				and type in('3002')
+			</if>
+		</trim>
+	</sql>
+	
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_user_account_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.account.UserAccountLogVO" >
+    insert into fu_user_account_log (id, user_id, type, 
+      money, remark, total, 
+      no_tender, cash, frost, 
+      await_income, await_repay, add_time, 
+      status, apply_id, memo, data, trx_id, 
+      ordid)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{type,jdbcType=SMALLINT}, 
+      #{money,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{total,jdbcType=DECIMAL}, 
+      #{noTender,jdbcType=DECIMAL}, #{cash,jdbcType=DECIMAL}, #{frost,jdbcType=DECIMAL}, 
+      #{awaitIncome,jdbcType=DECIMAL}, #{awaitRepay,jdbcType=DECIMAL}, #{addTime,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{applyId,jdbcType=INTEGER},  #{memo,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR}, #{trxId,jdbcType=BIGINT}, 
+      #{ordid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.account.UserAccountLogVO" >
+    insert into fu_user_account_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="noTender != null" >
+        no_tender,
+      </if>
+      <if test="cash != null" >
+        cash,
+      </if>
+      <if test="frost != null" >
+        frost,
+      </if>
+      <if test="awaitIncome != null" >
+        await_income,
+      </if>
+      <if test="awaitRepay != null" >
+        await_repay,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="trxId != null" >
+        trx_id,
+      </if>
+      <if test="ordid != null" >
+        ordid,
+      </if>
+      <if test="busiNumber != null" >
+        busiNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="noTender != null" >
+        #{noTender,jdbcType=DECIMAL},
+      </if>
+      <if test="cash != null" >
+        #{cash,jdbcType=DECIMAL},
+      </if>
+      <if test="frost != null" >
+        #{frost,jdbcType=DECIMAL},
+      </if>
+      <if test="awaitIncome != null" >
+        #{awaitIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="awaitRepay != null" >
+        #{awaitRepay,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=INTEGER},
+      </if>
+    
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="trxId != null" >
+        #{trxId,jdbcType=BIGINT},
+      </if>
+      <if test="ordid != null" >
+        #{ordid,jdbcType=INTEGER},
+      </if>
+       <if test="busiNumber != null" >
+        #{busiNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.account.UserAccountLogVO" >
+    update fu_user_account_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="noTender != null" >
+        no_tender = #{noTender,jdbcType=DECIMAL},
+      </if>
+      <if test="cash != null" >
+        cash = #{cash,jdbcType=DECIMAL},
+      </if>
+      <if test="frost != null" >
+        frost = #{frost,jdbcType=DECIMAL},
+      </if>
+      <if test="awaitIncome != null" >
+        await_income = #{awaitIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="awaitRepay != null" >
+        await_repay = #{awaitRepay,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="applyId != null" >
+        apply_id = #{applyId,jdbcType=INTEGER},
+      </if>
+    
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="trxId != null" >
+        trx_id = #{trxId,jdbcType=BIGINT},
+      </if>
+      <if test="ordid != null" >
+        ordid = #{ordid,jdbcType=INTEGER},
+      </if>
+      <if test="busiNumber != null" >
+        busiNumber = #{busiNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.account.UserAccountLogVO" >
+    update fu_user_account_log
+    set user_id = #{userId,jdbcType=INTEGER},
+      type = #{type,jdbcType=SMALLINT},
+      money = #{money,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      total = #{total,jdbcType=DECIMAL},
+      no_tender = #{noTender,jdbcType=DECIMAL},
+      cash = #{cash,jdbcType=DECIMAL},
+      frost = #{frost,jdbcType=DECIMAL},
+      await_income = #{awaitIncome,jdbcType=DECIMAL},
+      await_repay = #{awaitRepay,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      apply_id = #{applyId,jdbcType=INTEGER},
+    
+      memo = #{memo,jdbcType=VARCHAR},
+      data = #{data,jdbcType=VARCHAR},
+      trx_id = #{trxId,jdbcType=BIGINT},
+      ordid = #{ordid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ <!-- 根据流水号更新提现记录状态 -->
+	<update id="updateByApplyId">
+	update fu_user_account_log set status =#{status} where apply_id = #{applyId} and type= #{type}
+	</update>
+	
+	  <!-- 查询fu_user_recharge表的最大RechargeNumber记录 -->
+	<select id="findMaxBusiNumber" resultType="java.lang.String">
+		select max(fua.busiNumber)
+		from fu_user_account_log fua
+		where fua.busiNumber like "%"#{nowDateStr}"%"
+	</select>
+	
+	  <!-- 查询fu_user_account_log表，根据用户id查所有的手续费 -->
+	<select id="findSumMoneyBy" resultType="java.lang.String">
+		select IFNULL(sum(money),0)
+		from fu_user_account_log 
+	<include refid="queryCondition" /> 
+	</select>
+</mapper>

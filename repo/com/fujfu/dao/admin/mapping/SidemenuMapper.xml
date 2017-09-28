@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.admin.SidemenuMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.admin.SidemenuVO" >
+    <id column="sidebar_id" property="sidebarId" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="css_class" property="cssClass" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="purview_flag" property="purviewFlag" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sidebar_id, pid, css_class, name, url, purview_flag, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_sidemenu
+    where sidebar_id = #{sidebarId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_sidemenu
+    where sidebar_id = #{sidebarId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.admin.SidemenuVO" >
+    insert into fu_sidemenu (sidebar_id, pid, css_class, 
+      name, url, purview_flag, 
+      created)
+    values (#{sidebarId,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{cssClass,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{purviewFlag,jdbcType=VARCHAR}, 
+      #{created,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.admin.SidemenuVO" >
+    insert into fu_sidemenu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sidebarId != null" >
+        sidebar_id,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="cssClass != null" >
+        css_class,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="purviewFlag != null" >
+        purview_flag,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sidebarId != null" >
+        #{sidebarId,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="cssClass != null" >
+        #{cssClass,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="purviewFlag != null" >
+        #{purviewFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.admin.SidemenuVO" >
+    update fu_sidemenu
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="cssClass != null" >
+        css_class = #{cssClass,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="purviewFlag != null" >
+        purview_flag = #{purviewFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sidebar_id = #{sidebarId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.admin.SidemenuVO" >
+    update fu_sidemenu
+    set pid = #{pid,jdbcType=INTEGER},
+      css_class = #{cssClass,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      purview_flag = #{purviewFlag,jdbcType=VARCHAR},
+      created = #{created,jdbcType=INTEGER}
+    where sidebar_id = #{sidebarId,jdbcType=INTEGER}
+  </update>
+</mapper>

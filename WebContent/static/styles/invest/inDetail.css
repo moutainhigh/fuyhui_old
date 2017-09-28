@@ -1,0 +1,839 @@
+@charset 'utf-8';
+.inDetail_top_body
+{
+	width: 100%;
+	background: #f5f5f5;
+	padding: 27px 0;
+}
+.inDetail_1000
+{
+	width: 1170px;
+	height: 298px;
+	background: #fff;
+	margin:0px auto;
+	box-shadow:0px 11px 40px -2px #bbb;
+	-webkit-box-shadow:0px 11px 40px -2px #bbb;
+	-moz-box-shadow:0px 11px 40px -2px #bbb;
+	-ms-box-shadow:0px 11px 40px -2px #bbb;
+	border-top: 2px solid #00b4f6;
+}
+.inDetail_left_box
+{
+	width: 730px;
+	height: 100%;
+}
+.inDetail_top_title
+{
+	height: 49px;
+	line-height: 49px;
+	border-bottom: 1px solid #eaeaea;
+	font-size: 18px;
+	color: #474e5d;
+}
+.indetail_name
+{
+	margin: 0 23px 0 30px;
+}
+.indetImg
+{
+	width: 18px;
+	height: 16px;
+	background: url(../../images/invest/normal_collection.png) no-repeat center;
+	margin: 15px 30px 0 0;
+	cursor: pointer;
+}
+.indetImg:hover
+{
+	background: url(../../images/invest/hover_collection.png) no-repeat center;
+}
+.indetail_list
+{
+	margin: 57px 0 32px 0;
+	height: 100px;
+}
+.indetail_list li
+{
+	float: left;
+	font-size: 14px;
+	color: #474e5d;
+	height: 100%;
+}
+.indet_item01
+{
+	width: 241px;
+	text-align: center;
+	border-right: 1px solid #e5e5e5;
+}
+.indet_item01 p
+{
+	font-size: 28px;
+	color: #FE5256;
+	padding-bottom: 12px;
+}
+.indet_rate
+{
+	font-size: 46px;
+	color: #FE5256;	
+}
+.indet_item02
+{
+	width: 206px;
+	text-align: center;
+	border-right: 1px solid #e5e5e5;
+}
+.indet_item02 p,.indet_item03 p
+{
+	padding-bottom: 12px;
+	font-size: 28px;
+	color: #323232;
+}
+.indet_limit_day,.indet_invest_amout
+{
+	font-size: 46px;
+	color: #323232;
+}
+.indet_item03
+{
+	width: 245px;
+	text-align: center;
+}
+.inDetail_conBot
+{
+	font-size: 14px;
+	color: #474e5d;
+}
+.conBot01
+{
+	margin: 0 70px 0 51px;
+}
+.conBot_instit
+{
+	/*margin: 0 80px 0 47px;*/
+	display: inline-block;
+	width: 168px;
+	margin-left: 45px;
+}
+.conBot_endTime_box
+{
+	margin-left: 64px;
+	width: 306px;
+	text-align: left;
+	line-height: 24px;
+	color: #474e5d;
+}
+.conBot_endTimees_box
+{
+	text-align: left;
+	line-height: 24px;
+	color: #474e5d;
+}
+.inDetail_right_box
+{
+	width: 440px;
+	height: 100%;
+	background: #fafafa;
+}
+.inDetail_noLogin
+{
+	height: 100%;
+}
+.inter_rightTitle
+{
+	position: relative;
+}
+.inter_rightTitle h3
+{
+	font-size: 18px;
+	color: #474e5d;
+	margin: 20px 0 41px 54px;
+}
+.redFlagImg
+{
+	position: absolute;
+	top: 0;
+	right: 20px;
+	width: 59px;
+	height: 66px;
+	background: url(../../images/invest/investImg.png) no-repeat center;
+}
+.rema_avail_money
+{
+	font-size: 16px;
+	color: #474e5d;
+	margin: 0 0 10px 45px;
+}
+.amount_avail_money
+{
+	font-size: 16px;
+	color: #474e5d;
+	margin: 0 0 16px 45px;
+}
+.amount_href
+{
+	color: #518ef4;
+	margin-left: 5px;
+}
+.inter_rightInput
+{
+	margin-left: 45px;
+	position: relative;
+}
+.fuyhui_txt 
+{
+    width: 318px;
+    height: 18px;
+    background: #fff;
+    padding: 11px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    outline: none;
+}
+.inDetail_btn
+{
+	width: 110px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	background: #0bf;
+	font-size: 14px;
+	color: #fff;
+	margin: 0 0 0 45px;
+	border-radius: 4px;
+	cursor: pointer;
+	border:none;
+}
+.inv_errorMsg,.noinv_errorMsg
+{
+	font-size: 12px;
+	color: #ff5353;
+	height: 25px;
+	line-height: 25px;
+	margin-left: 47px;
+}
+.inDetail_btn:hover
+{
+	background: #00a8ff;
+	transition:.5s;
+	-webkit-transition:.5s;
+	-moz-transition:.5s;
+	-ms-transition:.5s;
+}
+.amount_href
+{
+	position: absolute;
+	top: 1px;
+	right: -218px;
+	color: #0bf;
+}
+.indet_avail_money
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #0bf;
+}
+.indet_avail_dis
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #0bf;
+}
+.indet_eyeImg
+{
+	position: absolute;
+	top: 4px;
+	left: 112px;
+	display: inline-block;
+	width: 26px;
+	height: 16px;
+	background: url(../../images/invest/eye_show.png) no-repeat center;
+	margin: 0 40px 0 3px;
+	cursor: pointer;
+}
+.no_indet_eyeImg
+{
+	position: absolute;
+	top: 3px;
+	left: 112px;
+	display: inline-block;
+	width: 25px;
+	height: 11px;
+	background: url(../../images/invest/eye_hide.png) no-repeat center;
+	margin: 0 40px 0 3px;
+	cursor: pointer;
+}
+.indet_expect_box
+{
+	position: absolute;
+	top: 10px;
+	right: 65px;
+	font-size: 16px;
+	color: #ff5353;
+	display: none;
+}
+.inDetail_awardBox
+{
+	margin: -8px 0 0 112px;
+	/*display: none;*/
+}
+.indet_redpackage
+{
+	font-size: 12px;
+	color: #474e5d;
+	margin-bottom: 14px;
+}
+.redPackageImg    
+{
+	display: inline-block;
+	width:14px;
+	height: 16px; 
+	background: url(../../images/invest/red_pack.png) no-repeat center;
+	margin-right: 5px;
+}
+.redPack_num
+{
+	color: #ff5353;
+	/*margin-left: 12px;*/
+}
+.indet_payBox
+{
+	font-size: 12px;
+	color: #474e5d;
+}
+.payImg
+{
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	background: url(../../images/invest/surefuqian.png) no-repeat center;
+	margin-right: 5px;
+}
+.indet_payNum
+{
+	color: #ff5353;
+}
+.redFlagImg_also
+{
+	position: absolute;
+	top: 0;
+	right: 20px;
+	width: 59px;
+	height: 66px;
+	background: url(../../images/invest/haikuan.png) no-repeat center;
+}
+.indet_btnBox
+{
+	position: relative;
+}
+/*.fuyuanhuiImg
+{
+	position: absolute;
+	right: 30px;
+	top: -43px;
+	width: 132px;
+	height: 154px;
+	background: url(../../images/invest/fast.png) no-repeat center;
+}*/
+.redFlagImg_complete
+{
+	position: absolute;
+	top: 0;
+	right: 20px;
+	width: 59px;
+	height: 66px;
+	background: url(../../images/invest/yihaikuan.png) no-repeat center;
+}
+.redFlagImg_mambiao
+{
+	position: absolute;
+	top: 0;
+	right: 20px;
+	width: 59px;
+	height: 66px;
+	background: url(../../images/invest/yimanbiao.png) no-repeat center;
+}
+.fuyuanhuiImg_complete
+{
+	position: absolute;
+	right: 30px;
+	top: -43px;
+	width: 135px;
+	height: 154px;
+	background: url(../../images/invest/manyi.png) no-repeat center;
+}
+.inDetail_bot_body
+{
+	width: 100%;
+	padding-bottom: 42px;
+	background: #f5f5f5;
+}
+.indet_bot_1000
+{
+	width: 1170px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow:0px 11px 40px -2px #bbb;
+	-webkit-box-shadow:0px 11px 40px -2px #bbb;
+	-moz-box-shadow:0px 11px 40px -2px #bbb;
+	-ms-box-shadow:0px 11px 40px -2px #bbb;
+}
+.indet_title_box
+{
+	width: 100%;
+	height: 59px;
+	border-bottom: 1px solid #bdbdbd;
+	background: #f2f2f2;
+}
+.indet_title_list
+{
+	width: 100%;
+	height: 100%;
+	line-height: 59px;
+}
+.indet_title_list li
+{
+	float: left;
+	line-height: 59px;
+	width: 138px;
+	text-align: center;
+	font-size: 18px;
+	color: #474e5d;
+	cursor: pointer;
+	font-weight: bold;
+}
+.indet_title_list li.active
+{
+	border-bottom: none;
+	height: 58px;
+	border-top: 2px solid #00a9eb;
+	background: #fff;
+	cursor: default;
+}
+.indet_project_infosBox
+{
+	padding: 50px 36px 300px 40px;
+}
+.odd_p 
+{
+	height: 50px;
+	line-height: 50px;
+	background: #f2f2f2;
+}
+.pro_firstP
+{
+	display: inline-block;
+	width: 98px;
+	height: 100%;
+	text-align: right;
+	font-size: 14px;
+	color: #474e5d;
+	margin-right: 30px;
+}
+.com_prosecond 
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #474e5d;
+}
+.even_p 
+{
+	height: 54px;
+	line-height: 54px;
+	background: #fff;
+}
+.question_box_infos
+{
+	padding: 43px 57px 0 50px;
+    height: 920px;
+}
+.big_quetitle
+{
+	margin-bottom: 27px;
+}
+.que_hr
+{
+	margin-right: 10px;
+	width: 2px;
+	height: 20px;
+	background: #323232;
+}
+.que_title
+{
+	font-size: 20px;
+	color: #323232;
+	font-weight: bold;
+	margin-top: -4px;
+}
+.que_div
+{
+	margin-bottom: 20px;
+}
+.que_div p
+{
+	line-height: 32px;
+}
+.que_txtTitle
+{
+	font-size: 16px;
+	color: #333;
+	font-weight: bold;
+}
+.que_tement
+{
+	font-size: 14px;
+	color: #151515;
+}
+.borrower_infoBox
+{
+	padding: 0 30px 30px 30px;
+	font-size: 14px;
+	color: #474e5d;
+}
+.borrower_infoBox h3,.risk_controlInfo
+{
+	font-size: 16px;
+	margin-bottom: 16px;
+}
+.borrower_bg
+{
+	width: 18px;
+	height: 2px;
+	border-bottom: 2px solid #a4a7af;
+	margin-bottom: 28px;
+}
+.borrower_infoBox h6,.risk_auditInfo
+{
+	font-weight: normal;
+	font-size: 14px;
+	color: #474e5d;
+	margin-bottom: 24px;
+}
+.borrower_list li
+{
+	float: left;
+	line-height: 27px;
+}
+.borrower_item01
+{
+	width: 212px;
+}
+.borrower_item02
+{
+	width: 242px;
+}
+.borrower_item03
+{
+	width: 272px;
+}
+.borrower_item04
+{
+	width: 382px;
+}
+.borrower_creditLevelBox
+{
+	margin-top: 27px;
+}
+.divder_line
+{
+	width: 100%;
+	height: 5px;
+	background: #d8d8d8;
+}
+.risk_control_box
+{
+	padding:20px 0 0 30px;
+}
+.audit_imgBox
+{
+	width: 860px;
+	height: 80px;
+	background: url(../../images/invest/invest_pro.png) no-repeat center;
+	margin: 20px 0 0 116px;
+}
+.audit_list_box
+{
+	margin: 8px 0 56px 116px;
+}
+.audit_list_box li
+{
+	float: left;
+	width: 76px;
+	text-align: center;
+	font-size: 12px;
+	color:#474e5d;
+}
+.audit_item01
+{
+	margin-right: 120px;
+}
+.audit_item02
+{
+	margin-right: 125px;
+}
+.audit_item03
+{
+	margin-right: 123px;
+}
+.audit_item04
+{
+	margin-right: 100px;
+}
+.audit_item05
+{
+	margin-left: 24px;
+}
+.risk_security
+{
+	margin: 86px 0 20px 0;
+	font-size: 14px;
+	color: #474e5d;
+}
+.risk_security_content
+{
+	font-size: 14px;
+	color: #474e5d;
+	height: 360px;
+}
+.indet_plan_infoBox,.indet_investRecord_box,.indet_projectCourse_box
+{
+	padding: 40px 30px;
+	height: 920px;
+	position: relative;
+}
+.indet_refund_box
+{
+	font-size: 16px;
+	color: #474e5d;
+	font-weight: bold;
+}
+.relady_refund
+{
+	width: 247px;
+}
+.no_refund
+{
+	margin-left: 70px;
+	margin-bottom: 46px;
+}
+.refund_titleBox
+{
+	padding-bottom: 12px;
+	border-bottom: 1px solid #b4b4b4;
+}
+.refund_list li
+{
+	float: left;
+	/*width: 138px;*/
+	width: 222px;
+	text-align: center;
+	font-size: 14px;
+	color: #474e5d;
+	font-weight: bold;
+}
+/*.refund_item01,.refund_date_num
+{
+	margin-right: 115px;
+}*/
+/*.refund_item02,.refund_time
+{
+	margin-right: 118px;
+}*/
+/*.refund_item03,.refund_beijin
+{
+	margin-right: 112px;
+}*/
+/*.refund_item04,.refund_rate
+{
+	margin-right: 105px;
+}*/
+/*.refund_item05,.refund_state
+{
+	width: 114px !important;
+	text-align: center;
+}*/
+.refund_infos
+{
+	height: 69px;
+	line-height: 69px;
+	border-bottom: 1px solid #eaeaea;
+}
+.refund_infos:hover
+{
+	background: #f2f2f2;
+}
+.refund_div
+{
+	/*width: 138px;*/
+	width: 222px;
+	text-align: center;
+	font-size: 12px;
+	color: #474e5d;
+}
+.indet_invest_title
+{
+	height: 37px;
+	line-height: 37px;
+	border-bottom: 1px solid #b4b4b4;
+}
+.indet_invest_list
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #474e5d;
+}
+.indet_invest_list li
+{
+	float: left;
+}
+.indet_inveItem01
+{
+	width: 284px;
+	padding-left: 86px;
+}
+.indet_inveItem02
+{
+	width: 198px;
+	padding-left: 172px;
+}
+.indet_inveItem03
+{
+	width: 135px;
+	padding-left: 235px;
+}
+.each_investRecord_infos
+{
+	font-size: 14px;
+	color: #474e5d;
+	height: 69px;
+	line-height: 69px;
+	border-bottom: 1px solid #eaeaea;
+}
+.each_investRecord_infos:hover
+{
+	background: #f2f2f2;
+}
+.iRecord_div
+{
+	width: 232px;
+	text-align: center;
+}
+.iName
+{
+	margin-right: 226px;
+}
+.iAmount
+{
+	margin-right: 186px;
+}
+.proCourse_increment
+{
+	position: relative;
+}
+.proCourse_increment a
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 16px;
+	color: #0bf;
+}
+.proCourse_bot_box
+{
+	margin-top: 82px;
+}
+.proCourse_leftImg
+{
+	width: 87px;
+	height: 647px;
+	background: url(../../images/invest/progress04.png) no-repeat center;
+	margin: 0 30px 0 85px;
+}
+.com_proCourse
+{
+	height: 128px;
+	margin-bottom: 71px;
+}
+.com_proCourse h5
+{
+	height: 62px;
+	font-size: 16px;
+	color: #474e5d;
+	margin-top: 8px;
+}
+.proCourse_bot_content
+{
+	height: 46px;
+	font-size: 14px;
+	color: #474e5d;
+}
+.proCourse_bot_content p
+{
+	color: #0bf;
+	margin-bottom: 20px;
+}
+#invest_fade
+{
+	width: 100%;
+	height: 1000px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: #000;
+	opacity: .25;
+	filter:alpha(opacity=25);
+	z-index: 5;
+}
+.invest_window
+{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 360px;
+	height: 250px;
+	margin-left: -180px;
+	margin-top: -125px;
+	z-index: 6;
+	background: #fff;
+	box-shadow: 0px 20px 64px 0px rgba(0,0,0,0.50);
+	border-radius: 20px;
+	display: none;
+}
+.inv_but
+{
+	width: 110px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    background: #0bf;
+    font-size: 14px;
+    color: #fff;
+    margin:40px auto 0 auto;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+.investClose
+{
+    width: 19px;
+    height: 19px;
+    background: url(../../images/userAccount/normal_close.png) no-repeat center;
+    cursor: pointer;
+    margin: 15px 15px 0 0;
+}
+.investClose:hover
+{
+	background: url(../../images/userAccount/hover_close.png) no-repeat center;
+}
+.investTxt
+{
+	margin-top: 60px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ff5353;
+	text-align: center;
+}
+.investRecordPage
+{
+	bottom: 140px !important;
+}

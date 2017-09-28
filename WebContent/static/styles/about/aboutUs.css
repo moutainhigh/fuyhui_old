@@ -1,0 +1,116 @@
+.fl{float: left;}
+.fr{float: right;}
+ul,li{list-style: none;margin: 0;padding: 0;}
+p{margin: 0;padding: 0;}
+.f18{font-size: 18px;}
+.mar-top14{margin-top: 14px;}
+.clear{clear: both;}
+/*********************关于我们******************************/
+/*公司介绍*/
+.pro-bg{background: #F5F5F5;}
+.content{width: 100%;}
+.aboutUs .containerA{width: 1170px;height: auto;margin:38px  auto 90px;}
+.aboutUs .containerA .left-con{width: 166px;height: auto;float: left;}
+.aboutUs .containerA .left-con p{font-size: 18px;color:#323232;}
+.aboutUs .left-con .about-ul{margin-top: 30px;}
+.aboutUs .left-con .about-ul>li{width: 92px;font-size: 16px;color: #666666;line-height: 28px;margin-top: 24px;height: 28px;padding-left: 12px;}
+.aboutUs .left-con .about-ul>li a{color: #666666;}
+.aboutUs .left-con .about-ul>li a:hover{color: #00BBFF;}
+.aboutUs .left-con .about-ul>li.click-li{border-left: 2px solid #00BBFF;}
+.aboutUs .left-con .about-ul>li .hover-A{color: #00BBFF;}
+.aboutUs .containerA .right-con{margin-left: 170px;}
+.aboutUs .containerA .right-con>p{font-size: 24px;color: #323232;}
+.aboutUs .containerA .right-con .concen{width: 978px;height: 900px;margin-top: 10px;background: #ffffff;
+    box-shadow: 0px 11px 40px -2px #bbb;
+    -webkit-box-shadow: 0px 11px 40px -2px #bbb;
+    -moz-box-shadow: 0px 11px 40px -2px #bbb;
+    -ms-box-shadow: 0px 11px 40px -2px #bbb;}
+.aboutUs .right-con .concen .sma-cen{width: 850px;margin: 0 auto;padding-top: 72px;font-size: 18px;color: #666666;}
+.aboutUs .right-con .sma-cen .bor-tiao{width: 28px;height:0px;border: 1px solid #3FA2F7;display: inline-block;margin-bottom: 16px;}
+.aboutUs .right-con .sma-cen .intro-con{width: 100%;height: auto;margin-top: 56px;line-height: 36px;}
+.aboutUs .right-con .sma-cen .comp-img{width: 400px;height: 220px;margin-right: 22px;border: 1px solid #979797;float: left;margin-top: 56px;}
+
+
+
+
+/*团队介绍*/
+.clear-tab{display:table;}
+.aboutUs .right-con .concenA{height: auto !important;padding-top: 30px;padding-bottom: 30px;}
+.aboutUs .right-con .concenA .team-deco{width: 100%;height: 264px;font-size: 14px;color: #333333;}
+.aboutUs .concenA .imgcon{width: 320px;float: left;text-align: center;margin-top: 27px;}
+.aboutUs .concenA .imgcon>img{width: 168px;height: 168px;border-radius: 50%;border: 1px solid #979797;display: inline-block;margin: 0 auto;margin-bottom: 20px;}
+.aboutUs .concenA .img-desc{padding-right: 98px;padding-top: 46px;}
+.aboutUs .concenA .img-desc .mar-top{margin-top: 26px;}
+.aboutUs .right-con .concenA .team-deco:nth-child(odd){background: #ffffff;}
+.aboutUs .right-con .concenA .team-deco:nth-child(even){background:#EFEFEF;}
+
+
+
+/*网站公告*/
+.aboutUs .concen .site-ul{width: 828px;height: auto;margin: 0 auto;margin-bottom: 67px;}
+.aboutUs .concen .site-ul > li{width: 100%;height: 70px;line-height: 70px;font-size: 16px;color: #333333;border-bottom: 1px solid #EAEAEA;}
+.aboutUs .concen .site-ul > li .circle{width: 4px;height: 4px;border-radius: 2px;border: 1px solid #333333;display: inline-block;background: #333333;}
+.aboutUs .concen .site-ul > li .time-annmou{padding-right: 10px;}
+
+
+/*网站公告详情*/
+.aboutUs .concen .website-smacen{width: 838px;height: auto;margin: 0 auto;padding-top: 26px;font-size: 16px;}
+.aboutUs .website-smacen .p-tit{font-size: 24px;margin-bottom: 14px;color: #333333;}
+.aboutUs .website-smacen .p-tit .back{font-size: 14px;color: #00BBFF;}
+.aboutUs .website-smacen .p-time{color: #666666;}
+.aboutUs .website-smacen .desc-1{margin-top:30px;font-size: 16px;color: #323232;text-indent: 2em;line-height: 36px;}
+.aboutUs .website-smacen .page-cen{margin-top: 62px;border-top: 1px solid #EAEAEA;padding-top: 22px;padding-bottom: 70px;}
+.aboutUs .website-smacen .page-cen .page-btn{width: 74px;height: 30px;line-height: 30px;text-align: center;display: inline-block;border-radius: 4px;font-size: 14px;color: #323232;}
+.aboutUs .website-smacen .page-cen .prev{border: 1px solid #DDDDDD;margin-right: 22px;}
+.aboutUs .website-smacen .page-cen .next{background: #DDDDDD;border: 1px solid #DDDDDD;}
+
+
+/*媒体报道*/
+.aboutUs .concen .media-sma{width: 828px;height: auto;margin: 0 auto;margin-top: 10px;}
+.aboutUs .concen .media-sma .media-con{width: 100%;height: 112px;font-size: 16px;color: #323232;border-bottom: 1px solid #EAEAEA;}
+.aboutUs .concen .media-con .img-con{width: 140px;height: 88px;border: 1px solid #EAEAEA;margin-top: 10px;margin-right: 24px;}
+.aboutUs .concen .media-con  .media-desc{padding-top: 14px;margin-left: 164px;width: 644px;}
+.aboutUs .media-con  .media-desc .col-font{color: #666666;font-size: 14px;margin-top: 14px;}
+
+
+/*媒体报道详情*/
+.aboutUs .mediad-smacen .mediad-container{margin-top: 50px;margin-bottom: 190px;}
+.aboutUs .mediad-smacen .media-dcon{font-size: 16px;  color: #323232;  letter-spacing: 0;  line-height: 32px;}
+
+
+/*业绩报道*/
+.aboutUs .concen .perreport-ul{padding-bottom: 350px;}
+
+
+
+/*关于我们*/
+.aboutUs .right-con .concenA.concenUs{height: 840px !important;position: relative}
+.content .right-con .conus-cen{width: 488px;height: 526px;margin: 0 auto;text-align: center;}
+.content .right-con .conus-cen .bor-con{width: 48px;height: 2px;background: #3FA2F7;margin: 94px auto 0;}
+.content .right-con .conus-cen .con-desc{width: 100%;height: 152px;text-align: center;margin-top: 42px;}
+.concen .con-desc .p-info{font-size: 18px;color: #666666;line-height: 38px;}
+.concen .code-con .code-img{margin-top: 54px;}
+.aboutUs .right-con .concenUs .mapcon{background: url("../../images/aboutUs/scale_tv.png") no-repeat;position: absolute;bottom:-42px;width: 553px;height: 342px;left: 212px;}
+.aboutUs .right-con .concenUs .mapcon .mapimg{margin-left: 15px;margin-top: 4px;width: 524px;height: 296px;}
+.aboutUs .right-con .concenUs .mapcon .mapoffimg{background: url("../../images/aboutUs/scale_tvcon.png") no-repeat;}
+.iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}/*地图的弹出框样式*/
+.iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}/*地图的弹出框样式*/
+/*.concen .code-con .code-img.leftimg{margin-right: 30px;}*/
+
+.media-dcon
+{
+	text-indent: 31px;
+	margin: 20px 0;
+}
+.media-con:hover
+{
+
+
+	
+	cursor: pointer;
+}
+.webLI
+{
+	cursor: pointer;
+}
+

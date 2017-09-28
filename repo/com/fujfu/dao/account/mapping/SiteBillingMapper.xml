@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fujfu.dao.account.SiteBillingMapper">
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.account.SiteBillingVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fy_serialno" jdbcType="VARCHAR" property="fySerialno" />
+    <result column="out_realname" jdbcType="VARCHAR" property="outRealname" />
+    <result column="out_username" jdbcType="VARCHAR" property="outUsername" />
+    <result column="out_userid" jdbcType="INTEGER" property="outUserid" />
+    <result column="in_realname" jdbcType="VARCHAR" property="inRealname" />
+    <result column="in_username" jdbcType="VARCHAR" property="inUsername" />
+    <result column="in_userid" jdbcType="INTEGER" property="inUserid" />
+    <result column="amt" jdbcType="DECIMAL" property="amt" />
+    <result column="site_busi_type" jdbcType="VARCHAR" property="siteBusiType" />
+    <result column="busi_status" jdbcType="INTEGER" property="busiStatus" />
+    <result column="audit_results" jdbcType="INTEGER" property="auditResults" />
+    <result column="audit_status" jdbcType="INTEGER" property="auditStatus" />
+    <result column="site_busi_rem" jdbcType="VARCHAR" property="siteBusiRem" />
+    <result column="created" jdbcType="INTEGER" property="created" />
+    <result column="createdStr" jdbcType="VARCHAR" property="createdStr" />
+    <result column="updated" jdbcType="INTEGER" property="updated" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fy_serialno, out_realname, out_username, out_userid, in_realname, in_username, 
+    in_userid, amt, site_busi_type, busi_status, audit_results, audit_status, site_busi_rem, 
+    created, updated,message
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fu_site_billing
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fu_site_billing
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.account.SiteBillingVO">
+    insert into fu_site_billing
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fySerialno != null">
+        fy_serialno,
+      </if>
+      <if test="outRealname != null">
+        out_realname,
+      </if>
+      <if test="outUsername != null">
+        out_username,
+      </if>
+      <if test="outUserid != null">
+        out_userid,
+      </if>
+      <if test="inRealname != null">
+        in_realname,
+      </if>
+      <if test="inUsername != null">
+        in_username,
+      </if>
+      <if test="inUserid != null">
+        in_userid,
+      </if>
+      <if test="amt != null">
+        amt,
+      </if>
+      <if test="siteBusiType != null">
+        site_busi_type,
+      </if>
+      <if test="busiStatus != null">
+        busi_status,
+      </if>
+      <if test="auditResults != null">
+        audit_results,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="siteBusiRem != null">
+        site_busi_rem,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="updated != null">
+        updated,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fySerialno != null">
+        #{fySerialno,jdbcType=VARCHAR},
+      </if>
+      <if test="outRealname != null">
+        #{outRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="outUsername != null">
+        #{outUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="outUserid != null">
+        #{outUserid,jdbcType=INTEGER},
+      </if>
+      <if test="inRealname != null">
+        #{inRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="inUsername != null">
+        #{inUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="inUserid != null">
+        #{inUserid,jdbcType=INTEGER},
+      </if>
+      <if test="amt != null">
+        #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="siteBusiType != null">
+        #{siteBusiType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiStatus != null">
+        #{busiStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditResults != null">
+        #{auditResults,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="siteBusiRem != null">
+        #{siteBusiRem,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=INTEGER},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=INTEGER},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.account.SiteBillingVO">
+    update fu_site_billing
+    <set>
+      <if test="fySerialno != null">
+        fy_serialno = #{fySerialno,jdbcType=VARCHAR},
+      </if>
+      <if test="outRealname != null">
+        out_realname = #{outRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="outUsername != null">
+        out_username = #{outUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="outUserid != null">
+        out_userid = #{outUserid,jdbcType=INTEGER},
+      </if>
+      <if test="inRealname != null">
+        in_realname = #{inRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="inUsername != null">
+        in_username = #{inUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="inUserid != null">
+        in_userid = #{inUserid,jdbcType=INTEGER},
+      </if>
+      <if test="amt != null">
+        amt = #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="siteBusiType != null">
+        site_busi_type = #{siteBusiType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiStatus != null">
+        busi_status = #{busiStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditResults != null">
+        audit_results = #{auditResults,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="siteBusiRem != null">
+        site_busi_rem = #{siteBusiRem,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=INTEGER},
+      </if>
+      <if test="message != null">
+        message = #{message,jdbcType=INTEGER},
+      </if>
+      <if test="updated != null">
+        message = #{message,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateBusiStatusBySSN">
+	update fu_site_billing set busi_status =#{statu},updated=#{updateDate} where fy_serialno = #{ssn}
+	</update>
+	<!-- 分页查询条件 -->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="siteBillingQueryVo.outUsername!=null and siteBillingQueryVo.outUsername!=''">
+				and out_username like "%"#{siteBillingQueryVo.outUsername}"%"
+			</if>
+			<if test="siteBillingQueryVo.inUsername!=null and siteBillingQueryVo.inUsername!=''">
+                and in_username like "%"#{siteBillingQueryVo.inUsername}"%"
+			</if>
+			<if test="siteBillingQueryVo.startTime!=null and siteBillingQueryVo.startTime!=''">
+    <![CDATA[  and created >= #{siteBillingQueryVo.startTime}]]>
+			</if>
+			<if test="siteBillingQueryVo.endTime!=null and siteBillingQueryVo.endTime!=''">
+    <![CDATA[  and created <= #{siteBillingQueryVo.endTime}]]>
+			</if>
+			<if test="siteBillingQueryVo.siteBusiType!=null and siteBillingQueryVo.siteBusiType!=''">
+    			and site_busi_type = #{siteBillingQueryVo.siteBusiType}
+			</if>
+			
+		</trim>
+	</sql>
+	<!-- 分页查询 -->
+	<!-- 分页查询 -->
+	<select id="findSiteBillingByCondition" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		,from_unixtime(created,'%Y/%m/%d') as createdStr 
+		from fu_site_billing
+		<include refid="queryCondition" />
+		order by created desc limit
+		#{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 分页查询记录数 -->
+	<select id="countSiteBilling" resultType="java.lang.Integer">
+		select count(*) from fu_site_billing <include refid="queryCondition" />
+	</select>
+</mapper>

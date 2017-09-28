@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.admin.RolePurviewMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.admin.RolePurviewVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="purview_id" property="purviewId" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.fujfu.pojo.admin.RolePurviewPOJO" >
+    <id column="id" property="id" />
+    <result column="role_id" property="roleId" />
+    <result column="purview_id" property="purviewId" />
+    <result column="created" property="created" />
+    <result column="rolename" property="rolename" />
+    <result column="purview_name" property="purviewName" />
+    <result column="purview_flag" property="purviewFlag" />
+    <result column="describ" property="describ" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_id, purview_id, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_role_purview
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_role_purview
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.admin.RolePurviewVO" >
+    insert into fu_role_purview (id, role_id, purview_id, 
+      created)
+    values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{purviewId,jdbcType=INTEGER}, 
+      #{created,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.admin.RolePurviewVO" >
+    insert into fu_role_purview
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="purviewId != null" >
+        purview_id,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="purviewId != null" >
+        #{purviewId,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.admin.RolePurviewVO" >
+    update fu_role_purview
+    <set >
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="purviewId != null" >
+        purview_id = #{purviewId,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.admin.RolePurviewVO" >
+    update fu_role_purview
+    set role_id = #{roleId,jdbcType=INTEGER},
+      purview_id = #{purviewId,jdbcType=INTEGER},
+      created = #{created,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="findPurviewByRoleId" resultMap="BaseResultMapVo">
+  	select id,frp.role_id as role_id,frp.created,fr.rolename as rolename,frp.purview_id as purview_id,purview_name,purview_flag,fp.describ as describ 
+	from fu_role_purview frp 
+  	inner join fu_role fr on fr.role_id = frp.role_id  
+  	inner join fu_purview fp on fp.purview_id = frp.purview_id 
+  	where frp.role_id = #{roleId}   
+  	LIMIT #{page.startOfPage},#{page.pageSize}
+  </select>
+  <!-- 根据id查询 -->
+  <select id="findRolePurviewVoById" resultMap="BaseResultMapVo">
+  	select id,frp.role_id as role_id,frp.created,fr.rolename as rolename,frp.purview_id as purview_id,purview_name,purview_flag,fp.describ as describ 
+	from fu_role_purview frp 
+  	inner join fu_role fr on fr.role_id = frp.role_id  
+  	inner join fu_purview fp on fp.purview_id = frp.purview_id 
+  	where id = #{id}   
+  </select>
+  <select id="countPurviewByRoleId" resultType="java.lang.Integer">
+  	select count(*) from fu_role_purview frp 
+  	inner join fu_role fr on fr.role_id = frp.role_id  
+  	inner join fu_purview fp on fp.purview_id = frp.purview_id 
+  	where frp.role_id = #{roleId}
+  </select>
+  <select id="findPurviewIdByRoleId" resultMap="BaseResultMap">
+  	select * from fu_role_purview where role_id = #{roleId}
+  </select>
+  
+</mapper>

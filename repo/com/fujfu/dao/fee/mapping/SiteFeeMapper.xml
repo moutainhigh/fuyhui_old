@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.fee.SiteFeeMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.fee.SiteFeeVO" >
+    <id column="fee_id" property="feeId" jdbcType="INTEGER" />
+    <result column="fee_base" property="feeBase" jdbcType="VARCHAR" />
+    <result column="fee_name" property="feeName" jdbcType="VARCHAR" />
+    <result column="fee_desc" property="feeDesc" jdbcType="VARCHAR" />
+    <result column="fee_max" property="feeMax" jdbcType="DOUBLE" />
+    <result column="fee_min" property="feeMin" jdbcType="DECIMAL" />
+    <result column="formula_type" property="formulaType" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="interest_rate" property="interestRate" jdbcType="DECIMAL" />
+    <result column="alculation" property="alculation" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fee_id, fee_base, fee_name, fee_desc, fee_max, fee_min, formula_type, amount, interest_rate, 
+    alculation, status, created
+  </sql>
+   <!-- 根据费用名查询费用 -->
+  <select id="findSiteFeeByFeeName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fu_site_fee
+    where fee_name = #{feeName}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_site_fee
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_site_fee
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.fee.SiteFeeVO" >
+    insert into fu_site_fee (fee_id, fee_base, fee_name, 
+      fee_desc, fee_max, fee_min, 
+      formula_type, amount, interest_rate, 
+      alculation, status, created
+      )
+    values (#{feeId,jdbcType=INTEGER}, #{feeBase,jdbcType=VARCHAR}, #{feeName,jdbcType=VARCHAR}, 
+      #{feeDesc,jdbcType=VARCHAR}, #{feeMax,jdbcType=DOUBLE}, #{feeMin,jdbcType=DECIMAL}, 
+      #{formulaType,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{interestRate,jdbcType=DECIMAL}, 
+      #{alculation,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{created,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="feeId" parameterType="com.fujfu.pojo.fee.SiteFeeVO" >
+    insert into fu_site_fee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feeBase != null" >
+        fee_base,
+      </if>
+      <if test="feeName != null" >
+        fee_name,
+      </if>
+      <if test="feeDesc != null" >
+        fee_desc,
+      </if>
+      <if test="feeMax != null" >
+        fee_max,
+      </if>
+      <if test="feeMin != null" >
+        fee_min,
+      </if>
+      <if test="formulaType != null" >
+        formula_type,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="interestRate != null" >
+        interest_rate,
+      </if>
+      <if test="alculation != null" >
+        alculation,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feeBase != null" >
+        #{feeBase,jdbcType=VARCHAR},
+      </if>
+      <if test="feeName != null" >
+        #{feeName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeDesc != null" >
+        #{feeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="feeMax != null" >
+        #{feeMax,jdbcType=DOUBLE},
+      </if>
+      <if test="feeMin != null" >
+        #{feeMin,jdbcType=DECIMAL},
+      </if>
+      <if test="formulaType != null" >
+        #{formulaType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRate != null" >
+        #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="alculation != null" >
+        #{alculation,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.fee.SiteFeeVO" >
+    update fu_site_fee
+    <set >
+      <if test="feeBase != null" >
+        fee_base = #{feeBase,jdbcType=VARCHAR},
+      </if>
+      <if test="feeName != null" >
+        fee_name = #{feeName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeDesc != null" >
+        fee_desc = #{feeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="feeMax != null" >
+        fee_max = #{feeMax,jdbcType=DOUBLE},
+      </if>
+      <if test="feeMin != null" >
+        fee_min = #{feeMin,jdbcType=DECIMAL},
+      </if>
+      <if test="formulaType != null" >
+        formula_type = #{formulaType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+      	amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRate != null" >
+      	interest_rate = #{interestRate,jdbcType=DECIMAL},
+      </if>  
+      <if test="alculation != null" >
+        alculation = #{alculation,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+    </set>
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.fee.SiteFeeVO" >
+    update fu_site_fee
+    set fee_base = #{feeBase,jdbcType=VARCHAR},
+      fee_name = #{feeName,jdbcType=VARCHAR},
+      fee_desc = #{feeDesc,jdbcType=VARCHAR},
+      fee_max = #{feeMax,jdbcType=DOUBLE},
+      fee_min = #{feeMin,jdbcType=DECIMAL},
+      formula_type = #{formulaType,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      interest_rate = #{interestRate,jdbcType=DECIMAL},
+      alculation = #{alculation,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      created = #{created,jdbcType=INTEGER}
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </update>
+  <select id="listAllSiteFeeByPage" resultMap="BaseResultMap">
+  	select * from fu_site_fee 
+  	LIMIT #{page.startOfPage},#{page.pageSize}
+  </select>
+  <select id="listAllSiteFee" resultMap="BaseResultMap">
+  	select * from fu_site_fee 
+  </select>
+  <select id="countSiteFee" resultType="java.lang.Integer">
+  	select count(*) from fu_site_fee
+  </select>
+  
+  <!-- 根据费用名查询是否该费用是否已被添加 -->
+  <select id="countSiteFeeByName" resultType="java.lang.Integer">
+  	select count(*) from fu_site_fee where fee_name =#{feeName}
+  </select>
+</mapper>

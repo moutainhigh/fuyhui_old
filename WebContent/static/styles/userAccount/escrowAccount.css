@@ -1,0 +1,302 @@
+@charset 'utf-8';
+/*开通富友账户页面样式Start*/
+.escro_body
+{
+	width: 838px;
+	padding: 42px 0 171px 262px;
+	background: #FFFFFF;
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	-webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	-moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	-ms-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	margin: 21px auto 61px auto;
+	border-top: 2px solid #0bf;
+	/*为了兼容ie8*/
+	border-left: 1px solid #eaeaea \9;
+	border-right: 1px solid #eaeaea \9;
+	border-bottom: 1px solid #eaeaea \9;
+}
+.escro_body h3
+{
+	font-size: 24px;
+	color: #666;
+	margin: 0 454px 55px 192px;
+}
+.escro_label
+{
+	width: 84px;
+	text-align: right;
+	display: inline-block;
+	margin-right: 14px;
+	margin-top: 11px;
+	font-size: 14px;
+	color: #666;
+}
+.nk_right
+{
+	position: absolute;
+	bottom: 0;
+	right: -1px;
+	width: 29px;
+	height: 30px;
+	background: url(../../images/userAccount/yes02.png) no-repeat center;
+}
+.esc_input 
+{
+	width: 318px;
+	height: 20px;
+	padding: 10px 15px;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #666;
+	outline: none;
+	background: #fff;
+}
+.esc_input:hover
+{
+	border:1px solid #0bf;
+}
+.escro_error
+{
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+	color: #ff5353;
+	padding-left: 115px;
+	margin-left: -17px;
+	/*line-height: 35px \9;*/
+}
+.esc_wit_error
+{
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+	color: #b3b3b3;
+	padding-left: 115px;
+}
+.escro_tsp
+{
+	margin:11px 0 0 14px;
+	font-size: 12px;
+	color: #666;
+}
+.esc_select
+{
+	width: 350px;
+    height: 42px;
+    padding: 10px 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #666;
+    outline: none;
+    background:#fff;
+    /*很关键：将默认的select选择框样式清除*/  
+	appearance:none;  
+	-moz-appearance:none;  
+	-webkit-appearance:none;  
+	/*在选择框的最右侧中间显示小箭头图片*/  
+	background: url(../../images/userAccount/arrows.png) no-repeat scroll 320px center transparent; 
+	background: url(../../images/userAccount/arrowss.png) no-repeat scroll right center transparent \9;     
+}
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/  
+select::-ms-expand 
+{ 
+	display: none; 
+}  
+.esc_account_province,.esc_account_city
+{
+	width: 172px !important;
+	margin-right: 6px;
+	background: url(../../images/userAccount/arrows.png) no-repeat scroll 142px center transparent !important;
+	background: url(../../images/userAccount/arrowsf.png) no-repeat scroll 142px center transparent !important \9;
+}
+.esc_btn_box
+{
+	margin:10px 0 0 97px;
+}
+.escro_sumbit
+{
+	width: 218px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	margin-right: 50px;
+	background: #00BBFF;
+	border-radius: 4px;
+	font-size: 18px;
+	color: #fff;
+	cursor: pointer;
+}
+.jumb_href
+{
+	margin-top: 12px;
+	font-size: 16px;
+	color: #0bf;
+	cursor: pointer;
+}
+.taiwan_id_cardImg,.hk_id_cardImg,.pt_id_cardImg
+{
+	position: relative;
+	height: 60px;
+}
+.taiwan_img,.hk_img
+{
+	position: absolute;
+	top: 0;
+	left: 98px;
+	width: 120px;
+	height: 38px;
+	line-height: 38px;
+	opacity: 0;
+	filter:alpha(opacity=0);
+	outline: none;
+	background: #fff;
+	border:0;
+	z-index: 6;
+	border-radius: 4px;
+	cursor: pointer;
+}
+/*.b_img
+{
+	position: absolute;
+	top: 0;
+	left: 230px;
+	width: 120px;
+	height: 38px;
+	line-height: 38px;
+	opacity: 0;
+	filter:alpha(opacity=0);
+	outline: none;
+	background: #fff;
+	border:0;
+	z-index: 6;
+	border-radius: 4px;
+	cursor: pointer;
+}*/
+.taiwan_files,.hk_files
+{
+	position: absolute;
+	top: 0;
+	left: 98px;
+	width: 120px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	background: #00BBFF;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.bank_files
+{
+	position: absolute;
+	top: 0;
+	left: 230px;
+	width: 120px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	background: #00BBFF;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.file_tips
+{
+	margin: -1px 0 0 2px;
+	font-size: 12px;
+	color: #666;
+}
+/*.btn-primary
+{
+	background: #0bf;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    height: 40px \9;*/
+    /*width: 100%;
+    height: 100%;*/
+/*    cursor: pointer;
+    border-radius: 4px;
+}*/
+.tj_btn
+{
+	background: #0bf;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    height: 40px \9;
+    /*width: 100%;
+    height: 100%;*/
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+/*全屏的阴影层*/
+.hide-ale{
+	display: none;
+}
+
+.hide_body{
+	width: 100%;
+	height: 1000px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background:#000;
+	opacity: .25;
+	filter:alpha(opacity=25);
+	z-index: 11;
+}
+
+
+.alert-Con{width:440px;height:280px;background:#a3d7ff;position:absolute;top:50%;left:50%;margin-left:-220px;margin-top:-140px;z-index:10000;background: #fff;box-shadow: 0px 20px 64px 0px rgba(0,0,0,0.50);border-radius: 10px;}
+
+.esc-accClose{cursor: pointer;margin-right: 10px;}
+
+
+.btn-sure{position: absolute;bottom: 10px;left: 200px;}
+.taiwan_img1,.taiwan_img2,.b_img,.hk_img1,.hk_img2,.hk_img3,.pt_img1,.pt_img2,.ptb_img
+{
+	position: absolute;
+    top: 0;
+    left: 98px;
+    width: 120px;
+    height: 38px;
+    line-height: 38px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    outline: none;
+    background: #fff;
+    border: 0;
+    z-index: 6;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.taiwan_files1,.taiwan_files2,.taiwan_files3,.hk_files1,.hk_files2,.hk_files3,.pt_files1,.pt_files2,.pt_files3
+{
+	position: absolute;
+    top: 0;
+    left: 98px;
+    width: 120px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background: #00BBFF;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.t_zmsg,.t_fmsg,.tb_zmsg,.hk_zmsg,.hk_fmsg,.hkb_zmsg,.pt_zmsg,.pt_fmsg,.ptb_zmsg
+{
+	font-size: 14px;
+    color: #0bf;
+    margin-left: 228px;
+    margin-top: 10px;
+}

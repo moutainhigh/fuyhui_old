@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.recommend.RecommendFriendshipTempMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.recommend.RecommendFriendshipVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="recommend_user_id" property="recommendUserId" jdbcType="INTEGER" />
+    <result column="recommend_ref_user_id" property="recommendRefUserId" jdbcType="INTEGER" />
+    <result column="regist_time" property="registTime" jdbcType="INTEGER" />
+    <result column="reward_term" property="rewardTerm" jdbcType="INTEGER" />
+    <result column="invest_loan_id" property="investLoanId" jdbcType="INTEGER" />
+    <result column="invest_loan_name" property="investLoanName" jdbcType="VARCHAR" />
+    <result column="invest_amount" property="investAmount" jdbcType="DECIMAL" />
+    <result column="invest_time" property="investTime" jdbcType="INTEGER" />
+    <result column="loan_time" property="loanTime" jdbcType="INTEGER" />
+    <result column="reward_amount" property="rewardAmount" jdbcType="DECIMAL" />
+    <result column="reward_time" property="rewardTime" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+    <result column="updated" property="updated" jdbcType="INTEGER" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+    id, recommend_user_id, recommend_ref_user_id, regist_time, reward_term, invest_loan_id, 
+    invest_loan_name, invest_amount, invest_time, loan_time, reward_amount, reward_time, 
+    status, remark, created, updated
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_recommend_friendship_temp
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findAllRecommendFriendshipTemp" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_recommend_friendship_temp
+  </select>
+  <select id="countRecommendFriendship" resultType="java.lang.Integer" >
+    select count(*) from fu_recommend_friendship_temp
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_recommend_friendship_temp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.recommend.RecommendFriendshipVO" >
+    insert into fu_recommend_friendship_temp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="recommendUserId != null" >
+        recommend_user_id,
+      </if>
+      <if test="recommendRefUserId != null" >
+        recommend_ref_user_id,
+      </if>
+      <if test="registTime != null" >
+        regist_time,
+      </if>
+      <if test="rewardTerm != null" >
+        reward_term,
+      </if>
+      <if test="investLoanId != null" >
+        invest_loan_id,
+      </if>
+      <if test="investLoanName != null" >
+        invest_loan_name,
+      </if>
+      <if test="investAmount != null" >
+        invest_amount,
+      </if>
+      <if test="investTime != null" >
+        invest_time,
+      </if>
+      <if test="loanTime != null" >
+        loan_time,
+      </if>
+      <if test="rewardAmount != null" >
+        reward_amount,
+      </if>
+      <if test="rewardTime != null" >
+        reward_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recommendUserId != null" >
+        #{recommendUserId,jdbcType=INTEGER},
+      </if>
+      <if test="recommendRefUserId != null" >
+        #{recommendRefUserId,jdbcType=INTEGER},
+      </if>
+      <if test="registTime != null" >
+        #{registTime,jdbcType=INTEGER},
+      </if>
+      <if test="rewardTerm != null" >
+        #{rewardTerm,jdbcType=INTEGER},
+      </if>
+      <if test="investLoanId != null" >
+        #{investLoanId,jdbcType=INTEGER},
+      </if>
+      <if test="investLoanName != null" >
+        #{investLoanName,jdbcType=VARCHAR},
+      </if>
+      <if test="investAmount != null" >
+        #{investAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="investTime != null" >
+        #{investTime,jdbcType=INTEGER},
+      </if>
+      <if test="loanTime != null" >
+        #{loanTime,jdbcType=INTEGER},
+      </if>
+      <if test="rewardAmount != null" >
+        #{rewardAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rewardTime != null" >
+        #{rewardTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,534 @@
+@charset 'utf-8';
+/*我的奖励-邀请好友页面样式Start*/
+.rew_rigBotContent_box
+{
+	margin-top: -24px;
+}
+.reward_nav_box
+{
+	height: 50px;
+	line-height: 50px;
+	font-size: 18px;
+	color: #474e5d;
+	border-bottom: 2px solid #0bf;
+	background: #fff;
+}
+.reward_nav_box div
+{
+	width: 138px;
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+}
+.reward_nav_box div.active
+{
+	background: #0bf;
+	color: #fff;
+	cursor: default;
+}
+.get_reward_box
+{
+	height: 53px;
+	padding: 39px 0 44px 0;
+	background: #fff;
+	margin-bottom: 5px;
+}
+.reward_list li
+{
+	float: left;
+	height: 68px;
+	/*padding-left: 100px;*/
+	text-align: center;
+}
+.reward_itme01
+{
+	width: 49%;
+	border-right: 1px solid #eaeaea;
+}
+.rew_item01_content,.rew_item02_content
+{
+	width: 100%;
+}
+.reward_itme02
+{
+	width: 50%;
+}
+/*.reward_itme01,.reward_itme02
+{
+	width: 225px;
+	border-right: 1px solid #eaeaea;
+}*/
+.reward_itme03
+{
+	width: 226px;
+}
+.rew_item01_bg,.rew_item02_bg
+{
+	width: 34px;
+	height: 36px;
+	background: url(../../images/userAccount/award02.png) no-repeat center;
+	margin-right: 20px;
+	margin-top: 3px;
+}
+.rew_item03_bg
+{
+	width: 35px;
+	height: 37px;
+	background: url(../../images/userAccount/award.png) no-repeat center;
+	margin-right: 20px;
+	margin-top: 3px;
+}
+.rew_item01_content p,.rew_item02_content p,.rew_item03_content p
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #323232;
+}
+.rew_item01_content div,.rew_item02_content div,.rew_item03_content div
+{
+	font-size: 16px;
+	color: #999;
+	margin-top: 7px;
+}
+.recommend_style_box
+{
+	padding: 23px 0 30px 34px;
+	background: #fff;
+}
+.recomemnd_title
+{
+	height: 25px;
+	line-height: 25px;
+	margin-bottom: 30px;
+}
+.myrecommend_codeBox
+{
+	display: inline-block;
+	width: 422px;
+	text-align: left;
+	font-size: 14px;
+	color: #0bf;
+}
+.recom_title
+{
+	font-size: 18px;
+	color: #0bf;
+}
+.recommend_speciesBox
+{
+	font-size: 14px;
+	color: #666;
+}
+.recon_cirle
+{
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 50%;
+	text-align: center;
+	border:1px solid #3dcbff;
+	font-size: 12px;
+	color: #3dcbff;
+	margin-right: 20px;
+}
+.recon_cirle_txt
+{
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 0.3%;
+}
+.rec_group_second
+{
+	font-size: 12px;
+	color: #999;
+	margin-bottom: 0.5%;
+	margin-left: 42px;
+}
+.recom_wx
+{
+	width: 42px;
+	text-align: center;
+	cursor: pointer;
+}
+.recom_code
+{
+	width: 42px;
+	text-align: center;
+	/*margin-left: 65px;*/
+	margin-left: 0px;/*只有2个功能排版的时候*/
+	cursor: pointer;
+}
+.recom_href,.recom_hrefCode
+{
+	position: relative;
+	cursor: pointer;
+}
+.recom_wx p
+{
+	margin-top: 8px;
+}
+.recom_code p
+{
+	margin-top: 23px;
+}
+.recom_href p
+{
+	margin-top: 20px;
+}
+.recon_wx_bg
+{
+	width: 42px;
+	height: 42px;
+	background: url(../../images/userAccount/wximg.png) no-repeat center;
+}
+.recon_code_bg
+{
+	position: absolute;
+	top:0;
+	left: 72px;
+	width: 163px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+	color: #3dcbff;
+	margin-left: -30px;
+	border:1px solid #0bf;
+	border-radius: 12px;
+}
+.copyURL
+{
+	position: absolute;
+	top: 0;
+	left: 72px;
+	left: 72px;
+	width: 420px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+	color: #3dcbff;
+	margin-left: -30px;
+	border:1px solid #0bf;
+	border-radius: 12px;
+}
+.recon_div_group
+{
+	height: 90px;
+	margin-bottom: 45px;
+}
+.rec_btn
+{
+	position: absolute;
+	top: 2px;
+	width: 105px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #0bf;
+	border:1px solid #0bf;
+	border-radius: 12px;
+	font-size: 14px;
+	color: #fff;
+	cursor: pointer; 
+}
+.rec_copyCode_btn
+{
+	left: 217px;
+}
+.rec_copyUrl_btn
+{
+	left: 473px;
+}
+.recon_copy_bg
+{
+	width: 30px;
+	height: 30px;
+	background: url(../../images/userAccount/copy.png) no-repeat center;
+	margin-left: 12px;
+}
+.recommend_rule_box
+{
+	padding: 0 50px 62px 34px;
+	height: 468px;
+	background: #fff;
+}
+.recommend_rule_box h3
+{
+	font-size: 16px;
+	color: #0bf;
+	margin-bottom: 18px;
+}
+.recom_rule_content
+{
+	font-size: 14px;
+	color: #4a4a4a;
+	line-height: 24px;
+}
+.recom_rule_content p
+{
+	font-size: 14px;
+	color: #999;
+}
+.friends_tab_box
+{
+	height: 687px;
+	background: #fff;
+}
+.friend_titleBox
+{
+	height: 44px;
+	line-height: 44px;
+	border-bottom: 1px solid #eaeaea;
+}
+.friend_titleBox p
+{
+	width: 122px;
+	text-align: center;
+	font-size: 14px;
+	color: #474e5d;
+	font-weight: bold;
+	float: left;
+}
+.earch_friend_infos
+{
+	height: 69px;
+	line-height: 69px;
+	font-size: 14px;
+	color: #474e5d;
+	border-bottom: 1px solid #eaeaea;
+}
+.earch_friend_infos p
+{
+	width: 122px;
+	height: 69px;
+	line-height: 69px;
+	text-align: center;
+	float: left;
+}
+.earch_friend_infos:hover
+{
+	background: #f2f2f2;
+}
+#invite_friend
+{
+	margin-top: 87px;
+}
+/*我的奖励-邀请好友页面样式End*/
+
+/*我的奖励-优惠卷页面样式Start*/
+
+.cou_rigBotContent_box
+{
+	height: 768px;
+	background: #fff;
+	box-shadow:0px 11px 40px -2px #bbb;
+	-webkit-box-shadow:0px 11px 40px -2px #bbb;
+	-moz-box-shadow:0px 11px 40px -2px #bbb;
+	-ms-box-shadow:0px 11px 40px -2px #bbb;
+	margin-top: -24px;
+}
+.cou_title_nav
+{
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 2px solid #0bf;
+}
+.cou_title_nav p
+{
+	width: 138px;
+	height: 100%;
+	line-height: 50px;
+	text-align: center;
+	font-size: 18px;
+	color: #474e5d;
+	float: left;
+	cursor: pointer;
+}
+.cou_title_nav p.active
+{
+	background: #0bf;
+	color: #fff;
+	cursor: default;
+}
+.cou_available_body
+{
+	padding: 33px 21px 0 45px;
+}
+.each_avail_reward
+{
+	width: 428px;
+	height: 128px;
+	position: relative;
+	float: left;
+	margin: 0 28px 25px 0;
+	background: url(../../images/userAccount/youhuiimg.png) no-repeat center;
+}
+.avail_list li
+{
+	position: absolute;
+	float: left;
+}
+.avail_item01
+{
+	bottom: 11px;
+	left: 34px;
+	font-size: 12px;
+	color: #fff;
+}
+.avail_item02
+{
+	top: 23px;
+	left: 143px;
+	font-size: 14px;
+	color: #fff;
+}
+.avail_list h3
+{
+	margin-bottom: 4px;
+}
+.avail_item01 div,.avail_item02 div,.avail_item03 div
+{
+	margin-top: 4px;
+}
+.avail_item03
+{
+	width: 126px;
+	text-align: center;
+	right: 3px;
+	top: 1px;
+	color: #fff;
+}
+.avail_nums
+{
+	font-size: 62px;
+	font-weight: bold;
+}
+.avail_item03 p
+{
+	font-size: 24px;
+	font-weight: bold;
+	margin: -6px 0 0 4px;
+}
+#availe_page
+{
+	margin-top: 130px;
+}
+.cou_used_body
+{
+	margin-top: 14px;
+}
+.comtab
+{
+	border-top: none;
+}
+.table_title
+{
+	background: #f2f2f2;
+}
+.cou_num_title,.cou_invest_title,.cou_investDate_title,.cou_type_title,.cou_source_title,.cou_number,.cou_amount,.cou_investTime,.cou_type,.cou_source,.exp_number,.exp_amount,.exp_investTime,.exp_type,.exp_source
+{
+	width: 151px;
+	text-align: center;
+}
+.cou_scope_title
+{
+	width: 221px;
+	text-align: center;
+}
+.cou_user_scope,.exp_user_scope
+{
+	width: 221px;
+	/*text-align: left !important;*/
+	line-height: 69px;
+	/*padding-top: 12px; 先隐藏*/
+}
+.cou_user_scope span,.exp_user_scope span
+{
+	display: block;
+}
+#used_page,#expired_page
+{
+	margin-top: 60px;
+}
+.avail_number
+{
+	margin-left: 110px;
+}
+
+
+/*推荐奖励规则*/
+.invite_role_h1{
+	font-size: 12px;
+	margin-bottom: 10px;
+	color: #2a2a2a !important;
+}
+.invite_table
+{
+	width: 605px;
+	font-size: 16px;
+}
+.inv_tab01
+{
+	width: 301.5px;
+	height: 33.5px;
+	line-height: 33.5px;
+	text-align: center;
+	margin-right: 1px;
+	color: #fff;
+	background: #95cfff;
+}
+.inv_tab02
+{
+	width: 299px;
+	height: 33.5px;
+	line-height: 33.5px;
+	text-align: center;
+	color: #fff;
+	background: #95cfff;
+}
+.left_inv_tab
+{
+	width: 299px;
+	height: 32.5px;
+	line-height: 32.5px;
+	text-align: center;
+	border:1px solid #76c1ff;
+	border-top:none;
+	color: #396ea2;
+}
+.right_inv_tab
+{
+	width: 299px;
+	height: 32.5px;
+	line-height: 32.5px;
+	text-align: center;
+	border-right: 1px solid #76c1ff;
+	border-bottom:1px solid #76c1ff;
+	color: #396ea2;
+}
+.invite_role_head{width:100%;height:44px;line-height:44px;overflow:hidden;text-align: center;border-bottom: 1px solid #b4b4b4;}
+.invite_role_head .role_head_th{width:33.3%;background:#f2f2f2;text-align: center;}
+.invite_role{width:100%;height:79px;line-height:79px;overflow:hidden;text-align: center;border-bottom: 1px solid #eaeaea;}
+.invite_role .role_cen_th{width:33.3%;text-align: center;}
+.invite_role:hover{background: #f2f2f2;}
+.mar_top{margin-top: 18px;}
+
+
+/*我的奖励-优惠卷页面样式End*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

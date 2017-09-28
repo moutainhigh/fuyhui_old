@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.common.TokenMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.common.TokenVO" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="token_id" property="tokenId" jdbcType="VARCHAR" />
+    <result column="last_activity" property="lastActivity" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, mobile, token_id, last_activity
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_token
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByUserId" parameterType="java.lang.Integer" >
+    delete from fu_token
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.common.TokenVO" >
+    insert into fu_token (user_id, mobile, token_id, 
+      last_activity)
+    values (#{userId,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{tokenId,jdbcType=VARCHAR}, 
+      #{lastActivity,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.common.TokenVO" >
+    insert into fu_token
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="tokenId != null" >
+        token_id,
+      </if>
+      <if test="lastActivity != null" >
+        last_activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenId != null" >
+        #{tokenId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActivity != null" >
+        #{lastActivity,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.common.TokenVO" >
+    update fu_token
+    <set >
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenId != null" >
+        token_id = #{tokenId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActivity != null" >
+        last_activity = #{lastActivity,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.common.TokenVO" >
+    update fu_token
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      token_id = #{tokenId,jdbcType=VARCHAR},
+      last_activity = #{lastActivity,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

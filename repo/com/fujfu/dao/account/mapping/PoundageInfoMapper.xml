@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fujfu.dao.account.PoundageInfoMapper">
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.account.PoundageInfoVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="relativeid" jdbcType="INTEGER" property="relativeid" />
+    <result column="relativetype" jdbcType="VARCHAR" property="relativetype" />
+    <result column="poundageatm" jdbcType="DECIMAL" property="poundageatm" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="txn_ssn" jdbcType="VARCHAR" property="txn_ssn" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="cash" jdbcType="DECIMAL" property="cash" />
+    <result column="frost" jdbcType="DECIMAL" property="frost" />
+    <result column="feeid" jdbcType="INTEGER" property="feeid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, relativeid, relativetype, poundageatm, create_time, user_id, status,txn_ssn,total,cash,frost,feeid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fu_poundage_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryTxnSsn"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fu_poundage_info
+    where txn_ssn = #{txn_ssn,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.fujfu.pojo.account.PoundageInfoVO">
+    insert into fu_poundage_info (id, relativeid, relativetype, 
+      poundageatm, create_time, user_id, 
+      status,txn_ssn,feeid)
+    values (#{id,jdbcType=INTEGER}, #{relativeid,jdbcType=INTEGER}, #{relativetype,jdbcType=VARCHAR}, 
+      #{poundageatm,jdbcType=DECIMAL}, #{createTime,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER},#{txn_ssn,jdbcType=VARCHAR},#{feeid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.account.PoundageInfoVO">
+    insert into fu_poundage_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="relativeid != null">
+        relativeid,
+      </if>
+      <if test="relativetype != null">
+        relativetype,
+      </if>
+      <if test="poundageatm != null">
+        poundageatm,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="txn_ssn != null">
+        txn_ssn,
+      </if>
+       <if test="total != null">
+        total,
+      </if>
+       <if test="cash != null">
+        cash,
+      </if>
+       <if test="frost != null">
+        frost,
+      </if>
+       <if test="feeid != null">
+        feeid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="relativeid != null">
+        #{relativeid,jdbcType=INTEGER},
+      </if>
+      <if test="relativetype != null">
+        #{relativetype,jdbcType=VARCHAR},
+      </if>
+      <if test="poundageatm != null">
+        #{poundageatm,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="txn_ssn != null">
+        #{txn_ssn,jdbcType=INTEGER},
+      </if>
+       <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+       <if test="cash != null">
+        #{cash,jdbcType=DECIMAL},
+      </if>
+       <if test="frost != null">
+        #{frost,jdbcType=DECIMAL},
+      </if>
+       <if test="feeid != null">
+        #{feeid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.account.PoundageInfoVO">
+    update fu_poundage_info
+    <set>
+      <if test="relativeid != null">
+        relativeid = #{relativeid,jdbcType=INTEGER},
+      </if>
+      <if test="relativetype != null">
+        relativetype = #{relativetype,jdbcType=VARCHAR},
+      </if>
+      <if test="poundageatm != null">
+        poundageatm = #{poundageatm,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="txn_ssn != null">
+        txn_ssn = #{txn_ssn,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.account.PoundageInfoVO">
+    update fu_poundage_info
+    set relativeid = #{relativeid,jdbcType=INTEGER},
+      relativetype = #{relativetype,jdbcType=VARCHAR},
+      poundageatm = #{poundageatm,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+       txn_ssn = #{txn_ssn,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

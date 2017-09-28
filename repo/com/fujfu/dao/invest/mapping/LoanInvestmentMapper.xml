@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.invest.LoanInvestmentMapper">
+	<resultMap id="BaseResultMap" type="com.fujfu.pojo.invest.LoanInvestmentVO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="apply_id" property="applyId" jdbcType="INTEGER" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="award_id" property="awardId" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="BIT" />
+		<result column="invest_time" property="investTime" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="trx_id" property="trxId" jdbcType="BIGINT" />
+		<result column="is_unfreeze" property="isUnfreeze" jdbcType="BIT" />
+		<result column="is_loans" property="isLoans" jdbcType="BIT" />
+		<result column="ca_status" property="caStatus" jdbcType="BIT" />
+		<result column="claimNumber" property="claimNumber" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="LoanInvestMap" type="com.fujfu.pojo.invest.LoanInvestListPOJO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="order_number" property="order_number" jdbcType="VARCHAR" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="apr" property="apr" jdbcType="REAL" />
+		<result column="period" property="period" jdbcType="SMALLINT" />
+		<result column="start_time" property="start_time" />
+		<result column="status" property="repay_status" jdbcType="TINYINT" />
+		<result column="investProgress" property="investProgress" />
+		<result column="invest_id" property="invest_id" jdbcType="INTEGER" />
+		<result column="expectinterest" property="expectinterest"
+			jdbcType="DECIMAL" />
+		<result column="recover_money" property="recover_money"
+			jdbcType="DECIMAL" />
+		<result column="recover_period" property="recover_period"
+			jdbcType="INTEGER" />
+		<result column="recover_req_time" property="recover_req_time" />		
+		<result column="sumReMoney" property="sumReMoney" jdbcType="DECIMAL" />
+		<result column="hasPeriod" property="hasPeriod" jdbcType="TINYINT" />
+		<result column="status" property="status" jdbcType="TINYINT" />	
+		<result column="nestRepayDate" property="nestRepayDate" />
+		<result column="finishDate" property="finishDate" />
+        <result column="claimNumber" property="claimNumber" jdbcType="VARCHAR" />
+        <result column="loan_date" property="loan_date" jdbcType="VARCHAR" />
+         <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="act_period" property="actPeriod" jdbcType="SMALLINT" />
+         <result column="name" property="name" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!--导出发送金交所excel所需信息 -->
+	<resultMap id="InvestImportExcelMap" type="com.fujfu.pojo.invest.InvestImportExcelPOJO">
+		<result column="invest_time" property="investTime" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="StagingCode " property="StagingCode" jdbcType="VARCHAR" />
+		<result column="money" property="money" jdbcType="VARCHAR" />
+		<result column="realName" property="realName" jdbcType="VARCHAR" />
+		<result column="cardTypeName" property="cardTypeName" jdbcType="VARCHAR" />
+		<result column="card_id" property="cardId" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="id" property="id" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!--导出发送金交所excel所需信息 -->
+	<select id="InvestImportExcelList" resultMap="InvestImportExcelMap">
+		select
+		from_unixtime(fli.invest_time,'%Y%m%d%h%m%s') as invest_time,fla.name,''as StagingCode,fli.money,fu.realname,case when card_Type='1' then '身份证' when card_Type='2' then '台胞证' else '港澳通行证' end as cardTypeName,
+		fu.card_id,fu.mobile,fli.id
+		from fu_loan_investment
+		fli left join fu_users fu on fli.user_id =fu.user_id
+		left join  fu_loan_apply fla on fli.apply_id =fla.id
+		where fli.apply_id=#{applyId,jdbcType=INTEGER}		
+	</select>
+	<sql id="Base_Column_List">
+		id, user_id, apply_id, money, award_id, type, invest_time, status,
+		trx_id, is_unfreeze,
+		is_loans, ca_status,claimNumber
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from fu_loan_investment
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from fu_loan_investment
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.fujfu.pojo.invest.LoanInvestmentVO">
+		insert into fu_loan_investment (id, user_id, apply_id,
+		money, award_id, type, invest_time,
+		status, trx_id, is_unfreeze,
+		is_loans, ca_status,claimNumber)
+		values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{applyId,jdbcType=INTEGER},
+		#{money,jdbcType=DECIMAL}, #{awardId,jdbcType=VARCHAR}, #{type,jdbcType=BIT},
+		#{investTime,jdbcType=INTEGER},
+		#{status,jdbcType=TINYINT}, #{trxId,jdbcType=BIGINT}, #{isUnfreeze,jdbcType=BIT},
+		#{isLoans,jdbcType=BIT}, #{caStatus,jdbcType=BIT}, #{claimNumber,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.fujfu.pojo.invest.LoanInvestmentVO">
+		insert into fu_loan_investment
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="applyId != null">
+				apply_id,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="awardId != null">
+				award_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="investTime != null">
+				invest_time,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="trxId != null">
+				trx_id,
+			</if>
+			<if test="isUnfreeze != null">
+				is_unfreeze,
+			</if>
+			<if test="isLoans != null">
+				is_loans,
+			</if>
+			<if test="caStatus != null">
+				ca_status,
+			</if>
+			<if test="claimNumber != null">
+				claimNumber,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="awardId != null">
+				#{awardId,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=BIT},
+			</if>
+			<if test="investTime != null">
+				#{investTime,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="trxId != null">
+				#{trxId,jdbcType=BIGINT},
+			</if>
+			<if test="isUnfreeze != null">
+				#{isUnfreeze,jdbcType=BIT},
+			</if>
+			<if test="isLoans != null">
+				#{isLoans,jdbcType=BIT},
+			</if>
+			<if test="caStatus != null">
+				#{caStatus,jdbcType=BIT},
+			</if>
+			<if test="claimNumber != null">
+				#{claimNumber,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.invest.LoanInvestmentVO">
+		update fu_loan_investment
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="applyId != null">
+				apply_id = #{applyId,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="awardId != null">
+				award_id = #{awardId,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=BIT},
+			</if>
+			<if test="investTime != null">
+				invest_time = #{investTime,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="trxId != null">
+				trx_id = #{trxId,jdbcType=BIGINT},
+			</if>
+			<if test="isUnfreeze != null">
+				is_unfreeze = #{isUnfreeze,jdbcType=BIT},
+			</if>
+			<if test="isLoans != null">
+				is_loans = #{isLoans,jdbcType=BIT},
+			</if>
+			<if test="caStatus != null">
+				ca_status = #{caStatus,jdbcType=BIT},
+			</if>
+			<if test="claimNumber != null">
+				claimNumber = #{claimNumber,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.invest.LoanInvestmentVO">
+		update fu_loan_investment
+		set user_id = #{userId,jdbcType=INTEGER},
+		apply_id = #{applyId,jdbcType=INTEGER},
+		money = #{money,jdbcType=DECIMAL},
+		award_id = #{awardId,jdbcType=VARCHAR},
+		type = #{type,jdbcType=BIT},
+		invest_time = #{investTime,jdbcType=INTEGER},
+		status = #{status,jdbcType=TINYINT},
+		trx_id = #{trxId,jdbcType=BIGINT},
+		is_unfreeze = #{isUnfreeze,jdbcType=BIT},
+		is_loans = #{isLoans,jdbcType=BIT},
+		ca_status = #{caStatus,jdbcType=BIT}
+		claimNumber = #{claimNumber,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- .......................................................... -->
+	<select id="selectNowAmtByApplyId" resultType="java.math.BigDecimal">
+		select IFNULL(sum(money),0) from fu_loan_investment
+		where apply_id = #{applyId}
+	</select>
+	<!-- 统计根据标的id未放款的条数 -->
+	<select id="countInvestByApplyIdAndIsLoans" resultType="java.lang.Integer">
+		select count(*) from fu_loan_investment where apply_id = #{applyId} and is_loans =0
+	</select>
+
+	<!-- 根据申请号查询投资记录 -->
+	<resultMap id="InvestRecordMap" type="com.fujfu.pojo.invest.InvestRecordPOJO">
+		<id column="mobile" property="mobile" />
+		<id column="userName" property="userName" />
+		<id column="amount" property="amount" />
+		<id column="investTime" property="investTime" />
+	</resultMap>
+	<select id="findMinInvestByApplyId" resultType="java.math.BigDecimal">
+	select min(money) from fu_loan_investment 
+		where apply_id = #{applyId} limit 0,1
+	</select>
+	<select id="findInvestByApplyId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from fu_loan_investment
+		where apply_id = #{applyId}
+	</select>
+	
+  	<select id="findInvestByApplyIdSum" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+ 		select user_id,sum(money) as money from  fu_loan_investment where apply_id = #{applyId} group by user_id		
+	</select>
+		 
+	<!-- 根据申请号和当前页数查询投资记录 -->
+	<select id="findInvestByApplyIdAndNum" resultMap="InvestRecordMap">
+		select fu.mobile as mobile,fu.userName as userName,fli.money as amount,
+		from_unixtime(fli.invest_time) as investTime from fu_loan_investment
+		fli
+		left join fu_users fu on fli.user_id = fu.user_id where fli.apply_id
+		= #{applyId} limit #{startNum},10
+	</select>
+	<!-- 根据申请号和当前页数统计投资记录数 -->
+	<select id="countInvestRecodByApplyId" resultType="java.lang.Integer">
+		select count(*) from
+		fu_loan_investment
+		fli
+		left join fu_users fu on fli.user_id =
+		fu.user_id where fli.apply_id
+		= #{applyId}
+	</select>
+
+	<!-- 后台管理系统查询所有投资记录 -->
+	<select id="findAllInvestNum" resultMap="LoanInvestMap">
+		SELECT
+		fla.id,fu.user_id,fu.username,fla.order_number,fli.money,fla.apr,fla.act_period ,fla.period,fla.start_time,fla.status
+		,round(flii.money/fla.amount,2)
+		as investProgress, fli.id as invest_id
+		from fu_loan_investment fli
+		LEFT JOIN fu_loan_apply fla on fli.apply_id =fla.id
+		LEFT JOIN fu_users fu on fli.user_id=fu.user_id		
+		LEFT JOIN (select
+		apply_id,sum(money) as money from fu_loan_investment
+		group by
+		apply_id ) flii on fli.apply_id= flii.apply_id
+		<include refid="queryCondition" />
+		order by fli.invest_time desc limit
+		#{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 后台管理系统查询所有投资记录 -->
+	<!-- 投资人前台资产管理查询申请中的 -->
+	<select id="findloanInvestListByConditionAndNum" resultMap="LoanInvestMap">	    	
+		select fla.name,fla.order_number,fla.id,fu.username,fli.money,fla.apr,fla.period,from_unixtime(flii.invest_time)
+		as start_time,fla.status ,round(flii.money/fla.amount*100,2)
+		as
+		investProgress, round(fli.money*fla.apr*fla.period/1200/30) as expectinterest from (select sum(money) as money ,apply_id,user_id  from fu_loan_investment GROUP BY apply_id,user_id having user_id= #{loanInvestQueryVo.user_id}) fli 
+        LEFT JOIN  fu_loan_apply fla on fli.apply_id =fla.id
+        LEFT JOIN fu_users fu on fli.user_id=fu.user_id
+        LEFT JOIN (select
+		apply_id,sum(money) as money,max(invest_time) as invest_time from fu_loan_investment
+		group by
+		apply_id ) flii  on fli.apply_id= flii.apply_id
+		<include refid="queryCondition" />
+         order by fla.order_number
+		limit #{pageNum},7
+	</select>
+	<!-- 统计投资人前台资产管理查询申请中的记录数 -->
+	<select id="countloanInvestListByConditionAndNum" resultType="java.lang.Integer">
+		select count(*) from (select sum(money) as money ,apply_id,user_id  from fu_loan_investment GROUP BY apply_id,user_id having user_id= #{loanInvestQueryVo.user_id}) fli 
+        LEFT JOIN  fu_loan_apply fla on fli.apply_id =fla.id
+        LEFT JOIN fu_users fu on fli.user_id=fu.user_id
+        LEFT JOIN (select
+		apply_id,sum(money) as money from fu_loan_investment
+		group by
+		apply_id ) flii  on fli.apply_id= flii.apply_id
+		<include refid="queryCondition" />
+	</select>
+	<!-- 前台管理系统根据userid查询所有投资记录 -->
+	<!-- 分页查询条件 -->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="loanInvestQueryVo.username!=null ">
+				and fu.username like "%"#{loanInvestQueryVo.username}"%"
+			</if>
+			<if test="loanInvestQueryVo.id!=null and loanInvestQueryVo.id!=''">
+        
+             and fla.order_number = #{loanInvestQueryVo.id}
+			</if>
+			<if
+				test="loanInvestQueryVo.apply_id!=null and loanInvestQueryVo.apply_id!='' and loanInvestQueryVo.apply_id>0">
+             and fla.id = #{loanInvestQueryVo.apply_id}
+			</if>
+			<if
+				test="loanInvestQueryVo.invest_id!=null and loanInvestQueryVo.invest_id!='' and loanInvestQueryVo.invest_id>0">
+              and fli.id  = #{loanInvestQueryVo.invest_id}
+			</if>
+			<if
+				test="loanInvestQueryVo.user_id!=null and loanInvestQueryVo.user_id!='' and loanInvestQueryVo.user_id>0">
+             and fli.user_id = #{loanInvestQueryVo.user_id}
+			</if>
+			<if
+				test="loanInvestQueryVo.status!=null and loanInvestQueryVo.status!='' and loanInvestQueryVo.status!='7A'.toString() and loanInvestQueryVo.status!='8A'.toString()"> 
+              and fla.status = #{loanInvestQueryVo.status}
+			</if>
+			<!-- 申请中的投资 -->
+			<if
+				test="loanInvestQueryVo.status!=null and loanInvestQueryVo.status!='' and (loanInvestQueryVo.status=='7A'.toString() )"> 
+             and (fla.status ='7'  or (fla.status='8' and fla.is_loans='0'))
+			</if>
+			<if
+				test="loanInvestQueryVo.status!=null and loanInvestQueryVo.status!='' and loanInvestQueryVo.status=='8A'.toString()"> 
+              and ((fla.status ='8' and(fla.is_loans in('1','2','3'))) or (fla.status='9' and fla.is_loans='3'))
+			</if>
+			<if test="loanInvestQueryVo.busitype==2 ">
+				and fla.loan_type='51'
+			</if>
+			<if test="loanInvestQueryVo.busitype==1 ">
+				and fla.loan_type!='51'
+			</if>
+		</trim>
+	</sql>
+	<!-- 分页查询 -->
+	<sql id="queryCondition1">
+		<trim prefix="where" prefixOverrides="and|or">
+
+		</trim>
+	</sql>
+	<!-- 分页查询记录数 -->
+	<select id="countInvestList" resultType="java.lang.Integer">
+		select count(*) from fu_loan_investment fli
+		LEFT JOIN fu_loan_apply fla on fli.apply_id =fla.id
+		LEFT JOIN fu_users fu on fli.user_id=fu.user_id
+		
+		LEFT JOIN (select
+		apply_id,sum(money) as money from fu_loan_investment
+		group by
+		apply_id ) flii on fli.apply_id= flii.apply_id
+		<include refid="queryCondition" />
+	</select>
+	<!--投资人前台资产管理查询还款中的和已还款的 -->
+	<select id="findloanInvestListByConditionAndNum1" resultMap="LoanInvestMap">
+		select fla.name,fla.order_number,fla.id,fli.money,(select IFNULL(sum(recover_money),0) from fu_apply_recover where apply_id =fli.apply_id and user_id=fli.user_id and status=0) as sumReMoney,
+(select count(id)from fu_apply_recover where apply_id =fli.apply_id and user_id=fli.user_id and status=1) as hasPeriod,(select count(id)from fu_apply_recover where apply_id =fli.apply_id and user_id=fli.user_id ) as period, fla.status,
+ IFNULL((select from_unixtime(recover_req_time) from fu_apply_recover where  id =(select min(id) from fu_apply_recover where apply_id =fli.apply_id and user_id=fli.user_id and status=0)),"--") as nestrepaydate,
+from_unixtime(fla.loan_time,'%Y%m%d') as loan_date
+from (select sum(money) as money ,apply_id,user_id  from fu_loan_investment GROUP BY apply_id,user_id having user_id= #{loanInvestQueryVo.user_id}) fli  LEFT JOIN fu_loan_apply fla on fli.apply_id =fla.id 
+		<include refid="queryCondition" />
+		limit #{pageNum},7
+	</select>
+	<!-- 前台管理系统根据userid查询所有投资记录 -->
+	<!-- 统计投资人前台资产管理查询还款中的和已还款分页查询记录数 -->
+	<select id="countInvestList1" resultType="java.lang.Integer">
+		select count(*) from
+		(select sum(money) as money ,apply_id,user_id  from fu_loan_investment GROUP BY apply_id,user_id having user_id= #{loanInvestQueryVo.user_id}) fli 
+		LEFT JOIN fu_loan_apply fla on fli.apply_id =fla.id
+		<include refid="queryCondition" />
+	</select>
+
+	<!-- 前台账户中心交易明细查询分页查询记录数 -->
+	<select id="countUserInvestTradeDetai" resultType="java.lang.Integer">
+		select count(*)
+		from fu_loan_investment fli
+		where fli.user_id= #{userId}
+		<include refid="queryCondition1" />
+	</select>
+	<!-- 根据标的order_number查询fu_loan_investment表的最大claimNumber记录 -->
+	<select id="findMaxInvestClaimNumber" resultType="java.lang.String">
+		select max(fli.claimNumber)
+		from fu_loan_investment fli
+		where fli.claimNumber like "%"#{orderNumber}"%"
+	</select>
+	
+	<!-- 根据apply_id查询fu_loan_investment表的用户投资分组记录 -->
+	<select id="findInvestGroupByUserid" resultMap="BaseResultMap">
+		select fli.user_id,sum(fli.money) as money 
+		from fu_loan_investment fli 
+		where fli.apply_id = #{applyId}
+		GROUP  by fli.user_id 
+	</select>
+</mapper>

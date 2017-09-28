@@ -1,0 +1,149 @@
+@charset "utf-8";
+.fl{float: left;}
+ul,li{list-style: none;margin: 0;padding: 0;}
+/*项目追踪*/
+.pro-bg{background: #F5F5F5;}
+.col-blue{background-color:#00BBFF !important; }
+.content{width: 100%;}
+.container{
+    width: 1170px;height: 622px;margin: 28px auto 90px;background: #FFFFFF;
+    /*box-shadow: 0px 2px 6px 0px rgba(82,82,82,0.50);*/
+    box-shadow: 0px 11px 40px -2px #bbb;
+    -webkit-box-shadow: 0px 11px 40px -2px #bbb;
+    -moz-box-shadow: 0px 11px 40px -2px #bbb;
+    -ms-box-shadow: 0px 11px 40px -2px #bbb;
+    position: relative;
+}
+
+.container .tit-nav{width: 100%;height: 68px;background-color: #F2F2F2;}
+.container .tit-nav .lab
+{
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #474E5D;
+    letter-spacing: 0px;
+    line-height: 14px;
+    display: inline-block;
+    margin: 27px 30px 27px 26px;
+    display: inline-block;
+    float: left;
+}
+.container .tit-nav .lab-in{
+    width: 810px;
+    height:16px;
+    line-height: 16px;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    vertical-align: middle;
+    margin-top: 12px;
+    margin-right: 14px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    display: inline-block;
+    float: left;
+    overflow:visible;
+}
+
+.container .tit-nav .tit-btn{
+    width: 110px;
+    height: 42px;
+    line-height: 42px;
+    margin-top: 12px;
+    display: inline-block;
+    text-align: center;
+    background: #00BBFF;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0px;
+    display: inline-block;
+    float: left;
+}
+
+.container .tab{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    border-collapse:collapse;
+}
+
+.container .tab tr.tab-head
+{
+    font-family: PingFangSC-Semibold;
+    font-size: 14px;
+    color: #474E5D;
+    letter-spacing: 0px;
+
+}
+.container .tab tr.tab-head th
+{
+    border-bottom: 1px solid #B4B4B4;
+}
+.container .tab .tab-tr{
+    width: 100%;
+    height: 70px;
+}
+
+.container .tab .tab-con:hover{
+    background: #F2F2F2;
+}
+
+
+.container .tab .tab-tr td{
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #474E5D;
+    letter-spacing: 0px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.container .tab .tab-tr td.tab-code{
+    color: #00BBFF;
+}
+
+
+
+.footer .ul-page{
+    width: auto;
+    height: 40px;
+    color: #666666;
+    position: absolute;
+    left: 766px;
+    bottom: 62px;
+}
+
+.footer .ul-page li{
+    list-style: none;
+    float: left;
+    padding: 10px 18px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+}
+
+
+
+
+/*项目追踪详情*/
+.contain-produce{height: auto!important;height: auto\9;//ie8+ }
+.head-title{width: 100%;height: 80px;line-height: 80px;padding-left: 24px;position: relative;}
+.head-title .border-title{width: 18px;height: 0px;display: inline-block;border:1px solid #474E5D;position: absolute;bottom: 22px;left: 22px;}
+/*.LoanPOJO-con{width: 1110px;margin: 0 auto;}*/
+.Loantab-head{width: 100%;height: 38px;line-height: 38px;background: #F5F5F5;border-bottom:1px solid #B4B4B4 !important;}
+.producttab{width: 100%;height: auto;font-size: 14px;color: #474E5D;margin-bottom: 40px;}
+.producttab .tab-code{color: #00BBFF;}
+/*.LoanPOJO-tab tr td{width: 33.%;}*/
+.producttab .tab-head{width: 100%;height: 38px !important;line-height: 38px;background: #F5F5F5;border-bottom:1px solid #B4B4B4 !important;}
+.Loantab-head .title{width: 33.3%;text-align: center;}
+.producttab .tab-tr{width: 80%;height: 70px;border-bottom:1px solid #EAEAEA;}
+.tab-border{width: 100%;height: 5px;background: #D8D8D8;}
+.flow-bg{text-align: center;width: 100%;height: 240px;font-size: 14px;}
+.flow-bg ul{width: 1000px;margin: 0 auto;overflow: hidden;margin-top: 12px;height: 60px;}
+.flow-bg ul li{width: 200px;font-size: 12px;}
+
+.status-con{width: 850px;height:20px;margin: 0 auto;text-align: right;margin-top: 30px;margin-bottom: 40px;}
+.status-con .sta-img{margin-left: 30px;}
+.status-con .sta-img img{margin-right: 10px;vertical-align: bottom;}

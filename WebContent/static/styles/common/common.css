@@ -1,0 +1,432 @@
+@charset 'utf-8';
+html, body, div,form, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, cite, code, del, em, font, img, q, small, strong, b, u, i, center, dl, dt, dd, ol, ul, li, label, table, tr, th, td {padding:0;margin:0;}
+img {border: 0px;}
+body{font-family: "微软雅黑";}
+a {text-decoration: none; color: #ffffff;}
+ul,li,ol{list-style:none;margin:0;padding:0;}
+input{outline:none; font-family: "微软雅黑";}
+a:hover {text-decoration:none;}
+/*body{ font:normal normal normal 12px Verdana, Geneva, sans-serif, "微软雅黑"}*/
+.fl{float: left;}
+.fr{float: right;}
+.clear{clear: both;}
+.hand_sharpe{cursor: pointer;}
+.hidden{display: none;}
+/*注册页、登录页头部公共样式*/
+.user_top
+{
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+	border-bottom: 1px solid #dddddd;
+	background: #fff;
+}
+.user_top_box
+{
+	width: 1170px;
+	margin: 0 auto;
+	height: 100%;
+}
+.uTop_logo
+{
+	width: 117px;
+    height: 36px;
+    margin: 18px 15px 0 0;
+    background: url(../../images/header/fujbao_logo.png) no-repeat center;
+    cursor: pointer;
+}
+.uLine
+{
+	border-right: 2px solid #e6e6e6;
+    height: 28px;
+    margin: 21px 14px 0 -2px;
+}
+.user_top_box h3
+{
+	font-size: 20px;
+	color: #666;
+}
+.user_fotter
+{
+	width: 100%;
+	border-bottom: 2px solid #e6e6e6;
+	background:#fff;
+}
+.user_fotter_box
+{
+	width: 1170px;
+	margin: 0 auto;
+	height: 100%;
+}
+.user_list
+{
+	width: 782px;
+	text-align: center;
+	padding-left: 388px;
+	margin-bottom: 12px;
+}
+.user_list li
+{
+	float: left;
+	width: 68px;
+	height: 22px;
+	line-height: 22px;
+	margin-right: 46px;
+}
+.user_list li a
+{
+	font-size: 16px;
+	color: #666;
+	font-weight: bold;
+}
+.user_bot
+{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+}
+.user_fotter_area
+{
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	left: 0;	
+}
+.user_increment
+{
+	height: 42px;
+	line-height: 42px;
+}
+.user_increment p
+{
+	width: 1170px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 14px;
+	color: #5c626f;
+}
+
+/*谷歌placeholder样式*/
+::-webkit-input-placeholder 
+{
+	color:#c2c2c2;
+}
+/*火狐placeholder样式*/
+:-moz-placeholder
+{
+	color: color:#c2c2c2;
+}
+/*IE10+placeholder样式*/
+:-ms-input-placeholder 
+{
+	color: color:#c2c2c2;
+}
+/*分页样式*/
+.pagination 
+{
+    display: inline-block;
+}
+.pagination>li 
+{
+    display: inline;
+}
+.pagination>li>a, .pagination>li>span 
+{
+    position: relative;
+    float: left;
+    width: 38px;
+    height: 38px;
+    margin-left: -1px;
+    line-height: 38px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.pagination>li.prev>a, .pagination>li.next>a
+{
+	width: 98px;
+	height: 38px;
+	line-height: 38px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #e8e8e8;
+    color: #4285f4;
+}
+.pagination li a:hover 
+{
+    color: #fff;
+    background-color: #0bf;
+}
+.com_bigMoneyFuhao 
+{
+    font-size: 24px;
+    color: #323232;
+}
+.com_smMoneyFuhao 
+{
+    font-size: 20px;
+    color: #323232;
+}
+.comtab
+{
+	width: 976px;
+	height: 756px;
+	border: 1px solid #d7d7d7;
+	font-size: 14px;
+	color: #474e5d;
+	background: #fff;
+	position: relative;
+}
+.table_title
+{
+	width: 976px;
+	height: 37px;
+	line-height: 37px;
+	font-weight: bold;
+	border-bottom: 1px solid #b4b4b4;
+}
+.each_tab_tr
+{
+	height: 69px;
+	line-height: 69px;
+	border-bottom: 1px solid #eaeaea;
+}
+.each_tab_tr p
+{
+	float: left;
+	text-align: center;
+}
+.each_tab_tr:hover
+{
+	background: #f2f2f2;
+}
+.page_box
+{
+	position: absolute;
+	right: 47px;
+	bottom: 160px;
+	height: 40px;
+}
+/*全局背景遮罩层样式id样式*/
+#fuyhui_fade
+{
+	width: 100%;
+    height: 1000px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: .25;
+    filter: alpha(opacity=25);
+    z-index: 100;
+}
+
+/*只有一句话的弹窗样式*/
+.one_contxt_window
+{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 416px;
+	height: 180px;
+	margin-left: -208px;
+	margin-top: -90px;
+	background: #fff;
+	border-radius: 10px;
+	display: none;
+	z-index: 101;
+}
+/*错误弹窗里的确认按钮样式*/
+.error_btns
+{
+	width: 88px;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	background: #0bf;
+	border-radius: 8px;
+	cursor: pointer;
+	margin:46px auto 0 auto;
+}
+/*错误提示内容样式*/
+.error_txts
+{
+	font-size: 16px;
+	color: #474e5d;
+	text-align: center;
+	margin:40px 0 20px 0;
+}
+
+/*图片+2行内容+1个或按钮弹窗 Start*/
+/*使用模板1*/
+/*<div class="img_window">
+	<p class="r_close"></p>
+	<div class="comWimg wSuccess"></div>
+	<p class="wTxt"></p>
+	<p class="wIncrement"></p>
+	<div class="comWBtn only_wBtn"></div>
+</div>*/
+
+/*使用模板2*/
+/*
+<div class="img_window">
+		<p class="r_close"></p>
+		<div class="comWimg wSuccess"></div>
+		<p class="wTxt"></p>
+		<p class="wIncrement">邀请好友获取奖励多邀多得，马上去<span class='wIncrement_a' onclick="window.location.href=getContextPaths()+'/myAccount/enterInvitefriend'">邀请好友</span></p>
+		<div class="wBtn_group">
+			<p class="comWBtn wBtn01 fl"></p>
+			<p class="comWBtn wBtn02 fl"></p>
+			<div class="clear"></div>
+		</div>
+	</div>
+*/
+.img_window
+{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 600px;
+	height: 380px;
+	margin-left: -300px;
+	margin-top: -190px;
+	background: #fff;
+	border-radius: 10px;
+	display: none;
+	z-index: 101; 
+}
+.img_window02
+{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 600px;
+	height: 380px;
+	margin-left: -300px;
+	margin-top: -190px;
+	background: #fff;
+	border-radius: 10px;
+	display: none;
+	z-index: 101; 
+}
+.img_window03
+{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 600px;
+	height: 380px;
+	margin-left: -300px;
+	margin-top: -190px;
+	background: #fff;
+	border-radius: 10px;
+	display: none;
+	z-index: 101; 
+}
+.r_close
+{
+	position: absolute;
+	top: 18px;
+	right: 20px;
+	width: 19px;
+    height: 19px;
+    background: url(../../images/userAccount/normal_close.png) no-repeat center;
+    cursor: pointer;
+}
+.r_close:hover
+{
+	background: url(../../images/userAccount/hover_close.png) no-repeat center;
+}
+/*公共图片样式*/
+.comWimg
+{
+	width: 50px;
+	height: 50px;
+	margin: 60px auto 32px auto;
+}
+/*警告图片样式*/
+.wAlert
+{
+	background: url(../../images/common/com_alert_img.png) no-repeat center;
+}
+/*成功图片样式*/
+.wSuccess
+{
+	background: url(../../images/common/com_success_img.png) no-repeat center;
+}
+/*错误图片样式*/
+.wError
+{
+	background: url(../../images/common/com_error_img.png) no-repeat center;
+}
+/*第一行提示内容的样式*/
+.wTxt
+{
+	font-size: 18px;
+	color: #474e5d;
+	text-align: center;
+	margin-bottom: 40px;
+}
+/*第二行提示信息里无超链接时的样式*/
+.wIncrement
+{
+	font-size: 16px;
+	color: #474e5d;
+	text-align: center;
+	margin-bottom: 50px;
+}
+/*第二行提示信息里有超链接时的样式*/
+.wIncrement_a
+{
+	color: #0bf;
+	cursor: pointer;
+}
+/*公共按钮样式*/
+.comWBtn
+{
+	width: 150px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+/*只有一个按钮时的样式*/
+.only_wBtn
+{
+	background: #0bf;
+	margin: 0 auto;
+	color: #fff;
+}
+/*当有两个按钮时的样式*/
+.wBtn01
+{
+	background: #0bf;
+	margin: 0 32px 0 138px;
+	color: #fff;
+}
+.wBtn02
+{
+	color: #0bf;
+	border:1px solid #0bf;
+}
+
+
+
+
+/*图片+2行内容+1个或按钮弹窗 End*/

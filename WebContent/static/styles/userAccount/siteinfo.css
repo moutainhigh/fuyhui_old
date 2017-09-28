@@ -1,0 +1,379 @@
+@charset 'utf-8';
+/*交易中心-交易明细页面样式Start*/
+.tra_rigBotContent_box
+{
+	margin-top: -24px;
+}
+.tra_detailBox
+{
+	padding: 16px 0;
+	height: 68px;
+	background: #fff;
+	margin-bottom: 9px;
+	border-left: 2px solid #6bd160;
+}
+.tra_list
+{
+	height: 68px;
+}
+.tra_list li
+{
+	float: left;
+}
+.tra_item01
+{
+	width: 159px;
+	padding-left: 41px;
+}
+.tra_item01 div
+{
+	margin-top: 5px;
+	font-size: 20px;
+	color: #323232;
+}
+.money_tab
+{
+	font-size: 24px;
+	font-size: 24px;
+    color: #323232;
+}
+.tra_item_p
+{
+	font-size: 16px;
+	color: #999;
+	margin-top: 4px;
+	margin-left: 5px;
+}
+.tra_item02
+{
+	width: 159px;
+	padding-left: 64px;
+	border-left: 1px solid #f4f4f4;
+}
+.tra_item03
+{
+	width: 241px;
+	text-align: center;
+	border-left: 1px solid #f4f4f4;
+}
+.tra_item04
+{
+	width: 285px;
+	text-align: center;
+	line-height: 68px;
+	border-left: 1px solid #f4f4f4;
+	color: #0bf;
+}
+.tra_item02 div,.tra_item03 div
+{
+	font-size: 20px;
+	color: #323232;
+	margin-top: 5px;
+}
+.tra_area
+{
+	height: 85px;
+	padding: 22px 0 11px 0;
+	background: #fff;
+	border-left: 2px solid #f50;
+	margin-bottom: 29px;
+}
+.tra_typeBox
+{
+	height: 37px;
+	border-bottom: 2px dashed #efefef;
+	font-size: 14px;
+}
+.tra_type_title p:first-child
+{
+	color: #4a4a4a;
+	margin-right: 30px;
+}
+.tra_type_title p
+{
+	margin-right: 50px;
+	float: left;
+	color: #666;
+}
+.tra_type_title
+{
+	padding-left: 45px;
+}
+.com_trap
+{
+	cursor: pointer;
+}
+.com_trap.active,.com_trap:hover,.time_month.active,.time_month:hover
+{
+	color: #0bf;
+}
+.tra_timeBox
+{
+	height: 55px;
+	line-height: 55px;
+	padding-left: 45px;
+	font-size: 14px;
+}
+.timeBox_left p
+{
+	color: #666;
+}
+.timeBox_left p:first-child
+{
+	color: #4a4a4a;
+	margin-right: 20px;
+}
+.time_controls01,.time_controls02
+{
+	width: 108px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #f1f1f1;
+	border: 1px solid #cccccc;
+	border-radius: 30px;
+	margin-top: 13px;
+	cursor: pointer;
+	color: #5e5e5e;
+}
+.timeBox_left h6
+{
+	font-weight: normal;
+	font-size: 16px;
+	color: #666;
+	margin: 0 14px 0 10px;
+}
+.time_month
+{
+	margin-left: 32px;
+	cursor: pointer;
+}
+.timeBox_right
+{
+	margin-left: 140px;
+	font-size: 14px;
+	margin-top: 13px;
+}
+.time_btn 
+{
+	width: 78px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #0bf;
+	color: #fff;
+	margin-left: 22px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.tra_num_title,.tra_accont_title,.tra_avial_title,.tra_types_title,.tra_time_title,.tra_number,.tra_avail_money,.tra_type,.tra_time
+{
+	width: 195px;
+	text-align: center;
+}
+/*提现时样式*/
+.tra_tixian
+{
+	width: 195px;
+	color: #27a163;
+}
+/*退款时样式*/
+.tra_tuikuan
+{
+	width: 195px;
+	color: #ff6464;
+}
+#trade_page
+{
+	margin: 24px -14px 0 0;
+}
+.tra_div
+{
+	width: 128px;
+	height: 30px;
+	line-height: 30px;
+	border:1px solid #0bf;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #0bf;
+	margin:20px 0 0 74px;
+}
+/*交易中心-交易明细页面样式End*/
+
+
+
+/*消息中心-站内信息页面样式Start*/
+.site_rigBotContent_box
+{
+	position: relative;
+	height: 660px;
+	margin-top: -24px;
+	padding-top: 20px;
+	padding-bottom: 100px;
+	background: #fff;
+	box-shadow:0px 11px 40px -2px #bbb;
+	-webkit-box-shadow:0px 11px 40px -2px #bbb;
+	-moz-box-shadow:0px 11px 40px -2px #bbb;
+	-ms-box-shadow:0px 11px 40px -2px #bbb;
+}
+.sit_nav_box
+{
+	height: 37px;
+	line-height: 37px;
+	border-bottom: 1px solid #b4b4b4;
+	font-size: 16px;
+	font-weight: bold;
+	color: #474e5d;
+}
+.sit_nav_box p
+{
+	float: left;
+	text-align: center;
+}
+.site_state
+{
+	width: 166px;
+}
+.site_theme
+{
+	width: 430px;
+}
+.site_sendTime
+{
+	width: 380px;
+}
+.each_sitInfos_box
+{
+	height: 69px;
+	line-height: 69px;
+	border-bottom: 1px solid #eaeaea;
+	font-size: 14px;
+	cursor: pointer;
+}
+.each_sitInfos_box.active
+{
+	background: #f2f2f2;
+}
+.ck_checkbox_grounp
+{
+	width: 62px;
+	text-align: center;
+}
+.site_readState
+{
+	width: 60px;
+	text-align: left;
+	margin: -3px 0 0 5px;
+}
+/*当状态为未读是样式是unread;当状态是已读是样式是read*/
+.unread
+{
+	color: #474e5d;
+}
+.read
+{
+	color: #999;
+}
+.sit_theme_cont
+{
+	width: 520px;
+	height: 100%;
+	padding: 0 40px;
+	/*text-align: center;*/
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.sit_send_time
+{
+	width: 142px;
+	text-align: center;
+}
+.sit_closebgBox
+{
+	margin: 24px 0 0 47px;
+}
+.sit_closeImg
+{
+	width: 19px;
+	height: 19px;
+	cursor: pointer;
+}
+.sit_closeImg:hover
+{
+	background: url(../../images/userAccount/hover_close.png) no-repeat center;
+}
+.sit_close
+{
+	background: url(../../images/userAccount/normal_close.png) no-repeat center;
+}
+.sit_active_close
+{
+	background: url(../../images/userAccount/hover_close.png) no-repeat center;
+}
+.sit_prompt_box
+{
+	line-height: 22px;
+	text-indent: 23px;
+	border-bottom: 1px solid #eaeaea;
+	color: #474e5d;
+	padding: 20px;
+	display: none;
+	position: relative;
+	font-size: 14px;
+}
+.site_radio_grounp
+{
+	/*margin: 30px 0 37px 22px;*/
+	position: absolute;
+	bottom: 66px;
+	left: 22px;
+	font-size: 14px;
+	color: #49505f;
+}
+.site_radio_grounp label
+{
+	cursor: pointer;
+}
+.check_all
+{
+	margin-right: 15px;
+}
+.sit_detele
+{
+	margin: 0 21px;
+}
+#siteInfo_page
+{
+	margin: 80px -9px 0 0;
+}
+.prompt_close
+{
+	position: absolute;
+	top: 2px;
+	right:12px;
+	width: 19px;
+	height: 19px;
+	cursor: pointer;
+	background: url(../../images/userAccount/img03.png) no-repeat center;
+}
+/*.prompt_close:hover{
+	background: url(../../images/userAccount/img01.png) no-repeat center;
+}*/
+.each_tab_tr p
+{
+	height: 100% !important;
+}
+.getTotal,.getCash,.getFrost
+{
+	font-size: 24px;
+    color: #323232;
+}
+
+
+
+
+
+
+
+/*消息中心-站内信息页面样式End*/

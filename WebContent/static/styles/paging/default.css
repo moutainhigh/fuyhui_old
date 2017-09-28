@@ -1,0 +1,30 @@
+a img {
+  border: 1
+}
+input.textfield {
+	border: 1px solid #82a9d9;
+	height: 19px;
+	width: 30px;
+	color: #006699;
+	font-family: "����", Arial;
+	font-size:12px;
+	vertical-align: middle;
+	background-image: url(img/button-textfield.gif);
+}
+
+input.gobutton,button.gobutton {
+  background: url(img/go_button_bg.gif);
+  background-color: transparent;
+  width: 19px;
+  height: 18px;
+  border: 0px;
+  cursor: pointer;
+}
+
+td #pageNum {
+  border: 1px solid #999999;
+  height: 18px; color: #003366;
+  font-family: Tahoma, verdana, arial, helvetica, sans-serif;
+  font-size:12px;
+  width: 30px;
+}

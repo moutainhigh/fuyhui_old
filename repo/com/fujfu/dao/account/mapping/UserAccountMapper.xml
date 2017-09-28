@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.account.UserAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.account.UserAccountVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="DECIMAL" />
+    <result column="no_tender" property="noTender" jdbcType="DECIMAL" />
+    <result column="cash" property="cash" jdbcType="DECIMAL" />
+    <result column="frost" property="frost" jdbcType="DECIMAL" />
+    <result column="await_income" property="awaitIncome" jdbcType="DECIMAL" />
+    <result column="await_repay" property="awaitRepay" jdbcType="DECIMAL" />
+    <result column="has_repayment" property="hasRepayment" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.fujfu.pojo.account.UserAccountDTO" >
+    <id column="id" property="id" />
+    <result column="userName" property="userName" />
+    <result column="realName" property="realName" />
+    <result column="total" property="total" />
+    <result column="cash" property="cash" />
+    <result column="frost" property="frost" />
+    <result column="awaitIncome" property="awaitIncome" />
+    <result column="awaitRepay" property="awaitRepay" />
+  </resultMap>
+  <!-- 分页查询条件 -->
+  <sql id="queryCondition">
+  	<trim prefix="where" prefixOverrides="and|or">
+  		<if test="userAccountVo.userName!=null and userAccountVo.userName!=''">
+			and fu.username like "%"#{userAccountVo.userName}"%"  
+		</if>
+		<if test="userAccountVo.userType!=null and userAccountVo.userType!=''">
+			and fu.userType =#{userAccountVo.userType}  
+		</if>
+  	</trim>
+  </sql>
+  <!-- 后台界面查询用户资金信息 -->
+  <select id="findUserAccount" resultMap="BaseResultMapVo">
+	select fua.id as id,fu.username as userName,fu.realname as
+	realName,fua.total as total,fua.cash as cash,fua.frost as
+	frost,
+	(select  IFNULL(SUM(far.recover_money),0) from fu_apply_recover far
+		where far.user_id =fua.user_id and far.status ='0') as awaitIncome,
+		(select IFNULL(SUM(farm.repay_money),0)  from fu_apply_rePay farm 
+		where farm.user_id =fua.user_id and farm.status ='0') as awaitRepay
+	from fu_user_account fua
+	left join fu_users fu on fua.user_id = fu.user_id
+	
+	<include refid="queryCondition" />
+	limit #{page.startOfPage},#{page.pageSize}
+</select>
+  <!-- 分页查询记录数 -->
+  <select id="countUserAccount" resultType="java.lang.Integer">
+  	select count(*) from (
+select fua.id as id,fu.username as userName,fu.realname as
+	realName,fua.total as total,fua.cash as cash,fua.frost as
+	frost,fua.await_income as awaitIncome,fua.await_repay as awaitRepay
+	from fu_user_account fua
+	left join fu_users fu on fua.user_id = fu.user_id <include refid="queryCondition" />) a 
+  </select>
+  
+  <sql id="Base_Column_List" >
+    id, user_id, total, no_tender, cash, frost, await_income, await_repay, has_repayment
+  </sql>
+  <select id="findUserCashByApplyId" resultType="java.math.BigDecimal" >
+	select cash from fu_user_account where user_id = (
+	select distinct(user_id) from fu_loan_apply where id = #{applyId})
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_user_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select <include refid="Base_Column_List" /> from fu_user_account
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_user_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.account.UserAccountVO" >
+    insert into fu_user_account (id, user_id)
+    values 
+    (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.account.UserAccountVO" >
+    insert into fu_user_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="noTender != null" >
+        no_tender,
+      </if>
+      <if test="cash != null" >
+        cash,
+      </if>
+      <if test="frost != null" >
+        frost,
+      </if>
+      <if test="awaitIncome != null" >
+        await_income,
+      </if>
+      <if test="awaitRepay != null" >
+        await_repay,
+      </if>
+      <if test="hasRepayment != null" >
+        has_repayment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="noTender != null" >
+        #{noTender,jdbcType=DECIMAL},
+      </if>
+      <if test="cash != null" >
+        #{cash,jdbcType=DECIMAL},
+      </if>
+      <if test="frost != null" >
+        #{frost,jdbcType=DECIMAL},
+      </if>
+      <if test="awaitIncome != null" >
+        #{awaitIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="awaitRepay != null" >
+        #{awaitRepay,jdbcType=DECIMAL},
+      </if>
+      <if test="hasRepayment != null" >
+        #{hasRepayment,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.account.UserAccountVO" >
+    update fu_user_account
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="noTender != null" >
+        no_tender = #{noTender,jdbcType=DECIMAL},
+      </if>
+      <if test="cash != null" >
+        cash = #{cash,jdbcType=DECIMAL},
+      </if>
+      <if test="frost != null" >
+        frost = #{frost,jdbcType=DECIMAL},
+      </if>
+      <if test="awaitIncome != null" >
+        await_income = #{awaitIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="awaitRepay != null" >
+        await_repay = #{awaitRepay,jdbcType=DECIMAL},
+      </if>
+      <if test="hasRepayment != null" >
+        has_repayment = #{hasRepayment,jdbcType=BIT},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.account.UserAccountVO" >
+    update fu_user_account
+    set 
+      total = #{total,jdbcType=DECIMAL},
+      cash = #{cash,jdbcType=DECIMAL},
+      frost = #{frost,jdbcType=DECIMAL}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

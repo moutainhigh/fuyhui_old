@@ -1,0 +1,259 @@
+@charset 'utf-8';
+.financ_infoBox
+{
+	margin-top: -21px;
+	margin-bottom: 29px;
+}
+.financ_list li
+{
+	float: left;
+	width: 193px;
+	height: 57px;
+	padding: 24px 0 19px 41px;
+	background: #fff;
+}
+.financ_list li:hover
+{
+	box-shadow:0px 11px 40px -2px #bbb;
+	-webkit-box-shadow:0px 11px 40px -2px #bbb;
+	-moz-box-shadow:0px 11px 40px -2px #bbb;
+	-ms-box-shadow:0px 11px 40px -2px #bbb;
+}
+.fin_item01
+{
+	border-left: 2px solid #61be57;
+	margin-right: 11px;
+}
+.fin_item02
+{
+	border-left: 2px solid #f5a623;
+	margin-right: 12px;
+}
+.fin_item03
+{
+	border-left: 2px solid #8aecd6;
+	margin-right: 11px;
+}
+.fin_item04
+{
+	border-left: 2px solid #ff5500;
+}
+.fin_item01 div
+{
+	font-size: 24px;
+	color: #323232;
+}
+.fin_item02 div,.fin_item03 div,.fin_item04 div
+{
+	font-size: 20px;
+    color: #323232;
+}
+.fin_item01 p,.fin_item02 p,.fin_item03 p,.fin_item04 p
+{
+	font-size: 16px;
+	color: #999;
+	margin-left: 5px;
+	margin-top: 2px;
+}
+.cre_num_title
+{
+	padding-left: 31px;
+}
+.cre_invest_title
+{
+	padding-left: 106px;
+}
+.cre_dai_title
+{
+	padding-left: 110px;
+}
+.cre_qishu_title
+{
+	padding-left: 130px;
+}
+.cre_reimbu_title
+{
+	padding-left: 122px;
+}
+.cre_oper_title
+{
+	padding-left: 125px;
+}
+.credit_number
+{
+	width: 162px;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.cre_investAmount
+{
+	width: 122px;
+}
+.cre_rate
+{
+	width: 204px;
+}
+.cre_qishu
+{
+	width: 142px;
+}
+.cre_reimbuDate
+{
+	width: 204px;
+}
+.cre_contract
+{
+	width: 142px;
+}
+.tab_nav_box
+{
+	height: 49px;
+	border-bottom: 2px solid #0bf;
+	border-top: 1px solid #d7d7d7;
+	border-left: 1px solid #d7d7d7;
+	border-right: 1px solid #d7d7d7;
+	background: #fff;
+	font-size: 18px;
+	color: #323232;
+	margin-top: -22px;
+}
+.aNav
+{
+	width: 138px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	cursor:pointer;
+}
+.aNav.active
+{
+	background: #0bf;
+	color: #fff;
+	cursor: default;
+}
+/*.apy_borrow_title
+{
+	padding-left: 31px;
+}
+.apy_invest_title
+{
+	padding-left: 90px;
+}
+.apy_year_title
+{
+	padding-left: 85px;
+}
+.apy_qishu_title
+{
+	padding-left: 86px;
+}
+.apy_interest_title
+{
+	padding-left: 86px;
+}
+.apy_investDate_title
+{
+	padding-left: 72px;
+}
+.apy_project_title
+{
+	padding-left: 93px;
+}*/
+.table_title div
+{
+	width: 162px;
+	text-align: center;
+}
+/*.com_cre
+{
+	width: 135px !important;
+}*/
+
+.cre_num_title
+{
+	width: 162px;
+}
+.each_tab_tr p
+{
+	width: 135px;
+	text-align: center;
+	height: 100%;
+}
+.each_tab_trCs
+{
+	height: 69px;
+    line-height: 69px;
+    border-bottom: 1px solid #eaeaea;
+}
+.each_tab_trCs p
+{
+	width: 195px;
+	height: 100%;
+	text-align: center;
+	float: left;
+}
+/*.apy_number
+{
+	width: 140px;
+}
+.apy_investAmount
+{
+	width: 140px; 
+}
+.apy_yearRate
+{
+	width: 139px;	
+}
+.apy_qishu
+{
+	width: 139px;	
+}
+.apy_interest
+{
+	width: 139px;
+}
+.apy_investTime
+{
+	width: 140px; 	
+}
+.apy_proProgress
+{
+	width: 139px;
+}*/
+#apyduring
+{
+	margin-top: 50px;
+}
+.apyliu_borrow_title
+{
+	width: 196px;
+	text-align: center;
+}
+.apyliu_invest_title,.apyliu_year_title,.apyliu_qishu_title,.apyliu_investDate_title
+{
+	width: 195px;
+	text-align: center;
+}
+.apyliu_number
+{
+	width: 196px;
+}
+.apyliu_investAmount,.apyliu_yearRate,.apyliu_qishu,.apyliu_investTime
+{
+	width: 195px;
+}
+.each_tab_tr:hover
+{
+	cursor: pointer;
+}
+.cre_contract:hover
+{
+	z-index: 6;
+}
+.apy_number
+{
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

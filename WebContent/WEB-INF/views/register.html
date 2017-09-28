@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="zh-cn">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册-富元汇</title>
+    <meta name="author" content="深圳市富之富信息技术有限公司"/>
+    <meta name="keywords" content="富元汇，P2P理财，P2C理财，P2P网贷，投资理财，P2P投资理财，个人理财，金融理财，互联网理财，理财投资，供应链金融 ">
+    <meta name="description" content="世界百强企业鸿海富士康科技集团旗下金融品牌富金富打造的互联网金融服务平台，致力于为用户提供稳健、诚信、高效的金融产品交易等互联网信息技术服务。">
+	<!-- <meta name="renderer" content="webkit|ie-stand|ie-comp"> -->
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />  -->
+ 
+	<link rel="stylesheet" type="text/css" href="../../static/styles/common/common.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/styles/user/register.css">
+    <script type="text/javascript" src='../../static/scripts/common/jquery-1.9.1.js'></script>
+    <script src="../../static/scripts/common/common.js"></script>
+    <script type="text/javascript" src='../../static/scripts/common/placeholder.js'></script>
+	<script type="text/javascript" src='../../static/scripts/user/md5.js'></script>
+	<script type="text/javascript" src='../../static/scripts/user/register.js'></script>
+</head>
+<body>
+	<!-- 注册页头部Start -->
+	<div class="user_top">
+		<div class="user_top_box">
+			<div class="fl uTop_logo" onclick="window.location.href=getContextPaths()"></div>
+			<p class="fl uLine"></p>
+			<h3 class="fl">欢迎注册</h3>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- 注册页头部End -->
+
+	<!-- 注册信息区域Start -->
+	<div class="registed_area">
+		<div class="w1170">
+			<form action="" id="register_form" method="post">
+				<div class="fl register_infoBox">
+					<!-- 手机号 -->
+					<div class="register_grops">
+						<input type="text" name='uIphone' class="fuyhui_txt uIphone registerInput" id="uIphone" placeholder='手机号码' maxlength="11" onkeyup="this.value=this.value.replace(/[^0-9\.]/g,'')">
+						<!-- 错误提示语 -->
+						<div class="retister_error_tips tips01"></div>
+					</div>
+					
+					<!-- 密码 -->
+					<div class="register_grops">
+						<input type="password" name='uPwd' class="fuyhui_txt uPwd registerInput" id="uPwd" placeholder='密码' maxlength="16" onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\@\.\!\~\#\%\*\&\$]/g,'')">
+						<p class="comeye eyes"></p>
+						<!-- 错误提示语 -->
+						<div class="retister_error_tips tips02"></div>
+					</div>
+					
+					<!-- 验证码 -->
+					<div class="register_grops">
+						<input type="text" name='uCode' class="fuyhui_txt uCode registerInput" id="uCode" placeholder='验证码' maxlength="4" onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')">
+						<img id="imgObj" class="code_box" alt="验证码" src="" />
+						<!-- 错误提示语 -->
+						<div class="retister_error_tips tips03"></div>
+					</div>
+					<!-- 手机验证码 -->
+					<div class="register_grops">
+						<input type="text" name='uIphone_code' class="fuyhui_txt uIphone_code registerInput" id="uIphone_code" placeholder='手机验证码' maxlength="6" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" style="ime-mode:disabled">
+						<input type="button" class="code_btn" id="code_btn" value="发送验证码">
+						<!-- 错误提示语 -->
+						<div class="retister_error_tips tips04"></div>
+					</div>
+					<!-- 推荐码 -->
+					<div class="register_grops">
+						<input type="text" name='uRecommend_code' class="fuyhui_txt uRecommend_code" id="uRecommend_code" placeholder='推荐码（选填）' maxlength="11">
+						<!-- 错误提示语 -->
+						<div class="retister_error_tips tips05"></div>
+					</div>
+					
+					<!-- 注册协议 -->
+					<div class="register_agreement_box">
+						<input type="checkbox" name='register_agreement' class="register_agreement" id="register_agreement" checked="checked">
+						<span class='check_span'></span>
+						<!-- <span >我已阅读并同意&nbsp;《富金富服务条款》</span> -->
+						<a onclick="openWin();" href="###" style="text-decoration:none;display: inline-block; margin-left: 20px;font-size:14px;color:#666;">我已阅读并同意&nbsp;<span style="color:#5e97f6;margin-left:0;">《富元汇注册服务协议》</span></a>
+					</div>
+					<!-- 立即注册按钮 -->
+					<div class="register_btn">立即注册</div>
+					<div class="exist_account">
+						<span>已有账号&nbsp;？</span>
+						<a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/enterLogin'">立即登录</a>
+					</div>
+				</div>
+			</form>
+			<div class="fl register_line"></div>
+			<div class="fl register_advs"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!-- 注册信息区域End -->
+
+	<!-- 注册页底部Start -->
+	<div class="user_fotter_area">
+		<div class="user_fotter">
+			<div class="user_fotter_box">
+				<ul class="user_list">
+					<li><a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/enterCompanyIntroduction'">关于我们</a></li>
+					<li><a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/enterContactUs'">联系我们</a></li>
+					<li><a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/enterNewGuideline'">新手指引</a></li>
+					<li><a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/enterHelpCenter'">帮助中心</a></li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+		</div>
+		<div class="user_increment">
+			<p>
+				©2017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;深圳市富之富信息技术有限公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.miitbeian.gov.cn" style="cursor:pointer;color:#474e5d;" target='_blank'>粤ICP备16120381号</a>
+			</p>
+			
+		</div>
+	</div>
+	
+	<!-- 注册页底部End -->
+
+
+
+
+	<!-- 注册成功弹窗Start -->
+	<div class="regSuccBox">
+		<p class="regSuc_txt"></p>
+		<p class="regSuc_btn">确定</p>
+	</div>
+	<!-- 注册成功弹窗End-->
+</body>
+</html>
+<style type="text/css">
+	.regFade
+	{
+		width: 100%;
+		height: 1000px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: #000;
+		opacity: .25;
+		filter: alpha(opacity=25);
+		z-index: 11;
+	}
+	.regSuccBox
+	{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 300px;
+		height: 200px;
+		border-radius: 8px;
+		background: #fff;
+		margin-left: -150px;
+		margin-top: -100px;
+		z-index: 12;
+		display: none;
+	}
+	.regSuc_txt
+	{
+		font-size: 18px;
+		color: #f60;
+		text-align: center;
+		width: 100%;
+		margin-top: 50px;
+	}
+	.regSuc_btn
+	{
+		width: 120px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		font-size: 14px;
+		color: #fff;
+		background: #0bf;
+		margin: 52px auto;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+</style>
+
+<script type="text/javascript">
+	function openWin() { 
+       var url=getContextPaths()+'/enterregisteragreement'; //转向网页的地址; 
+       var name='';                            //网页名称，可为空; 
+       var iWidth=888;                          //弹出窗口的宽度; 
+       var iHeight=718;                         //弹出窗口的高度; 
+       //获得窗口的垂直位置 
+       var iTop = (window.screen.availHeight - 30 - iHeight) / 2; 
+       //获得窗口的水平位置 
+       var iLeft = (window.screen.availWidth - 10 - iWidth) / 2; 
+       window.open(url, name, 'height=' + iHeight + ',,innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no'); 
+    }
+
+</script>
+
+

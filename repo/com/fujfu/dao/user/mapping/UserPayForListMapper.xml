@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.user.UserPayForListMapper">
+	<resultMap id="BaseResultMap" type="com.fujfu.pojo.user.PayForPOJO">
+		<id column="money" property="money" jdbcType="DECIMAL" />
+		<result column="apply_id" property="appyId" jdbcType="INTEGER" />
+		<result column="repay_period" property="payForPeriod" jdbcType="INTEGER" />
+		<result column="username" property="payForName" jdbcType="VARCHAR" />
+		<result column="name" property="appyName" jdbcType="VARCHAR" />	
+		<result column="add_time" property="payForTime" jdbcType="INTEGER" />	
+			
+	
+	</resultMap>
+
+    <!-- and (fulog.type = '4401' or fulog.type = '4402' or fulog.type = '4403' or fulog.type = '4404') -->
+	<select id="countPayForListByCondition" resultType="java.lang.Integer">
+		select count(*)
+		from fu_user_account_log fulog,
+			 fu_users fusers,
+			 fu_apply_repay fupay,
+			 fu_loan_apply fuapply
+		where fulog.user_id = fusers.user_id
+			 and fulog.ordid = fupay.id
+			 and fulog.apply_id = fuapply.id
+			 and (fulog.type = '4401' or fulog.type = '4402' or fulog.type = '4403' or fulog.type = '4404')
+			 <if test="payForListQueryVo.appyId!=null and payForListQueryVo.appyId!=''">
+				and fulog.apply_id = "%"#{payForListQueryVo.appyId}"%"  
+			 </if>
+			 <if test="payForListQueryVo.appyId!=null and payForListQueryVo.appyId!=''">
+				and fulog.apply_id = "%"#{payForListQueryVo.appyId}"%"  
+			 </if>			 			 
+	</select>  
+	
+	<select id="findPayForListByCondition" resultMap="BaseResultMap">
+		select fulog.money,
+			   fulog.apply_id,	
+			   fupay.repay_period,
+			   fusers.username,
+			   fuapply.name,
+			   fulog.add_time
+		from fu_user_account_log fulog,
+			 fu_users fusers,
+			 fu_apply_repay fupay,
+			 fu_loan_apply fuapply
+		where fulog.user_id = fusers.user_id
+			 and fulog.ordid = fupay.id
+			 and fulog.apply_id = fuapply.id
+			 and (fulog.type = '4401' or fulog.type = '4402' or fulog.type = '4403' or fulog.type = '4404') 
+			 <if test="payForListQueryVo.appyId!=null and payForListQueryVo.appyId!=''">
+				and fulog.apply_id = "%"#{payForListQueryVo.appyId}"%"  
+			 </if>
+			 <if test="payForListQueryVo.appyId!=null and payForListQueryVo.appyId!=''">
+				and fulog.apply_id = "%"#{payForListQueryVo.appyId}"%"  
+			 </if>
+			 order by fulog.add_time desc 					 
+		     limit #{page.startOfPage},#{page.pageSize}
+	</select>
+	 
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.account.SiteAccountLogMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.account.SiteAccountLogVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fee_id" property="feeId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="BaseResultVoMap" type="com.fujfu.pojo.account.SiteAccountLogDTO" extends="BaseResultMap">
+    <result column="feeName" property="feeName" />
+    <result column="userName" property="userName" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fee_id, user_id, money, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_site_account_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_site_account_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.account.SiteAccountLogVO" >
+    insert into fu_site_account_log (id, fee_id, user_id, 
+      money, created)
+    values (#{id,jdbcType=INTEGER}, #{feeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{created,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.account.SiteAccountLogVO" >
+    insert into fu_site_account_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="feeId != null" >
+        fee_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="feeId != null" >
+        #{feeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.account.SiteAccountLogVO" >
+    update fu_site_account_log
+    <set >
+      <if test="feeId != null" >
+        fee_id = #{feeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.account.SiteAccountLogVO" >
+    update fu_site_account_log
+    set fee_id = #{feeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      created = #{created,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 分页查询 -->
+   <select id="findSiteAccountLog" resultMap="BaseResultVoMap">
+  	select  fsa.*,fsf.fee_name as feeName,fu.username as userName 
+  	from fu_site_account_log fsa left join fu_users fu on fsa.user_id = fu.user_id left join fu_site_fee fsf on fsa.fee_id = fsf.fee_id 
+  	where fsa.fee_id =#{feeId} 
+  	order by created desc limit #{page.startOfPage},#{page.pageSize}
+  </select>
+  <!-- 分页查询记录数 -->
+  <select id="countSiteAccountLog" resultType="java.lang.Integer">
+  	select count(*) from fu_site_account_log where fee_id =#{feeId} 
+  </select>
+</mapper>

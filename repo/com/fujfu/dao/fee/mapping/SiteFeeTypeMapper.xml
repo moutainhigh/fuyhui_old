@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.fee.SiteFeeTypeMapper">
+	<resultMap id="BaseResultMap" type="com.fujfu.pojo.fee.SiteFeeTypeVO">
+		<id column="charge_type_id" property="chargeTypeId" jdbcType="INTEGER" />
+		<result column="charge_item" property="chargeItem" jdbcType="VARCHAR" />
+		<result column="charge_time" property="chargeTime" jdbcType="VARCHAR" />
+		<result column="charge_fee_id" property="chargeFeeId" jdbcType="INTEGER" />
+		<result column="billing_start_time" property="billingStartTime"
+			jdbcType="VARCHAR" />
+		<result column="billing_extension" property="billingExtension"
+			jdbcType="INTEGER" />
+		<result column="billing_extension_type" property="billingExtensionType"
+			jdbcType="INTEGER" />
+		<result column="billing_period" property="billingPeriod"
+			jdbcType="INTEGER" />
+		<result column="billing_period_type" property="billingPeriodType"
+			jdbcType="INTEGER" />
+		<result column="created" property="created" jdbcType="INTEGER" />
+		<result column="charge_user" property="chargeUser" jdbcType="INTEGER" />
+		<result column="userType" property="userType" jdbcType="VARCHAR" />
+		<result column="formula_type" property="formulaType" jdbcType="INTEGER" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="interest_rate" property="interestRate"
+			jdbcType="DECIMAL" />
+	</resultMap>
+	<resultMap id="BaseResultMapVo" type="com.fujfu.pojo.fee.SiteFeeTypePOJO">
+		<id column="id" property="id" />
+		<result column="chargeUser" property="chargeUser" />
+		<result column="chargeItem" property="chargeItem" />
+		<result column="feeName" property="feeName" />
+		<result column="billingStartTime" property="billingStartTime" />
+		<result column="billingExtension" property="billingExtension" />
+		<result column="billingPeriod" property="billingPeriod" />
+		<result column="created" property="created" />
+		<result column="userType" property="userType" />
+		<result column="formula_type" property="formulaType" />
+		<result column="amount" property="amount" />
+		<result column="interest_rate" property="interestRate" />
+		<result column="charge_fee_id" property="chargeFeeId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		charge_type_id, charge_item, charge_time, charge_fee_id, billing_start_time,
+		billing_extension,
+		billing_extension_type, billing_period, billing_period_type, created,
+		charge_user,userType,formula_type,amount,interest_rate
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from fu_site_fee_type
+		where charge_type_id = #{chargeTypeId,jdbcType=INTEGER}
+	</select>
+	<select id="listAllSiteFeeTypeByVo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from fu_site_fee_type
+		<include refid="queryCondition" />
+	</select>
+	
+	<!-- 分页查询条件 -->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="!=null ">
+				 and charge_time = #{siteQueryVo.chargeTime}
+			</if>
+			<if test="siteQueryVo.userType!=null ">
+				 and userType = #{siteQueryVo.userType}
+			</if>
+		</trim>
+	</sql>
+	
+	<!-- 收费方式查询条件 -->
+	<sql id="chargeModelQueryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="chargeItem!=null ">
+				 and fsft.charge_item = #{chargeItem}
+			</if>
+			<if test="feeName!=null ">
+				 and fsf.fee_name = #{feeName}
+			</if>
+			<if test="userType!=null ">
+				 and fsft.userType = #{userType}
+			</if>
+		</trim>
+	</sql>
+	<!-- 收费方式查询条件 -->
+	<sql id="isContainFeeChargeModeQueryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="chargeItem!=null ">
+				 and charge_item = #{chargeItem}
+			</if>
+			<if test="chargeFeeId!=null ">
+				 and charge_fee_id = #{chargeFeeId}
+			</if>
+			<if test="userType!=null ">
+				 and userType = #{userType}
+			</if>
+		</trim>
+	</sql>
+	<!-- 根据产品名、费用名、用户类型返回收费方式及费用 -->
+	<select id="queryChageMode" resultMap="BaseResultMapVo">
+		select fsft.charge_type_id as id,fsft.charge_fee_id as chargeFeeId,fsft.charge_user as
+		chargeUser,IFNULL(flt.`name`,fsft.charge_item) as chargeItem,
+		fsft.charge_time as chargeTime,fsf.fee_name as
+		feeName,fsft.billing_start_time as billingStartTime,
+		fsft.billing_extension as billingExtension,fsft.billing_period as
+		billingPeriod,fsft.created as created,fsft.userType,fsft.formula_type,fsft.amount,fsft.interest_rate 
+		from fu_site_fee_type fsft left join fu_site_fee fsf on fsft.charge_fee_id
+		=fsf.fee_id
+		left join fu_loan_type flt on CONVERT(fsft.charge_item,SIGNED) =flt.id 
+		<include refid="chargeModelQueryCondition" />
+	</select>
+	<!-- 根据产品名、费用名、用户类型判断是否已存在该收费方式 -->
+	<select id="isContainFeeChargeMode"  resultType="java.lang.Integer">
+		select count(*) from fu_site_fee_type  
+		<include refid="isContainFeeChargeModeQueryCondition" />
+	</select>
+	
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from fu_site_fee_type
+		where charge_type_id = #{chargeTypeId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insertSelective" parameterType="com.fujfu.pojo.fee.SiteFeeTypeVO">
+		insert into fu_site_fee_type
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="chargeTypeId != null">
+				charge_type_id,
+			</if>
+			<if test="chargeItem != null">
+				charge_item,
+			</if>
+			<if test="chargeTime != null">
+				charge_time,
+			</if>
+			<if test="chargeFeeId != null">
+				charge_fee_id,
+			</if>
+			<if test="billingStartTime != null">
+				billing_start_time,
+			</if>
+			<if test="billingExtension != null">
+				billing_extension,
+			</if>
+			<if test="billingExtensionType != null">
+				billing_extension_type,
+			</if>
+			<if test="billingPeriod != null">
+				billing_period,
+			</if>
+			<if test="billingPeriodType != null">
+				billing_period_type,
+			</if>
+			<if test="created != null">
+				created,
+			</if>
+			<if test="chargeUser != null">
+				charge_user,
+			</if>
+			<if test="userType != null">
+				userType,
+			</if>
+			<if test="formulaType != null">
+				formula_type,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="interestRate != null">
+				interest_rate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="chargeTypeId != null">
+				#{chargeTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="chargeItem != null">
+				#{chargeItem,jdbcType=VARCHAR},
+			</if>
+			<if test="chargeTime != null">
+				#{chargeTime,jdbcType=VARCHAR},
+			</if>
+			<if test="chargeFeeId != null">
+				#{chargeFeeId,jdbcType=INTEGER},
+			</if>
+			<if test="billingStartTime != null">
+				#{billingStartTime,jdbcType=VARCHAR},
+			</if>
+			<if test="billingExtension != null">
+				#{billingExtension,jdbcType=INTEGER},
+			</if>
+			<if test="billingExtensionType != null">
+				#{billingExtensionType,jdbcType=INTEGER},
+			</if>
+			<if test="billingPeriod != null">
+				#{billingPeriod,jdbcType=INTEGER},
+			</if>
+			<if test="billingPeriodType != null">
+				#{billingPeriodType,jdbcType=INTEGER},
+			</if>
+			<if test="created != null">
+				#{created,jdbcType=INTEGER},
+			</if>
+			<if test="chargeUser != null">
+				#{chargeUser,jdbcType=INTEGER},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=VARCHAR},
+			</if>
+			<if test="formulaType != null">
+				#{formulaType,jdbcType=INTEGER},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="interestRate != null">
+				#{interestRate,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.fee.SiteFeeTypeVO">
+		update fu_site_fee_type
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="chargeItem != null">
+				charge_item = #{chargeItem,jdbcType=VARCHAR},
+			</if>
+			<if test="chargeTime != null">
+				charge_time = #{chargeTime,jdbcType=VARCHAR},
+			</if>
+			<if test="chargeFeeId != null">
+				charge_fee_id = #{chargeFeeId,jdbcType=INTEGER},
+			</if>
+			<if test="billingStartTime != null">
+				billing_start_time = #{billingStartTime,jdbcType=VARCHAR},
+			</if>
+			<if test="billingExtension != null">
+				billing_extension = #{billingExtension,jdbcType=INTEGER},
+			</if>
+			<if test="billingExtensionType != null">
+				billing_extension_type = #{billingExtensionType,jdbcType=INTEGER},
+			</if>
+			<if test="billingPeriod != null">
+				billing_period = #{billingPeriod,jdbcType=INTEGER},
+			</if>
+			<if test="billingPeriodType != null">
+				billing_period_type = #{billingPeriodType,jdbcType=INTEGER},
+			</if>
+			<if test="created != null">
+				created = #{created,jdbcType=INTEGER},
+			</if>
+			<if test="chargeUser != null">
+				charge_user = #{chargeUser,jdbcType=INTEGER},
+			</if>
+			<if test="userType != null">
+				userType = #{userType,jdbcType=VARCHAR},
+			</if>
+			<if test="formulaType != null">
+				formula_type = #{formulaType,jdbcType=INTEGER},
+			</if>
+			amount = #{amount,jdbcType=DECIMAL},
+			interest_rate = #{interestRate,jdbcType=DECIMAL},
+		</trim>
+		where charge_type_id = #{chargeTypeId,jdbcType=INTEGER}
+	</update>
+	<select id="countSiteFeeTypeVo" resultType="java.lang.Integer">
+		select count(*) from fu_site_fee_type fsft left join fu_site_fee fsf on
+		fsft.charge_fee_id =fsf.fee_id
+		left join fu_loan_type flt on CONVERT(fsft.charge_item,SIGNED) =flt.id
+	</select>
+	<select id="listAllSiteFeeTypeVo" resultMap="BaseResultMapVo">
+		select fsft.charge_type_id as id,fsft.charge_user as
+		chargeUser,IFNULL(flt.`name`,fsft.charge_item) as chargeItem,
+		fsft.charge_time as chargeTime,fsf.fee_name as
+		feeName,fsft.billing_start_time as billingStartTime,
+		fsft.billing_extension as billingExtension,fsft.billing_period as
+		billingPeriod,fsft.created as created,fsft.userType,fsft.formula_type,fsft.amount,fsft.interest_rate 
+		from fu_site_fee_type fsft left join fu_site_fee fsf on fsft.charge_fee_id
+		=fsf.fee_id
+		left join fu_loan_type flt on CONVERT(fsft.charge_item,SIGNED) =flt.id
+		LIMIT #{page.startOfPage},#{page.pageSize}
+	</select>
+</mapper>

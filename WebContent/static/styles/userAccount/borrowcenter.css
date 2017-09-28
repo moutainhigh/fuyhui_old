@@ -1,0 +1,237 @@
+@charset 'utf-8';
+/*借款中心-我的借款页面样式Start*/
+.borrow_center_box
+{
+	height: 168px;
+	margin: -20px 0 29px 0;
+}
+.bor_left_box
+{
+	width: 596px;
+	background: #fff;
+	border-left: 2px solid #6bd160;
+	margin-right: 10px;
+}
+.stay_amount
+{
+	padding: 27px 0 23px 50px;
+	border-bottom: 2px solid #efefef;
+	font-size: 16px;
+	color: #999;
+}
+.stay_amount_num
+{
+	font-size: 24px;
+	color: #323232;
+}
+.stay_money_list
+{
+	padding: 15px 0 15px 0;
+	height: 53px;
+}
+.stay_money_list li
+{
+	float: left;
+	text-align: center;
+}
+.stay_item01
+{
+	width: 200px;
+}
+.stay_item02
+{
+	width: 168px;
+}
+.stay_item03
+{
+	width: 196px;
+}
+.stay_item01 div,.stay_item02 div,.stay_item03 div
+{
+	font-size: 20px;
+	color: #323232;
+}
+.stay_item01 p,.stay_item02 p,.stay_item03 p
+{
+	font-size: 16px;
+	color: #999;
+	margin-top: 3px;
+}
+.bor_right_box
+{
+	width: 368px;
+	height: 96px;
+	padding: 36px 0 30px 0;
+	background: #fff;
+	border-left: 2px solid #fabb05;
+}
+.bor_todayMoney_box
+{
+	padding-left: 56px;
+	height: 33px;
+	line-height: 33px;
+	font-size: 16px;
+	color: #999;
+	margin-bottom: 26px;
+}
+.bor_tdMoney
+{
+	font-size: 24px;
+	color: #323232;
+}
+.bor_btns
+{
+	width: 110px;
+	height: 38px;
+	text-align: center;
+	line-height: 38px;
+	font-size: 14px;
+	color: #fff;
+	background: #0bf;
+	cursor: pointer;
+	border-radius: 4px;
+	margin-left: 126px;
+}
+.bor_num_title
+{
+	width: 100px;
+}
+.bor_invest_title
+{
+	width: 128px;
+}
+.bor_year_title,.bor_time_title
+{
+	width: 102px;
+}
+.bor_qishu_title
+{
+	width: 160px;
+}
+.bor_daihai_title
+{
+	width: 122px;
+}
+.bor_state_title
+{
+	width: 96px;
+}
+.bor_opear_title
+{
+	width: 110px;
+}
+.table_title div
+{
+	text-align: right;
+}
+.tab_tr_box p
+{
+	text-align: right;
+}
+.bor_opear span
+{
+	font-size: 14px;
+	color: #0bf;
+}
+.bor_number
+{
+	width: 116px;
+}
+.bor_amount
+{
+	width: 102px;
+}
+.bor_rate
+{
+	width: 98px;
+}
+.bor_qishu
+{
+	width: 122px;
+}
+.bor_reimbuDate
+{
+	width: 158px;
+}
+.bor_daihai_money
+{
+	width: 110px;
+}
+.bor_state
+{
+	width: 108px;
+}
+.bor_opear
+{
+	width: 118px;
+	height: 69px;
+/*	position: relative;*/
+}
+.bor_plan
+{
+	/*position: absolute;
+	top: -13px;
+	right: 0;*/
+	cursor: pointer;
+}
+.bor_contract
+{
+	/*position: absolute;
+	top: 13px;
+	right: 0;*/
+	cursor: pointer;
+}
+/*借款中心-我的借款页面样式End*/
+
+
+
+
+/*借款中心-申请中页面样式Start*/
+.bor_apyDur_box
+{
+	padding: 15px 14px 15px 15px;
+	width: 947px;
+	border-left: 2px solid #f5a623;
+	height: 38px;
+	background: #fff;
+	margin: -20px 0 29px 0;
+}
+.bor_apyIpt
+{
+	width: 807px;
+	border: none;
+	outline: none;
+	height: 18px;
+	line-height: 20px;
+	padding: 9px 0 9px 15px;
+	border: 1px solid #d1d1d1;
+	border-radius: 4px;
+}
+.bor_apy_search
+{
+	width: 110px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	cursor: pointer;
+	background: #0bf;
+	border-radius: 4px;
+	margin-left: 13px;
+}
+.table_title div,.each_tab_tr p
+{
+	width: 122px;
+	height:100%;
+	text-align: center;
+}
+.borapy_opear
+{
+	color: #0bf;
+}
+.borapy_opear span
+{
+	cursor: pointer;
+}
+/*借款中心-申请中页面样式End*/

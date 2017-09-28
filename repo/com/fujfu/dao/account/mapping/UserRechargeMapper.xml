@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.account.UserRechargeMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.account.UserRechargeVO" >
+    <id column="recharge_id" property="rechargeId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="billno" property="billno" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="dcflag" property="dcflag" jdbcType="CHAR" />
+    <result column="payment_billno" property="paymentBillno" jdbcType="VARCHAR" />
+    <result column="bank_billno" property="bankBillno" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="handle_time" property="handleTime" jdbcType="INTEGER" />
+     <result column="fee" property="fee" jdbcType="DECIMAL" />
+     <result column="recharge_number" property="rechargeNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapVo" type="com.fujfu.pojo.account.UserRechargePOJO" extends="BaseResultMap" >
+  	<result column="username" property="username" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    recharge_id, user_id, billno, money,  bank_code, dcflag, payment_billno, bank_billno, 
+    status, create_time, handle_time,fee,recharge_number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_user_recharge
+    where recharge_id = #{rechargeId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByQueryCondition" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_user_recharge
+    <include refid="queryCondition1" />
+    </select>
+    <!-- 查询条件 -->
+	<sql id="queryCondition1">
+		<trim prefix="where" prefixOverrides="and|or">
+
+			<if test="userRechargeQuery.status!=null and userRechargeQuery.status!=''">
+				and status=#{userRechargeQuery.status}
+			</if>
+	
+			<if test="userRechargeQuery.userID!=null and userRechargeQuery.userID!=''">
+				and user_id = #{userRechargeQuery.userID}
+			</if>
+		</trim>
+	</sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_user_recharge
+    where recharge_id = #{rechargeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.account.UserRechargeVO" >
+    insert into fu_user_recharge (recharge_id, user_id, billno, 
+      money,  bank_code, 
+      dcflag, payment_billno, bank_billno, 
+      status, create_time, handle_time,fee,recharge_number
+      )
+    values (#{rechargeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{billno,jdbcType=VARCHAR}, 
+      #{money,jdbcType=DECIMAL}, #{bankCode,jdbcType=VARCHAR}, 
+      #{dcflag,jdbcType=CHAR}, #{paymentBillno,jdbcType=VARCHAR}, #{bankBillno,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}, #{handleTime,jdbcType=INTEGER},#{fee,jdbcType=INTEGER}
+      ,#{rechargeNumber,jdbcType=VARCHAR},
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.account.UserRechargeVO" >
+    insert into fu_user_recharge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rechargeId != null" >
+        recharge_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="billno != null" >
+        billno,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+     
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="dcflag != null" >
+        dcflag,
+      </if>
+      <if test="paymentBillno != null" >
+        payment_billno,
+      </if>
+      <if test="bankBillno != null" >
+        bank_billno,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="handleTime != null" >
+        handle_time,
+      </if>
+       <if test="fee != null" >
+        fee,
+      </if>
+       <if test="rechargeNumber != null" >
+        recharge_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rechargeId != null" >
+        #{rechargeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+     
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dcflag != null" >
+        #{dcflag,jdbcType=CHAR},
+      </if>
+      <if test="paymentBillno != null" >
+        #{paymentBillno,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBillno != null" >
+        #{bankBillno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null" >
+        #{handleTime,jdbcType=INTEGER},     
+      </if>
+       <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+       <if test="rechargeNumber != null" >
+        #{rechargeNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.account.UserRechargeVO" >
+    update fu_user_recharge
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="billno != null" >
+        billno = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+     
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dcflag != null" >
+        dcflag = #{dcflag,jdbcType=CHAR},
+      </if>
+      <if test="paymentBillno != null" >
+        payment_billno = #{paymentBillno,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBillno != null" >
+        bank_billno = #{bankBillno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null" >
+        handle_time = #{handleTime,jdbcType=INTEGER},
+      </if>
+       <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+     <if test="rechargeNumber != null" >
+        recharge_number = #{rechargeNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where recharge_id = #{rechargeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.account.UserRechargeVO" >
+    update fu_user_recharge
+    set user_id = #{userId,jdbcType=INTEGER},
+      billno = #{billno,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+     
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      dcflag = #{dcflag,jdbcType=CHAR},
+      payment_billno = #{paymentBillno,jdbcType=VARCHAR},
+      bank_billno = #{bankBillno,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      handle_time = #{handleTime,jdbcType=INTEGER}
+    where recharge_id = #{rechargeId,jdbcType=INTEGER}
+  </update>
+  <!-- 查询条件 -->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="userRechargeQuery.username!=null and userRechargeQuery.username!=''">
+				and fu.username like "%"#{userRechargeQuery.username}"%"
+			</if>
+			<if test="userRechargeQuery.billno!=null and userRechargeQuery.billno!=''">
+				and fur.billno like "%"#{userRechargeQuery.billno}"%"
+			</if>
+			<if test="userRechargeQuery.startTime!=null and userRechargeQuery.startTime!=''">
+    <![CDATA[  and fur.create_time >= #{userRechargeQuery.startTime}]]>
+			</if>
+			<if test="userRechargeQuery.endTime!=null and userRechargeQuery.endTime!=''">
+    <![CDATA[  and fur.create_time <= #{userRechargeQuery.endTime}]]>
+			</if>
+			<if test="userRechargeQuery.status!=null and userRechargeQuery.status!=''">
+				and fur.status=#{userRechargeQuery.status}
+			</if>
+			<if test="userRechargeQuery.allStartTime!=null and userRechargeQuery.allStartTime!=''">
+    <![CDATA[  and create_time >= #{userRechargeQuery.allStartTime}]]>
+			</if>
+			<if test="userRechargeQuery.allEndTime!=null and userRechargeQuery.allEndTime!=''">
+    <![CDATA[  and create_time <= #{userRechargeQuery.allEndTime}]]>
+			</if>
+			<if test="userRechargeQuery.userID!=null and userRechargeQuery.userID!=''">
+				and user_id like "%"#{userRechargeQuery.userID}"%"
+			</if>
+		</trim>
+	</sql>
+	<!-- 后台条件分页查询 -->
+	<select id="findUserRecharge" resultMap="BaseResultMapVo">
+		select
+		fur.recharge_id,fur.user_id,fu.username,fur.billno,fur.money,fur.handle_time,fur.create_time,fur.status,fur.fee,fur.recharge_number
+		from fu_user_recharge fur left join fu_users fu on fur.user_id =
+		fu.user_id
+		<include refid="queryCondition" />
+		order by fur.create_time
+		limit #{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 分页查询记录数 -->
+	<select id="countUserRecharge" resultType="java.lang.Integer">
+		select count(*) from fu_user_recharge fur left join fu_users fu on
+		fur.user_id = fu.user_id
+		<include refid="queryCondition" />
+	</select>
+	<!-- 根据流水号更新充值记录状态 -->
+	<update id="updateUserRechargeBySSN">
+	update fu_user_recharge set status =#{statu} where billno = #{ssn}
+	</update>
+	
+	<!-- 前台账户中心交易明细查询分页查询记录数 -->
+	<select id="countUserRechargeTradeDetai" resultType="java.lang.Integer">
+		select count(*)  
+		from fu_user_recharge 
+		where user_id= #{userId}
+		<include refid="queryCondition" />
+	</select>
+	
+	<!-- 前台账户中心投资人交易明细查询分页查询所有记录数 -->
+	<select id="countUserAllTradeDetai" resultType="java.lang.Integer">
+		select count(*) from 
+		(
+		select recharge_id as TradeDetaiId
+		from fu_user_recharge 
+		where user_id= #{userId} 
+		<include refid="queryCondition" />
+		union all
+		select withdrawal_id
+		from fu_user_withdrawal 
+		where user_id= #{userId}
+		<include refid="queryCondition" />
+		union all
+		select id
+		from fu_loan_investment 
+		where user_id= #{userId}
+		<include refid="queryCondition" />
+		union all
+		select id
+		from fu_apply_recover 
+		where user_id= #{userId}
+		<include refid="queryCondition" />
+		) fff
+		
+	</select>
+	
+	<!-- 前台账户中心借款人交易明细查询分页查询所有记录数 -->
+	<select id="countUserAllTradeDetaiJk" resultType="java.lang.Integer">
+		select count(*) from 
+		(
+		select recharge_id as TradeDetaiId
+		from fu_user_recharge 
+		where user_id= #{userId} 
+		<include refid="queryCondition" />
+		union all
+		select withdrawal_id
+		from fu_user_withdrawal 
+		where user_id= #{userId}
+		<include refid="queryCondition" />
+		union all
+		select id
+		from fu_loan_apply
+		where user_id= #{userId}
+		and loan_time is not null
+		<include refid="queryCondition" />
+		union all
+		select id
+		from fu_apply_repay 
+		where user_id= #{userId}
+		and repay_done_time is not null
+		<include refid="queryCondition" />
+		) fff
+		
+	</select>
+	
+	  <!-- 查询fu_user_recharge表的最大RechargeNumber记录 -->
+	<select id="findMaxRechargeNumber" resultType="java.lang.String">
+		select max(fur.recharge_number)
+		from fu_user_recharge fur
+		where fur.recharge_number like "%"#{nowDateStr}"%"
+	</select>
+	<!-- 根据流水号查询充值记录 -->
+	 <select id="selectBybillno" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_user_recharge
+    where billno = #{ssn,jdbcType=VARCHAR}
+  </select>
+</mapper>

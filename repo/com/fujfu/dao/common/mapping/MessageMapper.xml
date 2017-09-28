@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.common.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.common.MessageVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="sender_id" property="senderId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="obj_id" property="objId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="send_status" property="sendStatus" jdbcType="INTEGER" />
+    <result column="deleted" property="deleted" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+    <result column="created1" property="created1" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.fujfu.pojo.common.MessageVO" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 分页查询条件 -->
+  <sql id="queryCondition">
+  	<trim prefix="where" prefixOverrides="and|or">
+		<if test="message.id!=null and message.id!=''">
+			and id =#{message.id}
+		</if>
+		<if test="message.userId!=null and message.userId!=''">
+			and user_id =#{message.userId} 
+		</if>
+		<if test="message.senderId!=null and message.senderId!=''">
+			and sender_id =#{message.senderId}  
+		</if>
+		<if test="message.title!=null and message.title!=''">
+			and title like "%"#{message.title}"%"  
+		</if>
+		<if test="message.type!=null">
+			and TYPE =#{message.type}  
+		</if>
+		<if test="message.content!=null and message.content!=''">
+			and content like "%"#{message.content}"%" 
+		</if>
+		<if test="message.startTime!=null and message.startTime!=''">
+    <![CDATA[  and created >= #{message.startTime}]]>
+			</if>
+			<if test="message.endTime!=null and message.endTime!=''">
+    <![CDATA[  and created <= #{message.endTime}]]>
+			</if>
+			<if test="message.deleted!=null">
+			and deleted =#{message.deleted}  
+		</if>
+  	</trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, sender_id, title, TYPE, obj_id, status, send_status, deleted, created
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <!-- 分页查询 -->
+  <select id="findMessage" resultMap="ResultMapWithBLOBs">
+  	select 
+    <include refid="Base_Column_List" />,<include refid="Blob_Column_List" />,from_unixtime(created) as created1 
+    from fu_message 
+    <include refid="queryCondition" /> 
+    order by from_unixtime(created) desc limit #{page.startOfPage},#{page.pageSize}
+  </select>
+  
+  <!-- 查询总记录数 -->
+  <select id="countMessage" resultType="java.lang.Integer">
+  	select count(*) from fu_message 
+  	<include refid="queryCondition" />  
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from fu_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="batchInsert" parameterType="java.util.List">
+	insert into fu_message(user_id, title,
+	content, created) 
+	<foreach collection="list" item="item" index="index" separator="union all">
+	select #{item.userId},
+	#{item.title},
+	#{item.content},
+	#{item.created} from dual
+	</foreach>
+	</insert>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.common.MessageVO" >
+    insert into fu_message (id, user_id, sender_id, 
+      title, TYPE, obj_id, 
+      status, send_status, deleted, created, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{senderId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{objId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{sendStatus,jdbcType=INTEGER}, #{deleted,jdbcType=INTEGER}, #{created,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.common.MessageVO" >
+    insert into fu_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="senderId != null" >
+        sender_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="objId != null" >
+        obj_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sendStatus != null" >
+        send_status,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="senderId != null" >
+        #{senderId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="objId != null" >
+        #{objId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sendStatus != null" >
+        #{sendStatus,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.common.MessageVO" >
+    update fu_message
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="senderId != null" >
+        sender_id = #{senderId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="objId != null" >
+        obj_id = #{objId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sendStatus != null" >
+        send_status = #{sendStatus,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fujfu.pojo.common.MessageVO" >
+    update fu_message
+    set user_id = #{userId,jdbcType=INTEGER},
+      sender_id = #{senderId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      obj_id = #{objId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      send_status = #{sendStatus,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=INTEGER},
+      created = #{created,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.common.MessageVO" >
+    update fu_message
+    set user_id = #{userId,jdbcType=INTEGER},
+      sender_id = #{senderId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      obj_id = #{objId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      send_status = #{sendStatus,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=INTEGER},
+      created = #{created,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <delete id="updateMeDel"  >  
+    update fu_message set deleted=1 where id in  
+      <foreach collection="array" item = "id" open="(" separator="," close=")">  
+            #{id}  
+    </foreach>    
+  </delete>  
+   <delete id="updateMeSta"  >  
+    update fu_message set status=1 where id in  
+      <foreach collection="array" item = "id" open="(" separator="," close=")">  
+            #{id}  
+    </foreach>    
+  </delete>  
+</mapper>

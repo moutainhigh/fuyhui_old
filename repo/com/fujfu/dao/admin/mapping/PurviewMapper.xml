@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.admin.PurviewMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.admin.PurviewVO" >
+    <id column="purview_id" property="purviewId" jdbcType="INTEGER" />
+    <result column="purview_name" property="purviewName" jdbcType="VARCHAR" />
+    <result column="purview_flag" property="purviewFlag" jdbcType="VARCHAR" />
+    <result column="describ" property="describ" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+  </resultMap>
+  <!-- 分页查询条件 -->
+  <sql id="queryCondition">
+  	<trim prefix="where" prefixOverrides="and|or">
+  		<if test="purview.purviewName!=null and purview.purviewName!=''">
+			and purview_name like "%"#{purview.purviewName}"%"  
+		</if>
+  	</trim>
+  </sql>
+  <!-- 分页查询 -->
+  <select id="findPurview" resultMap="BaseResultMap">
+  	select * from fu_purview  
+  	<include refid="queryCondition" />  
+  	order by created desc limit #{page.startOfPage},#{page.pageSize}
+  </select>
+  <!-- 根据roleId查询该角色未拥有的权限 -->
+  <select id="findNotOwnPurviewByRoleId" resultMap="BaseResultMap">
+  select * from fu_purview where purview_id not in (
+select purview_id from fu_role_purview where role_id = #{roleId})
+  </select>
+  <!-- 查询总记录数 -->
+   <select id="listAllPurview" resultMap="BaseResultMap">
+  	select * from fu_purview  
+  </select>
+  <!-- 分页查询记录数 -->
+  <select id="countPurview" resultType="java.lang.Integer">
+  	select count(*) from fu_purview 
+  	<include refid="queryCondition" />  
+  </select>
+  <sql id="Base_Column_List" >
+    purview_id, purview_name, purview_flag, describ, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_purview
+    where purview_id = #{purviewId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_purview
+    where purview_id = #{purviewId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.admin.PurviewVO" >
+    insert into fu_purview (purview_id, purview_name, purview_flag, 
+      describ, created)
+    values (#{purviewId,jdbcType=INTEGER}, #{purviewName,jdbcType=VARCHAR}, #{purviewFlag,jdbcType=VARCHAR}, 
+      #{describ,jdbcType=VARCHAR}, #{created,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.admin.PurviewVO" >
+    insert into fu_purview
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="purviewId != null" >
+        purview_id,
+      </if>
+      <if test="purviewName != null" >
+        purview_name,
+      </if>
+      <if test="purviewFlag != null" >
+        purview_flag,
+      </if>
+      <if test="describ != null" >
+        describ,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="purviewId != null" >
+        #{purviewId,jdbcType=INTEGER},
+      </if>
+      <if test="purviewName != null" >
+        #{purviewName,jdbcType=VARCHAR},
+      </if>
+      <if test="purviewFlag != null" >
+        #{purviewFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="describ != null" >
+        #{describ,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.admin.PurviewVO" >
+    update fu_purview
+    <set >
+      <if test="purviewName != null" >
+        purview_name = #{purviewName,jdbcType=VARCHAR},
+      </if>
+      <if test="purviewFlag != null" >
+        purview_flag = #{purviewFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="describ != null" >
+        describ = #{describ,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+    </set>
+    where purview_id = #{purviewId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.admin.PurviewVO" >
+    update fu_purview
+    set purview_name = #{purviewName,jdbcType=VARCHAR},
+      purview_flag = #{purviewFlag,jdbcType=VARCHAR},
+      describ = #{describ,jdbcType=VARCHAR},
+      created = #{created,jdbcType=INTEGER}
+    where purview_id = #{purviewId,jdbcType=INTEGER}
+  </update>
+</mapper>

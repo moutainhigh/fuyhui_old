@@ -1,0 +1,35 @@
+/*帮助中心*/
+.pro-bg{background: #F5F5F5;}
+ul,li{list-style: none;margin: 0;padding: 0;}
+p,h6{margin: 0;padding: 0;}
+/*关于我们的页面左侧导航栏和右侧的内容区域复用*/
+.aboutUs .containerA .right-con .concenH.concen{height: auto;padding-bottom: 144px;}
+.aboutUs .containerA{width: 1170px;height: auto;margin:38px  auto 90px;}
+.aboutUs .containerA .left-con{width: 166px;height: auto;float: left;}
+.aboutUs .containerA .left-con p{font-size: 18px;color:#323232;}
+.aboutUs .left-con .about-ul{margin-top: 30px;}
+.aboutUs .left-con .about-ul>li{width: 92px;font-size: 16px;color: #666666;line-height: 28px;margin-top: 24px;height: 28px;padding-left: 12px;}
+.aboutUs .left-con .about-ul>li a{color: #666666;}
+.aboutUs .left-con .about-ul>li a:hover{cursor: pointer;color: #00BBFF;}
+.aboutUs .left-con .about-ul>li .hover-A{color: #00BBFF;}
+.aboutUs .containerA .right-con{margin-left: 170px;}
+.aboutUs .containerA .right-con>p{font-size: 24px;color: #323232;}
+.aboutUs .containerA .right-con .concen{width: 978px;height: 900px;margin-top: 10px;background: #ffffff;
+    box-shadow: 0px 11px 40px -2px #bbb;
+    -webkit-box-shadow: 0px 11px 40px -2px #bbb;
+    -moz-box-shadow: 0px 11px 40px -2px #bbb;
+    -ms-box-shadow: 0px 11px 40px -2px #bbb;}
+
+
+
+
+.content .right-con .help-cen{margin-left: 80px;padding-top: 50px;width: 800px;height: auto;}
+.content .help-cen .sort-title{font-size: 20px;padding-left: 10px;border-left: 2px solid #323232;margin-top: 12px;}
+.content .help-cen .tit-con{margin-top: 15px;}
+.content .help-cen .tit-con .ques-tit{margin-bottom: 6px;margin-top:20px;color: #333333;font-size: 18px;}
+.content .help-cen .tit-con .answ-con{margin-bottom: 6px;font-size: 14px;line-height: 24px;color: #151515;}
+
+
+
+.content .help-cen .tit-con .la-li{width:10px;height:10px;display:inline-block;border-radius:5px;background: black;margin-right: 12px;}
+.lfixed{position: fixed;}

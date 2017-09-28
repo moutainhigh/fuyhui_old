@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.account.UserWithdrawalMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.account.UserWithdrawalVO" >
+    <id column="withdrawal_id" property="withdrawalId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="bank_id" property="bankId" jdbcType="INTEGER" />
+    <result column="fee" property="fee" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="handle_time" property="handleTime" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="billno" property="billno" jdbcType="VARCHAR" />
+     <result column="withdrawal_number" property="withdrawalNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.fujfu.pojo.account.UserWithdrawalPOJO" extends="BaseResultMap" >
+  	<result column="username" property="username" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    withdrawal_id, user_id, amount, status, bank_id, fee, create_time, handle_time, memo, 
+    billno,withdrawal_number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_user_withdrawal
+    where withdrawal_id = #{withdrawalId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_user_withdrawal
+    where withdrawal_id = #{withdrawalId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.account.UserWithdrawalVO" >
+    insert into fu_user_withdrawal (withdrawal_id, user_id, amount, 
+      status, bank_id, fee, 
+      create_time, handle_time, memo, 
+      billno,withdrawal_number)
+    values (#{withdrawalId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
+      #{status,jdbcType=INTEGER}, #{bankId,jdbcType=INTEGER}, #{fee,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=INTEGER}, #{handleTime,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, 
+      #{billno,jdbcType=INTEGER},#{withdrawalNumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.account.UserWithdrawalVO" >
+    insert into fu_user_withdrawal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="withdrawalId != null" >
+        withdrawal_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="bankId != null" >
+        bank_id,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="handleTime != null" >
+        handle_time,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="billno != null" >
+        billno,
+      </if>
+      <if test="withdrawalNumber != null" >
+        withdrawal_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="withdrawalId != null" >
+        #{withdrawalId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bankId != null" >
+        #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null" >
+        #{handleTime,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawalNumber != null" >
+        #{withdrawalNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.account.UserWithdrawalVO" >
+    update fu_user_withdrawal
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bankId != null" >
+        bank_id = #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null" >
+        handle_time = #{handleTime,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="billno != null" >
+        billno = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawalNumber != null" >
+        withdrawal_number = #{withdrawalNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where withdrawal_id = #{withdrawalId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.account.UserWithdrawalVO" >
+    update fu_user_withdrawal
+    set user_id = #{userId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      bank_id = #{bankId,jdbcType=INTEGER},
+      fee = #{fee,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      handle_time = #{handleTime,jdbcType=INTEGER},
+      memo = #{memo,jdbcType=VARCHAR},
+      billno = #{billno,jdbcType=VARCHAR}
+    where withdrawal_id = #{withdrawalId,jdbcType=INTEGER}
+  </update>
+  <!-- 查询条件 -->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="userWithdrawalQuery.username!=null and userWithdrawalQuery.username!=''">
+				and fu.username like "%"#{userWithdrawalQuery.username}"%"
+			</if>
+			<if test="userWithdrawalQuery.billno!=null and userWithdrawalQuery.billno!=''">
+				and fuw.billno like "%"#{userWithdrawalQuery.billno}"%"
+			</if>
+			<if test="userWithdrawalQuery.startTime!=null and userWithdrawalQuery.startTime!=''">
+    <![CDATA[  and fuw.create_time >= #{userWithdrawalQuery.startTime}]]>
+			</if>
+			<if test="userWithdrawalQuery.endTime!=null and userWithdrawalQuery.endTime!=''">
+    <![CDATA[  and fuw.create_time <= #{userWithdrawalQuery.endTime}]]>
+			</if>
+			<if test="userWithdrawalQuery.status!=null and userWithdrawalQuery.status!=''">
+				and fuw.status=#{userWithdrawalQuery.status}
+			</if>
+		</trim>
+	</sql>
+	<!-- 后台条件分页查询 -->
+	<select id="findUserWithdeawal" resultMap="BaseResultMapVo">
+		select
+		fuw.withdrawal_id,fuw.user_id,fu.username,fuw.amount,fuw.status,fuw.handle_time,fuw.create_time,fuw.billno,fuw.fee,fuw.withdrawal_number
+		from fu_user_withdrawal fuw left join fu_users fu on fuw.user_id =
+		fu.user_id
+		<include refid="queryCondition" />
+		order by fuw.create_time
+		limit #{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 分页查询记录数 -->
+	<select id="countUserWithdeawal" resultType="java.lang.Integer">
+		select count(*) from fu_user_withdrawal fuw left join fu_users fu on fuw.user_id =
+		fu.user_id
+		<include refid="queryCondition" />
+	</select>
+	<!-- 根据流水号更新提现记录状态 -->
+	<update id="updateUserWithdrawalBySSN">
+	update fu_user_withdrawal set status =#{statu} where billno = #{ssn}
+	</update>
+	
+	<!-- 前台账户中心交易明细查询分页查询记录数 -->
+	<select id="countUserwithdrawalTradeDetai" resultType="java.lang.Integer">
+		select count(*)  
+		from fu_user_withdrawal fuw
+		where fuw.user_id= #{userId}
+		
+	</select>
+	
+	 <!-- 查询fu_user_withdrawal表的最大withdrawal_number记录 -->
+	<select id="findMaxWithdrawalNumber" resultType="java.lang.String">
+		select max(fuw.withdrawal_number)
+		from fu_user_withdrawal fuw
+		where fuw.withdrawal_number like "%"#{nowDateStr}"%"
+	</select>
+	
+	<!-- 根据流水号查询充值记录 -->
+	 <select id="selectBybillno" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_user_withdrawal
+    where billno = #{ssn,jdbcType=VARCHAR}
+      </select>
+</mapper>

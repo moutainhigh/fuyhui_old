@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.common.AuthCodeMapper">
+
+	<resultMap id="authCode" type="com.fujfu.pojo.AuthCodeVO">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="name" property="name" />
+		<result column="content" property="content" />
+		<result column="type" property="type" />
+		<result column="status" property="status" />
+		<result column="expire" property="expire" />
+		<result column="add_time" property="addTime" />
+	</resultMap>
+
+	<insert id="insertSmsCode" parameterType="com.fujfu.pojo.AuthCodeVO">
+		insert into fu_auth_code
+		(user_id, name, content, type, status, expire, add_time)
+		values
+		(#{userId}, #{name}, #{content}, #{type}, #{status}, #{expire}, #{addTime} )
+	</insert>
+
+	<select id="checkCode" resultMap="authCode">
+		select * from fu_auth_code where name = #{mobile}   and type = #{type} order by add_time desc;
+	</select>	
+
+	<select id="regSendTimes" resultType="int">
+		select count(*) from fu_auth_code where name = #{mobile} and type = #{type} and add_time &gt;=
+		#{startDate} and add_time &lt; #{endDate} ;
+	</select>
+
+</mapper>

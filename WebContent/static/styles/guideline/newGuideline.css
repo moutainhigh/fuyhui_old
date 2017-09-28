@@ -1,0 +1,21 @@
+.top_banner{width: 100%;height: 360px;background:url(../../images/guideline/guidelineBanner.jpg) no-repeat;background-position: center;}
+.section_nav1{width: 1170px;height: 245px;margin: 0 auto;}
+.section_nav1 .sec_con{width: 270px;height: auto;text-align: center;float: left;margin-left: 88px;}
+.section_nav1 .sec_con .imgcon{margin-bottom: 22px;padding-top: 49px;}
+.section_nav1 .sec_con .p1{font-size: 24px;color: #000000;}
+.section_nav1 .sec_con .p2{font-size: 16px;color: #8D9499;margin-top: 12px;}
+.section_nav2{width: 100%;height: 480px;background:url(../../images/guideline/investBg.jpg) no-repeat;text-align: center;background-position: center;}
+.section_nav2 .p1{font-size: 28px;color: #FFFFFF;padding-top: 46px;}
+.section_nav2 .p1_bor{width:128px;border: 2px solid #FFFFFF;display: inline-block;margin-top: 20px; }
+.section_nav2 .step_con{margin-top: 80px;}
+.section_nav3{width: 1170px;height: 720px;margin: 0 auto;background:url(../../images/guideline/security_con.jpg) no-repeat;text-align: center;background-position: center;}
+.section_nav3>.p1{font-size: 28px;color: #000000;padding-top: 52px;}
+.section_nav3 .p1_bor{width:128px;border: 2px solid #000000;display: inline-block;margin-top: 20px;}
+.section_nav3 .desc_detai{width: 200px;padding-top: 107px;float: left;margin-left: 140px;}
+.section_nav3 .desc_detai .p2{font-size: 24px;color: #000000;margin-top: 18px;margin-bottom: 25px;}
+.section_nav3 .desc_detai .p3{font-size: 16px;color: #000000;}
+.section_nav4{width: 100%;height: 660px;text-align: center;background: #537B9F;position: relative;background-position: center;}
+.section_nav4 .p1{font-size: 28px;color: #FFFFFF;padding-top: 50px;}
+.section_nav4 .p1_bor{width:128px;border: 2px solid #FFFFFF;display: inline-block;margin-top: 20px; }
+.section_nav4 .sec_cen{width: 1170px;height: 634px;background:url(../../images/guideline/trusteeship_bg.png) no-repeat;margin: 0 auto;margin-top: -88px;background-position: center;background-size:100%;}
+.section_nav4 .sec_cen .step_con{position: relative;top: 236px;}

@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.loan.LoanApplyMapper">
+	<resultMap id="BaseResultMap" type="com.fujfu.pojo.loan.LoanApplyVO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="order_number" property="orderNumber" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="hand_amount" property="handAmount" jdbcType="DECIMAL" />
+		<result column="invest_min" property="investMin" jdbcType="DECIMAL" />
+		<result column="invest_max" property="investMax" jdbcType="DECIMAL" />
+		<result column="apr" property="apr" jdbcType="REAL" />
+		<result column="apr_reward" property="aprReward" jdbcType="REAL" />
+		<result column="period" property="period" jdbcType="INTEGER" />
+		<result column="loan_type" property="loanType" jdbcType="INTEGER" />
+		<result column="purpose" property="purpose" jdbcType="VARCHAR" />
+		<result column="payment_options" property="paymentOptions"
+			jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="created" property="created" jdbcType="INTEGER" />
+		<result column="mtime" property="mtime" jdbcType="INTEGER" />
+		<result column="start_time" property="startTime" jdbcType="INTEGER" />
+		<result column="end_time" property="endTime" jdbcType="INTEGER" />
+		<result column="loan_time" property="loanTime" jdbcType="INTEGER" />
+		<result column="guarantee_company_id" property="guaranteeCompanyId"
+			jdbcType="INTEGER" />
+		<result column="raise_days" property="raiseDays" jdbcType="INTEGER" />
+		<result column="transmitted" property="transmitted" jdbcType="INTEGER" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="project_source" property="projectSource" jdbcType="VARCHAR" />
+		<result column="is_loans" property="isLoans" jdbcType="TINYINT" />
+		<result column="is_frozen" property="isFrozen" jdbcType="TINYINT" />
+		<result column="contract" property="contract" jdbcType="VARCHAR" />
+		<result column="guarantee_mode" property="guaranteeMode" jdbcType="VARCHAR" />
+		<result column="finance_service_fee" property="financeServiceFee" jdbcType="FLOAT" />
+		<result column="invest_service_fee" property="investServiceFee" jdbcType="FLOAT" />
+		<result column="pro_amount" property="proAmount" jdbcType="DECIMAL" />
+		<result column="frist_advice" property="fristAdvice" jdbcType="VARCHAR" />
+		<result column="last_advice" property="lastAdvice" jdbcType="VARCHAR" />
+        <result column="is_creatctra" property="isCreatctra" />
+		<result column="product_manager" property="productManager" jdbcType="VARCHAR" />
+		<result column="underly_assets" property="underlyAssets" jdbcType="VARCHAR" />
+		<result column="productUrl" property="productUrl" />
+		<result column="due_time" property="dueTime" />
+		<result column="act_period" property="actPeriod" />
+		<result column="is_inside" property="isInside" />
+		<result column="complete_time" property="completeTime" />
+		<result column="amount_invested" property="amountInvested" />
+		<result column="version" property="version" />
+		<result column="installmentDate" property="installmentDate" />
+		<result column="lineloanDate" property="lineloanDate" />
+		<result column="record_size" property="recordSize" />
+		<result column="signed_number" property="signedNumber" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.fujfu.pojo.loan.LoanApplyVO"
+		extends="BaseResultMap">
+		<result column="description" property="description" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<resultMap id="LoanApplyListMap" type="com.fujfu.pojo.invest.LoanApplyListPOJO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="corpName" property="corpName" jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="apr" property="apr" jdbcType="REAL" />
+		<result column="period" property="period" jdbcType="INTEGER" />
+		<result column="guarantee_company_name" property="guarantee_company_name"
+			jdbcType="VARCHAR" />
+		<result column="loan_time" property="loan_time" jdbcType="INTEGER" />
+		<result column="status" property="repay_status" jdbcType="TINYINT" />
+		<result column="order_number" property="order_number" jdbcType="VARCHAR" />
+		<result column="repay_period" property="repay_period" jdbcType="TINYINT" />
+		<result column="repay_money" property="repay_money" jdbcType="DECIMAL" />
+		<result column="name" property="name" jdbcType="VARCHAR" />	
+		<result column="loanTimeStr" property="loanTimeStr" jdbcType="VARCHAR" />
+		<result column="already_repay_money" property="alreadyRepayMoney" jdbcType="DECIMAL" />
+		<result column="wai_repay_money" property="waiRepayMoney" jdbcType="DECIMAL" />
+		<result column="userName" property="userName" jdbcType="VARCHAR" />
+		<result column="is_loans" property="isLoans" jdbcType="VARCHAR" />
+		<result column="act_period" property="actPeriod" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!--前台机构查询担保总金额-->
+	<resultMap id="userGuarnatySumMap" type="com.fujfu.pojo.loan.UserGuarnatySumPOJO">
+		<result column="sumGuarnatyAtm" property="sumGuarnatyAtm" jdbcType="DECIMAL" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, user_id, order_number, name, amount, hand_amount, invest_min,
+		invest_max, apr,
+		apr_reward, period, loan_type, purpose, payment_options, status,
+		created,
+		mtime, start_time, end_time, loan_time, guarantee_company_id, raise_days, transmitted,
+		url,project_source,is_loans,is_frozen,contract,guarantee_mode,finance_service_fee,invest_service_fee,
+		pro_amount,frist_advice,last_advice,is_creatctra,product_manager,underly_assets ,productUrl,due_time,act_period,is_inside,complete_time,
+		amount_invested,version,installmentDate,lineloanDate,record_size,signed_number
+	</sql>
+	<sql id="Blob_Column_List">
+		description
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fu_loan_apply
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from fu_loan_apply
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insertSelective" parameterType="com.fujfu.pojo.loan.LoanApplyVO">
+		insert into fu_loan_apply
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="orderNumber != null">
+				order_number,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="handAmount != null">
+				hand_amount,
+			</if>
+			<if test="investMin != null">
+				invest_min,
+			</if>
+			<if test="investMax != null">
+				invest_max,
+			</if>
+			<if test="apr != null">
+				apr,
+			</if>
+			<if test="aprReward != null">
+				apr_reward,
+			</if>
+			<if test="period != null">
+				period,
+			</if>
+			<if test="loanType != null">
+				loan_type,
+			</if>
+			<if test="purpose != null">
+				purpose,
+			</if>
+			<if test="paymentOptions != null">
+				payment_options,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="created != null">
+				created,
+			</if>
+			<if test="mtime != null">
+				mtime,
+			</if>
+			<if test="startTime != null">
+				start_time,
+			</if>
+			<if test="endTime != null">
+				end_time,
+			</if>
+			<if test="loanTime != null">
+				loan_time,
+			</if>
+			<if test="guaranteeCompanyId != null">
+				guarantee_company_id,
+			</if>
+			<if test="raiseDays != null">
+				raise_days,
+			</if>
+			<if test="transmitted != null">
+				transmitted,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="projectSource != null">
+				project_source,
+			</if>
+			<if test="isLoans != null">
+				is_loans,
+			</if>
+			<if test="isFrozen != null">
+				is_frozen,
+			</if>
+			<if test="contract != null">
+				contract,
+			</if>
+			<if test="guaranteeMode != null">
+				guarantee_mode,
+			</if>
+			<if test="financeServiceFee != null">
+				finance_service_fee,
+			</if>
+			<if test="investServiceFee != null">
+				invest_service_fee,
+			</if>
+			<if test="proAmount != null">
+				pro_amount,
+			</if>
+			<if test="fristAdvice != null">
+				frist_advice,
+			</if>
+			<if test="lastAdvice != null">
+				last_advice,
+			</if>
+			<if test="isCreatctra != null">
+				is_creatctra,
+			</if>
+			<if test="productManager != null">
+				product_manager,
+			</if>
+			<if test="underlyAssets != null">
+				underly_assets,
+			</if>
+			<if test="productUrl != null">
+				productUrl,
+			</if>
+			<if test="dueTime != null">
+				due_time,
+			</if>
+			<if test="actPeriod != null">
+				act_period,
+			</if>
+			<if test="isInside != null">
+				is_inside,
+			</if>
+			<if test="completeTime != null">
+				complete_time,
+			</if>
+			<if test="amountInvested != null">
+				amount_invested,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+			<if test="installmentDate != null">
+				installmentDate,
+			</if>
+			<if test="lineloanDate != null">
+				lineloanDate,
+			</if>
+			<if test="recordSize != null">
+				record_size,
+			</if>
+			<if test="signedNumber != null">
+				signed_number,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="orderNumber != null">
+				#{orderNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="handAmount != null">
+				#{handAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="investMin != null">
+				#{investMin,jdbcType=DECIMAL},
+			</if>
+			<if test="investMax != null">
+				#{investMax,jdbcType=DECIMAL},
+			</if>
+			<if test="apr != null">
+				#{apr,jdbcType=REAL},
+			</if>
+			<if test="aprReward != null">
+				#{aprReward,jdbcType=REAL},
+			</if>
+			<if test="period != null">
+				#{period,jdbcType=INTEGER},
+			</if>
+			<if test="loanType != null">
+				#{loanType,jdbcType=INTEGER},
+			</if>
+			<if test="purpose != null">
+				#{purpose,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentOptions != null">
+				#{paymentOptions,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="created != null">
+				#{created,jdbcType=INTEGER},
+			</if>
+			<if test="mtime != null">
+				#{mtime,jdbcType=INTEGER},
+			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=INTEGER},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=INTEGER},
+			</if>
+			<if test="loanTime != null">
+				#{loanTime,jdbcType=INTEGER},
+			</if>
+			<if test="guaranteeCompanyId != null">
+				#{guaranteeCompanyId,jdbcType=INTEGER},
+			</if>
+			<if test="raiseDays != null">
+				#{raiseDays,jdbcType=INTEGER},
+			</if>
+			<if test="transmitted != null">
+				#{transmitted,jdbcType=INTEGER},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="projectSource != null">
+				#{projectSource,jdbcType=VARCHAR},
+			</if>
+			<if test="isLoans != null">
+				#{isLoans,jdbcType=TINYINT},
+			</if>
+			<if test="isFrozen != null">
+				#{isFrozen,jdbcType=VARCHAR},
+			</if>
+			<if test="contract != null">
+				#{contract,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeMode != null">
+				#{guaranteeMode,jdbcType=VARCHAR},
+			</if>
+			<if test="financeServiceFee != null">
+				#{financeServiceFee,jdbcType=FLOAT},
+			</if>
+			<if test="investServiceFee != null">
+				#{investServiceFee,jdbcType=FLOAT},
+			</if>
+			<if test="proAmount != null">
+				#{proAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="fristAdvice != null">
+				#{fristAdvice,jdbcType=VARCHAR},
+			</if>
+			<if test="lastAdvice != null">
+				#{lastAdvice,jdbcType=VARCHAR},
+			</if>
+			<if test="isCreatctra != null">
+				#{isCreatctra,jdbcType=TINYINT},
+			</if>
+			<if test="productManager != null">
+				#{productManager,jdbcType=VARCHAR},
+			</if>
+			<if test="underlyAssets != null">
+				#{underlyAssets,jdbcType=VARCHAR},
+			</if>
+			<if test="productUrl != null">
+				#{productUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="dueTime != null">
+				#{dueTime,jdbcType=INTEGER},
+			</if>
+			<if test="actPeriod != null">
+				#{actPeriod,jdbcType=INTEGER},
+			</if>
+			<if test="isInside != null">
+				#{isInside,jdbcType=INTEGER},
+			</if>
+			<if test="completeTime != null">
+				#{completeTime,jdbcType=INTEGER},
+			</if>
+			<if test="amountInvested != null">
+				#{amountInvested,jdbcType=DECIMAL},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=INTEGER},
+			</if>
+			<if test="installmentDate != null">
+				#{installmentDate,jdbcType=INTEGER},
+			</if>
+			<if test="lineloanDate != null">
+				#{lineloanDate,jdbcType=INTEGER},
+			</if>
+			<if test="recordSize != null">
+				#{recordSize,jdbcType=DECIMAL},
+			</if>
+			<if test="signedNumber != null">
+				#{signedNumber,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.loan.LoanApplyVO">
+		update fu_loan_apply
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="orderNumber != null">
+				order_number = #{orderNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="handAmount != null">
+				hand_amount = #{handAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="investMin != null">
+				invest_min = #{investMin,jdbcType=DECIMAL},
+			</if>
+			<if test="investMax != null">
+				invest_max = #{investMax,jdbcType=DECIMAL},
+			</if>
+			<if test="apr != null">
+				apr = #{apr,jdbcType=REAL},
+			</if>
+			<if test="aprReward != null">
+				apr_reward = #{aprReward,jdbcType=REAL},
+			</if>
+			<if test="period != null">
+				period = #{period,jdbcType=INTEGER},
+			</if>
+			<if test="loanType != null">
+				loan_type = #{loanType,jdbcType=INTEGER},
+			</if>
+			<if test="purpose != null">
+				purpose = #{purpose,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentOptions != null">
+				payment_options = #{paymentOptions,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="created != null">
+				created = #{created,jdbcType=INTEGER},
+			</if>
+			<if test="mtime != null">
+				mtime = #{mtime,jdbcType=INTEGER},
+			</if>
+			<if test="startTime != null">
+				start_time = #{startTime,jdbcType=INTEGER},
+			</if>
+			<if test="endTime != null">
+				end_time = #{endTime,jdbcType=INTEGER},
+			</if>
+			<if test="loanTime != null">
+				loan_time = #{loanTime,jdbcType=INTEGER},
+			</if>
+			<if test="guaranteeCompanyId != null">
+				guarantee_company_id = #{guaranteeCompanyId,jdbcType=INTEGER},
+			</if>
+			<if test="raiseDays != null">
+				raise_days = #{raiseDays,jdbcType=INTEGER},
+			</if>
+			<if test="transmitted != null">
+				transmitted = #{transmitted,jdbcType=INTEGER},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="projectSource != null">
+				project_source = #{projectSource,jdbcType=VARCHAR},
+			</if>
+			<if test="isLoans != null">
+				is_loans = #{isLoans,jdbcType=TINYINT},
+			</if>
+			<if test="isFrozen != null">
+				is_frozen = #{isFrozen,jdbcType=TINYINT},
+			</if>
+			<if test="contract != null">
+				contract = #{contract,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeMode != null">
+				guarantee_mode = #{guaranteeMode,jdbcType=VARCHAR},
+			</if>
+			<if test="financeServiceFee != null">
+				finance_service_fee = #{financeServiceFee,jdbcType=FLOAT},
+			</if>
+			<if test="investServiceFee != null">
+				invest_service_fee = #{investServiceFee,jdbcType=FLOAT},
+			</if>
+			<if test="proAmount != null">
+				pro_amount = #{proAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="fristAdvice != null">
+				frist_advice = #{fristAdvice,jdbcType=VARCHAR},
+			</if>
+			<if test="lastAdvice != null">
+				last_advice = #{lastAdvice,jdbcType=VARCHAR},
+			</if>
+			<if test="isCreatctra != null">
+				is_creatctra = #{isCreatctra,jdbcType=TINYINT},
+			</if>
+			<if test="productManager != null">
+				product_manager = #{productManager,jdbcType=VARCHAR},
+			</if>
+			<if test="underlyAssets != null">
+				underly_assets = #{underlyAssets,jdbcType=VARCHAR},
+			</if>
+			<if test="productUrl != null">
+				productUrl = #{productUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="dueTime != null">
+				due_time = #{dueTime,jdbcType=INTEGER},
+			</if>
+			<if test="actPeriod != null">
+				act_period = #{actPeriod,jdbcType=INTEGER},
+			</if>
+			<if test="isInside != null">
+				is_inside = #{isInside,jdbcType=INTEGER},
+			</if>
+			<if test="completeTime != null">
+				complete_time = #{completeTime,jdbcType=INTEGER},
+			</if>
+			<if test="amountInvested != null">
+				amount_invested = #{amountInvested,jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				version = #{version,jdbcType=INTEGER},
+			</if>
+			<if test="installmentDate != null">
+			installmentDate = #{installmentDate,jdbcType=INTEGER},
+			</if>
+			<if test="lineloanDate != null">
+			lineloanDate = #{lineloanDate,jdbcType=INTEGER},
+			</if>
+			<if test="recordSize != null">
+			record_size = #{recordSize,jdbcType=DECIMAL},
+			</if>
+			<if test="signedNumber != null">
+			signed_number = #{signedNumber,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<update id="updateByVersionAndPrimaryKeySelective" parameterType="com.fujfu.pojo.loan.LoanApplyVO">
+		update fu_loan_apply
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="orderNumber != null">
+				order_number = #{orderNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="handAmount != null">
+				hand_amount = #{handAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="investMin != null">
+				invest_min = #{investMin,jdbcType=DECIMAL},
+			</if>
+			<if test="investMax != null">
+				invest_max = #{investMax,jdbcType=DECIMAL},
+			</if>
+			<if test="apr != null">
+				apr = #{apr,jdbcType=REAL},
+			</if>
+			<if test="aprReward != null">
+				apr_reward = #{aprReward,jdbcType=REAL},
+			</if>
+			<if test="period != null">
+				period = #{period,jdbcType=INTEGER},
+			</if>
+			<if test="loanType != null">
+				loan_type = #{loanType,jdbcType=INTEGER},
+			</if>
+			<if test="purpose != null">
+				purpose = #{purpose,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentOptions != null">
+				payment_options = #{paymentOptions,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="created != null">
+				created = #{created,jdbcType=INTEGER},
+			</if>
+			<if test="mtime != null">
+				mtime = #{mtime,jdbcType=INTEGER},
+			</if>
+			<if test="startTime != null">
+				start_time = #{startTime,jdbcType=INTEGER},
+			</if>
+			<if test="endTime != null">
+				end_time = #{endTime,jdbcType=INTEGER},
+			</if>
+			<if test="loanTime != null">
+				loan_time = #{loanTime,jdbcType=INTEGER},
+			</if>
+			<if test="guaranteeCompanyId != null">
+				guarantee_company_id = #{guaranteeCompanyId,jdbcType=INTEGER},
+			</if>
+			<if test="raiseDays != null">
+				raise_days = #{raiseDays,jdbcType=INTEGER},
+			</if>
+			<if test="transmitted != null">
+				transmitted = #{transmitted,jdbcType=INTEGER},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="projectSource != null">
+				project_source = #{projectSource,jdbcType=VARCHAR},
+			</if>
+			<if test="isLoans != null">
+				is_loans = #{isLoans,jdbcType=TINYINT},
+			</if>
+			<if test="isFrozen != null">
+				is_frozen = #{isFrozen,jdbcType=TINYINT},
+			</if>
+			<if test="contract != null">
+				contract = #{contract,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeMode != null">
+				guarantee_mode = #{guaranteeMode,jdbcType=VARCHAR},
+			</if>
+			<if test="financeServiceFee != null">
+				finance_service_fee = #{financeServiceFee,jdbcType=FLOAT},
+			</if>
+			<if test="investServiceFee != null">
+				invest_service_fee = #{investServiceFee,jdbcType=FLOAT},
+			</if>
+			<if test="proAmount != null">
+				pro_amount = #{proAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="fristAdvice != null">
+				frist_advice = #{fristAdvice,jdbcType=VARCHAR},
+			</if>
+			<if test="lastAdvice != null">
+				last_advice = #{lastAdvice,jdbcType=VARCHAR},
+			</if>
+			<if test="isCreatctra != null">
+				is_creatctra = #{isCreatctra,jdbcType=TINYINT},
+			</if>
+			<if test="productManager != null">
+				product_manager = #{productManager,jdbcType=VARCHAR},
+			</if>
+			<if test="underlyAssets != null">
+				underly_assets = #{underlyAssets,jdbcType=VARCHAR},
+			</if>
+			<if test="productUrl != null">
+				productUrl = #{productUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="dueTime != null">
+				due_time = #{dueTime,jdbcType=INTEGER},
+			</if>
+			<if test="actPeriod != null">
+				act_period = #{actPeriod,jdbcType=INTEGER},
+			</if>
+			<if test="isInside != null">
+				is_inside = #{isInside,jdbcType=INTEGER},
+			</if>
+			<if test="completeTime != null">
+				complete_time = #{completeTime,jdbcType=INTEGER},
+			</if>
+			<if test="amountInvested != null">
+				amount_invested = #{amountInvested,jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				version = #{version} + 1,
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER} and version = #{version,jdbcType=INTEGER}
+	</update>
+
+	<!-- .......................................................... -->
+	<resultMap id="InvestMap" type="com.fujfu.pojo.loan.LoanPOJO">
+		<id column="id" property="id" />
+		<result column="loanName" property="loanName" />
+		<result column="apr" property="apr" />
+		<result column="period" property="period" />
+		<result column="amount" property="amount" />
+		<result column="investProgress" property="investProgress" />
+		<result column="status" property="status" />
+		<result column="category" property="category" />
+		<result column="loanTime" property="loanTime" />
+		<result column="paymentOptions" property="paymentOptions" />
+		<result column="guaranteeCompany" property="guaranteeCompany" />
+		<result column="guaranteeCompanyId" property="guaranteeCompanyId" />
+		<result column="orderNumber" property="orderNumber" />
+		<result column="endTime" property="endTime" />
+		<result column="investMin" property="investMin" />
+		<result column="remainAmount" property="remainAmount" />
+		<result column="realName" property="realName" />
+		<result column="tel" property="tel" />
+		<result column="idCard" property="idCard" />
+		<result column="created" property="created" />
+		<result column="proAmount" property="proAmount" />
+		<result column="projectSource" property="projectSource" />
+		<result column="purpose" property="purpose" />
+		<result column="companyName" property="companyName" />
+		<result column="isLoans" property="isLoans" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="is_creatctra" property="isCreatctra" />
+		<result column="productUrl" property="productUrl" />
+		<result column="dueTime" property="dueTime" />
+		<result column="guaranteeMode" property="guaranteeMode" />
+		<result column="startTime" property="startTime" />
+		<result column="completeTime" property="completeTime" />
+		<result column="act_period" property="actPeriod" jdbcType="INTEGER" />
+		<result column="description" property="description" />
+	</resultMap>
+	<!-- 查询条件 -->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="loanType!=null and loanType!=''">
+				and flt.category =#{loanType}
+			</if>
+			<if test="startPeriod!=null and endPeriod!=null and endPeriod!=0">
+				and fla.period &gt;#{startPeriod} and fla.period
+				&lt;=#{endPeriod}
+			</if>
+			<if test="isInside==0">
+				and fla.is_inside=0
+			</if>
+			<if test="type==2">
+				and fla.loan_type='51'
+			</if>
+			<if test="type==1">
+				and fla.loan_type!='51'
+			</if>
+			and fla.status &gt; 1 and fla.status &lt; 20
+		</trim>
+	</sql>
+	<!-- 查询条件2 -->
+	<sql id="queryCondition2">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="isInside==0">
+				and fla.is_inside=0
+			</if>
+			<if test="isInside==1">
+				and 1=1
+			</if>
+			<if test="loanType!=null and loanType!=''">
+			and fla.loan_type =#{loanType}
+			</if>
+		</trim>
+	</sql>
+	<!-- 后台分页查询条件 -->
+	<sql id="backQueryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="loan.orderNumber!=null and loan.orderNumber!=''">
+				and fla.order_number =#{loan.orderNumber}
+			</if>
+			<if test="loan.realName!=null and loan.realName!=''">
+				and fui.realname =#{loan.realName}
+			</if>
+			<if test="loan.status!=null and loan.status!='' and loan.status!='A'.toString()">
+				and fla.status =#{loan.status}
+			</if>
+			<if test="loan.status!=null and loan.status!='' and loan.status=='A'.toString()">
+				and ((fla.status ='8' and(fla.is_loans in('1','2','3'))) or (fla.status='9' and fla.is_loans='3'))
+			</if>
+			<if test="loan.isCreatctra!=null and loan.isCreatctra!=''">
+				and fla.is_creatctra =#{loan.isCreatctra}
+			</if>
+		</trim>
+	</sql>
+	<!-- 排序条件 -->
+	<sql id="orderCondition">
+		<trim prefix="order by" suffixOverrides=",">
+			<choose>
+				<when test="rateSort!=null and rateSort!='' and rateSort=='desc'">
+					fla.apr desc,
+				</when>
+				<when test="rateSort!=null and rateSort!='' and rateSort=='asc'">
+					fla.apr asc,
+				</when>
+				<when test="amountSort!=null and amountSort!='' and amountSort=='desc'">
+					fla.amount desc,
+				</when>
+				<when test="amountSort!=null and amountSort!='' and amountSort=='asc'">
+					fla.amount asc,
+				</when>
+				<when
+					test="progressSort!=null and progressSort!='' and progressSort=='desc'">
+					investProgress desc,
+				</when>
+				<when
+					test="progressSort!=null and progressSort!='' and progressSort=='asc'">
+					investProgress asc,
+				</when>
+				<otherwise>
+					investProgress asc,status asc,fla.created desc
+				</otherwise>
+			</choose>
+		</trim>
+	</sql>
+	<!-- 查询 -->
+	<select id="findInvest" resultMap="InvestMap">
+		select fla.id,fla.name as
+		loanName,fla.apr,fla.period,fla.amount,truncate(fli.money*100/fla.amount,1)
+		as investProgress,fla.status,flt.category as category,fla.is_loans as isLoans,fla.invest_min as investMin
+		from fu_loan_apply fla left join
+		(select
+		apply_id,sum(money) as money from fu_loan_investment group by
+		apply_id) fli
+		on fla.id = fli.apply_id left join fu_loan_type flt on fla.loan_type = flt.id 
+		<include refid="queryCondition" />
+		<include refid="orderCondition" />
+		limit #{startNum},#{pageSize}
+	</select>
+	<!-- 后台分页查询 -->
+	<select id="findLoan" resultMap="InvestMap">
+		select fla.id,fui.corpname as companyName,fla.is_loans as isLoans,fla.order_number as orderNumber,fla.loan_time as loanTime,fla.payment_options as paymentOptions,fla.name as
+		loanName,fla.apr,fla.period,fla.act_period,fla.amount,round(fli.money/fla.amount,2)
+		as investProgress,fla.status,fui.realname as realName,fui.mobile as
+		tel,fui.card_id as idCard,fla.created,fla.project_source as projectSource,fla.is_creatctra,fla.due_time as dueTime 
+		from fu_loan_apply fla left join
+		(select
+		apply_id,sum(money) as money from
+		fu_loan_investment group by
+		apply_id) fli
+		on fla.id = fli.apply_id
+		left join fu_users fui on fla.user_id = fui.user_id
+		<include refid="backQueryCondition" />
+		 order by fla.created desc limit #{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 条件查询总记录数 -->
+	<select id="countInvest" resultType="java.lang.Integer">
+		select count(*) from fu_loan_apply fla left join
+		(select
+		apply_id,sum(money) as money from fu_loan_investment group by
+		apply_id) fli
+		on fla.id = fli.apply_id left join fu_loan_type flt on fla.loan_type = flt.id 
+		<include refid="queryCondition" />
+	</select>
+	<!-- 后台条件查询总记录数 -->
+	<select id="countLoan" resultType="java.lang.Integer">
+		select count(*) from fu_loan_apply fla left join
+		(select
+		apply_id,sum(money) as money from fu_loan_investment group by
+		apply_id) fli
+		on fla.id = fli.apply_id left join fu_users fui on
+		fla.user_id = fui.user_id
+		<include refid="backQueryCondition" />
+	</select>
+	<!-- 根据id查询标的详情 -->
+	<select id="finInvestmentById" resultMap="InvestMap">
+		select
+		fla.id,fla.name as
+		loanName,fla.order_number as
+		orderNumber,fla.status,fla.loan_time as
+		loanTime,fla.apr,fla.period,fla.amount,fu.corpname as
+		guaranteeCompany,fla.is_loans as isLoans,fla.guarantee_company_id as guaranteeCompanyId,fla.end_time as endTime,fla.invest_min as investMin,
+		fla.amount-fli.money as remainAmount,fla.payment_options as
+		paymentOptions,fla.pro_amount as proAmount, fla.project_source as projectSource,fla.user_id ,fla.productUrl,fla.guarantee_mode as guaranteeMode,fla.start_time as startTime,fla.due_time as dueTime,fla.complete_time as completeTime,fla.description as description from fu_loan_apply fla
+		left
+		join fu_users fu on fla.guarantee_company_id = fu.user_id
+		left
+		join(select apply_id,sum(money) as money from fu_loan_investment
+		group
+		by apply_id) fli on fla.id = fli.apply_id left join fu_loan_type flt
+		on fla.loan_type = flt.id where fla.id=#{id}
+	</select>
+	<select id="finLoanListByType" resultMap="BaseResultMap">
+		(select * from (select fla.id,
+	    fla.name,fla.apr,fla.period,fla.amount ,fla.url,round(fli.money/fla.amount,2)
+		as investProgress,fla.is_loans,fla.status  
+		 from fu_loan_apply fla
+		 left join
+		(select
+		apply_id,sum(money) as money from fu_loan_investment group by
+		apply_id) fli
+		on fla.id = fli.apply_id 
+		<include refid="queryCondition2" /> 
+		and fla.status='7'
+		order by investProgress asc,fla.created desc) as ss1)
+		UNION ALL
+		(select * from (select fla.id,
+	    fla.name,fla.apr,fla.period,fla.amount ,fla.url,round(fli.money/fla.amount,2)
+		as investProgress,fla.is_loans,fla.status  
+		 from fu_loan_apply fla
+		 left join
+		(select
+		apply_id,sum(money) as money from fu_loan_investment group by
+		apply_id) fli
+		on fla.id = fli.apply_id
+		<include refid="queryCondition2" /> 
+		and fla.status='2'
+		order by investProgress asc,fla.created desc) as ss1)
+		UNION ALL
+		(select * from (
+		select fla.id,
+	    fla.name,fla.apr,fla.period,fla.amount ,fla.url,round(fli.money/fla.amount,2)
+		as investProgress,fla.is_loans,fla.status 
+		 from fu_loan_apply fla
+		 left join
+		(select
+		apply_id,sum(money) as money from fu_loan_investment group by
+		apply_id) fli
+		on fla.id = fli.apply_id 
+		<include refid="queryCondition2" /> 
+		and fla.status='8' 
+		order by investProgress asc,fla.created desc
+		) as ss2)
+		UNION ALL
+		(select * from (
+		select fla.id,
+	    fla.name,fla.apr,fla.period,fla.amount ,fla.url,round(fli.money/fla.amount,2)
+		as investProgress,fla.is_loans,fla.status 
+		 from fu_loan_apply fla
+		 left join
+		(select
+		apply_id,sum(money) as money from fu_loan_investment group by
+		apply_id) fli
+		on fla.id = fli.apply_id
+		<include refid="queryCondition2" /> 
+		and fla.status='9' 
+		order by investProgress asc,fla.created desc
+		) as ss3)
+		UNION ALL
+		(select *from (
+		select fla.id,
+	    fla.name,fla.apr,fla.period,fla.amount ,fla.url,round(fli.money/fla.amount,2)
+		as investProgress,fla.is_loans,fla.status 
+		 from fu_loan_apply fla
+		 left join
+		(select
+		apply_id,sum(money) as money from fu_loan_investment group by
+		apply_id) fli
+		on fla.id = fli.apply_id
+		<include refid="queryCondition2" /> 
+		and fla.status='10'
+		order by investProgress asc,fla.created desc
+		) as ss4)
+		
+		limit #{startNum},#{pageSize}
+	</select>
+	<!-- 根据id修改标的状态 -->
+	<update id="updateLoanApplyStatusByApplyId">
+		update fu_loan_apply set status = #{status} where id = #{applyId}
+	</update>
+
+	<select id="listLoanApplyByStatus" resultMap="BaseResultMap">
+		select * from
+		fu_loan_apply where status = #{status}
+	</select>
+
+	<select id="listLoanApplyByFStatus" resultMap="BaseResultMap">
+		select * from
+		fu_loan_apply where status != #{status}
+	</select>
+
+	<!-- 查询满标 -->
+	<select id="findAllFullBid" resultMap="BaseResultMap">
+		select * from
+		fu_loan_apply fla inner join
+		(select apply_id as id,sum(money) as
+		total_money from fu_loan_investment
+		group by apply_id) temp
+		on fla.id =
+		temp.id where fla.amount = temp.total_money
+	</select>
+	<!-- 后台管理系统查询所有借款记录 -->
+	<select id="findAllLoanApply" resultMap="LoanApplyListMap">
+		select fu.realname, fla.id,fla.amount,fla.apr,fla.act_period as act_period,fla.period,(select
+		realname from fu_users fu1 where fu1.user_id=fla.guarantee_company_id
+		)as guarantee_company_name ,fla.loan_time,from_unixtime(fla.loan_time,'%Y/%m/%d') as loanTimeStr, fla.status,fla.is_loans,fla.order_number,fla.name,fu.userName,fu.corpName
+		From fu_loan_apply fla
+		LEFT JOIN fu_users fu on fla.user_id =fu.user_id
+	
+		<include refid="queryCondition1" />
+		order by fla.created desc limit
+		#{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 后台管理系统查询所有投资记录 -->
+	<!-- 分页查询条件 -->
+<!-- 前台管理系统查询所有借款记录 -->
+	<select id="findloanApplyListByConditionAndNum" resultMap="LoanApplyListMap">
+		select fu.realname, fla.id,fla.amount,fla.apr,fla.period,(select
+		realname from fu_users fu1 where fu1.user_id=fla.guarantee_company_id
+		)as guarantee_company_name ,fla.loan_time, fla.status,fla.order_number,fla.name,
+		(select IFNULL(sum(repay_money) ,0)from fu_apply_repay where apply_id =fla.id and status='1') as	already_repay_money,
+		(select IFNULL(sum(repay_money) ,0)from fu_apply_repay where apply_id =fla.id and status='0') as	wai_repay_money,
+		fla.is_loans		
+		From fu_loan_apply fla
+		LEFT JOIN fu_users fu on fla.user_id =fu.user_id
+	
+		<include refid="queryCondition1" />
+		order by fla.created desc 
+		limit #{pageNum},10
+	</select>
+	<!-- 分页查询条件 -->
+
+	<sql id="queryCondition1">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="loanInvestQueryVo.username!=null ">
+				and fu.username like "%"#{loanInvestQueryVo.username}"%"
+			</if>
+			<if
+				test="loanInvestQueryVo.id!=null and loanInvestQueryVo.id!='' ">
+              and fla.order_number= #{loanInvestQueryVo.id}
+			</if>
+			<if
+				test="loanInvestQueryVo.apply_id!=null and loanInvestQueryVo.apply_id!=''">
+             and fla.id = #{loanInvestQueryVo.apply_id}
+			</if>
+            <if
+				test="loanInvestQueryVo.user_id!=null and loanInvestQueryVo.user_id!='' and loanInvestQueryVo.user_id>0">
+              and fla.user_id = #{loanInvestQueryVo.user_id}
+			</if>
+		</trim>
+	</sql>
+
+	<!-- 分页查询 -->
+	<!-- 分页查询记录数 -->
+	<select id="countApplyList" resultType="java.lang.Integer">
+		select count(*) From fu_loan_apply fla
+		LEFT JOIN fu_users fu on fla.user_id =fu.user_id
+		
+		<include refid="queryCondition1" />
+	</select>
+<!--前台担保账户中心查询担保相关记录 -->
+<select id="findUserLoanApplyByGuaranteeCompanyId" resultMap="LoanApplyListMap">
+		select
+		fla.order_number ,fla.name,fla.amount,fla.period ,fla.id ,fla.status
+		from fu_loan_apply fla
+		where  fla.guarantee_company_id =#{guaranteeCompanyId} and fla.status='9'
+		limit #{pageNum},#{pageSize}
+	</select>
+	<!-- 前台担保账户中心查询担保相关记录记录数 -->
+	<select id="countLoanApplyByGuaranteeCompanyId" resultType="java.lang.Integer">
+		select count(*)  
+		from fu_loan_apply fla
+		where  fla.guarantee_company_id =#{guaranteeCompanyId}
+	</select>
+
+	<!-- 前台账户中心交易明细查询分页查询记录数 -->
+	<select id="countUserLoanApplyTradeDetai" resultType="java.lang.Integer">
+		select count(*)  
+		from fu_loan_apply fla
+		where fla.user_id= #{userId}
+		and fla.loan_time is not null
+		<include refid="queryCondition1" />
+	</select>
+<!--前台担保机构查询担保总金额 -->
+
+	<select id="findUserGuarnatySumMap" resultMap="userGuarnatySumMap">
+		select
+		IFNULL(SUM(fla.amount),0) as
+		sumGuarnatyAtm
+		from
+		fu_loan_apply fla  where fla.status='9' and fla.guarantee_company_id=#{guaranteeCompanyId}
+    </select>
+    
+    <!-- 查询fu_loan_apply表的最大OrderNumber记录 -->
+	<select id="findMaxApplyOrderNumber" resultType="java.lang.String">
+		select max(fla.order_Number)
+		from fu_loan_apply fla
+		where fla.order_Number like "%"#{nowDateStr}"%"
+	</select>
+	
+	<select id="findErrorApply" resultMap="BaseResultMap">
+		select * from fu_loan_apply where id not in
+(select apply_id from fu_apply_repay group by apply_id) and `status`>8
+	</select>
+</mapper>

@@ -1,0 +1,152 @@
+@charset 'utf-8';
+.footer_inner
+{
+	width: 100%;
+	padding: 25px 0 20px 0;
+	background: #fff;
+}
+.footer_content
+{
+	width: 1170px;
+	margin: 0 auto;
+}
+.footer_top
+{
+	width: 100%;
+	border-bottom: 2px solid #efefef;
+}
+.foot_bot
+{
+	width: 100%;
+}
+.common_fot
+{
+	width: 760px;
+	/*border-right: 1px solid #d8d8d8;
+	height: 96px;*/
+}
+.footer_top_right
+{
+	/*width: 400px;
+	height: 96px;*/
+	margin: -12px 0 0 92px;
+}
+.help_center p,.about_we p,.web_notice p
+{
+	font-size: 16px;
+	color: #474e5d;
+	font-weight: bold;
+	margin: 2px 59px 15px 0;
+}
+.help_center_list li,.about_we_list li,.web_notice_list li
+{
+	font-size: 14px;
+	line-height: 22px;
+}
+.help_center_list li a,.about_we_list li a,.web_notice_list li a
+{
+	color: #9b9b9b;
+}
+.top_middle_list
+{
+	margin-top: 2px;
+	font-size: 14px;
+	color: #9b9b9b;
+}
+.foot_service_txt
+{
+	font-size: 16px;
+	color: #474e5d;
+	margin-bottom: 3px;
+}
+.top_middle_list li
+{
+	margin-left: 82px;
+}
+.foot_service_line
+{
+	font-size: 18px;
+	color: #5e6471;
+	margin-bottom: 18px;
+}
+.foot_qq01
+{
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+.footer_wx
+{
+	margin-top: 2px;
+	margin-left: 73px;
+}
+.footer_wx_code
+{
+	width: 89px;
+	height: 90px;
+	margin-bottom: 8px;
+	background: url(../../images/footer/foot_wx_left.png) no-repeat center;
+}
+.footer_wx p,.footer_app p
+{
+	font-size: 13px;
+	text-align: center;
+	color: #b0b0b0;
+}
+.footer_app
+{
+	margin-top: 2px;
+	margin-left: 57px;
+}
+.footer_app_code
+{
+	width: 80px;
+	height: 80px;
+	/*margin-bottom: 8px;*/
+	margin-top:4px;
+	background: url(../../images/footer/foot_wx_right.png) no-repeat center;
+}
+.help_center_list li a:hover,.about_we_list li a:hover,.web_notice_list li a:hover
+{
+	color: #474e5d;
+}
+.foot_increment
+{
+	text-align: center;
+	margin: -12px 0 20px 0;
+	font-size: 14px;
+	color: #474e5d;
+}
+.foot_img
+{
+	text-align: center;
+}
+.foot_img img
+{
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.tl_list li
+{
+	margin-bottom: 28px;
+	font-size: 16px;
+	color: #474e5d;
+	margin-right: 42px;
+	float: left;
+	cursor:pointer;
+}
+.tl_list li:hover
+{
+	color: #3fa2f7;
+}
+.foot_iphone
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #0bf;
+}
+.foot_time
+{
+	font-size: 16px;
+	color: #474e5d;
+	margin: 2px 0 18px 0;
+}

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.common.NotifyAutoMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.common.NotifyAutoVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="send_platform" property="sendPlatform" jdbcType="BIT" />
+    <result column="send_type" property="sendType" jdbcType="BIT" />
+    <result column="send_time" property="sendTime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="ctime" property="ctime" jdbcType="INTEGER" />
+    <result column="template" property="template" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 分页查询条件 -->
+  <sql id="queryCondition">
+  	<trim prefix="where" prefixOverrides="and|or">
+  	<if test="notifyAuto.name!=null and notifyAuto.name!=''">
+			and name like "%"#{notifyAuto.name}"%"  
+	</if>
+  	</trim>
+  </sql>
+  <!-- 分页查询 --> 
+  <select id="findNotifyAuto" resultMap="BaseResultMap">
+  select <include refid="Base_Column_List" /> from fu_notify_auto 
+  <include refid="queryCondition" /> 
+  order by ctime desc limit #{page.startOfPage},#{page.pageSize}
+  </select>
+  <!-- 分页查询记录数 -->
+  <select id="countNotifyAuto" resultType="java.lang.Integer">
+  select count(*) from fu_notify_auto <include refid="queryCondition" />
+  </select>
+  
+  <sql id="Base_Column_List" >
+    id, name, send_platform, send_type, send_time, status, ctime, template
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_notify_auto
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_notify_auto
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.common.NotifyAutoVO" >
+    insert into fu_notify_auto (id, name, send_platform, 
+      send_type, send_time, status, 
+      ctime, template)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sendPlatform,jdbcType=BIT}, 
+      #{sendType,jdbcType=BIT}, #{sendTime,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, 
+      #{ctime,jdbcType=INTEGER}, #{template,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.common.NotifyAutoVO" >
+    insert into fu_notify_auto
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sendPlatform != null" >
+        send_platform,
+      </if>
+      <if test="sendType != null" >
+        send_type,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="template != null" >
+        template,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPlatform != null" >
+        #{sendPlatform,jdbcType=BIT},
+      </if>
+      <if test="sendType != null" >
+        #{sendType,jdbcType=BIT},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="template != null" >
+        #{template,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.common.NotifyAutoVO" >
+    update fu_notify_auto
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPlatform != null" >
+        send_platform = #{sendPlatform,jdbcType=BIT},
+      </if>
+      <if test="sendType != null" >
+        send_type = #{sendType,jdbcType=BIT},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="template != null" >
+        template = #{template,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.common.NotifyAutoVO" >
+    update fu_notify_auto
+    set name = #{name,jdbcType=VARCHAR},
+      send_platform = #{sendPlatform,jdbcType=BIT},
+      send_type = #{sendType,jdbcType=BIT},
+      send_time = #{sendTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      ctime = #{ctime,jdbcType=INTEGER},
+      template = #{template,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+				  http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+				  http://www.springframework.org/schema/context  
+				  http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+				  http://www.springframework.org/schema/mvc  
+				  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+				  http://www.springframework.org/schema/util      
+          		  http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+	<!--默认的mvc注解映射的支持 -->
+	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
+	<!-- 对静态资源文件的访问  restful-->
+	<mvc:resources mapping="/**" location="/WEB-INF/views/layouts" />
+	
+	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
+	<context:component-scan base-package="com.fujfu.web" />
+	<context:component-scan base-package="com.fujfu.web.*" />
+	<context:component-scan base-package="com.fujfu.web.*.*" />
+
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+		<!-- spring mvc返回json时，null显示为"" -->
+		<property name="objectMapper">
+			<bean class="com.fujfu.common.interceptor.JsonObjectMapper"></bean>
+		</property>
+	</bean>
+
+	<!-- 登录拦截器， 对需要登录才能访问的URL实现拦截控制 -->
+	<mvc:interceptors>
+		<bean class="com.fujfu.common.interceptor.LoginInterceptor" />
+	</mvc:interceptors>
+
+	<!--避免IE执行AJAX时，返回JSON出现下载文件 <bean id="mappingJacksonHttpMessageConverter" 
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"> 
+		<property name="supportedMediaTypes"> <list> <value>text/html;charset=UTF-8</value> 
+		</list> </property> </bean> -->
+
+	<!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+<!-- 		 <property name="suffix" value=".jsp" />  -->
+	</bean>
+
+	<!-- 配置文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 默认编码 -->
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- 文件大小最大值 -->
+		<property name="maxUploadSize" value="10485760000" />
+		<!-- 内存中的最大值 -->
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
+	
+	 <!-- 全局异常配置 start -->  
+     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+         <property name="exceptionMappings">  
+             <props>
+             	 <prop key="com.fujfu.common.exception.AuthorizationException">redirect:/enterLogin</prop>  
+                 <prop key="java.lang.Exception">views/error/500.jsp</prop>  
+                 <prop key="java.lang.Throwable">views/error/404.html</prop>
+				 <prop key="java.lang.RuntimeException">views/error/error.jsp</prop>
+				 <prop key="java.sql.SQLException">views/error/error.jsp</prop> 
+             </props>  
+         </property>  
+<!--          <property name="statusCodes">   -->
+<!--              <props>   -->
+<!--                  <prop key="views/error/500">500</prop>   -->
+<!--                  <prop key="views/error/error">404</prop>   -->
+<!--              </props>   -->
+<!--          </property>   -->
+         <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->  
+<!--          <property name="warnLogCategory" value="WARN" />   -->
+         <!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->  
+         <property name="defaultErrorView" value="views/error/error.jsp" />  
+         <!-- 默认HTTP状态码 -->  
+         <property name="defaultStatusCode" value="500" />  
+     </bean>  
+     <!-- 全局异常配置 end -->  
+     
+    <!-- <mvc:default-servlet-handler/>  -->
+   <!--  <import resource="classpath:spring/spring-quartz.xml"/> -->
+</beans>  

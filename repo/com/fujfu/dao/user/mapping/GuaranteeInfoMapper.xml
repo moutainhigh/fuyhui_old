@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.user.GuaranteeInfoMapper">
+	<resultMap id="BaseResultMap" type="com.fujfu.pojo.user.GuaranteeInfoPOJO">
+		<result column="id" property="applyid" jdbcType="INTEGER" />
+		<result column="realName" property="realName" jdbcType="VARCHAR" />
+		<result column="Name" property="applyName" jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="period" property="period" jdbcType="SMALLINT" />
+		<result column="created" property="created" jdbcType="INTEGER" />
+		
+	</resultMap>
+
+	<select id="findGuaranteeInfo" resultMap="BaseResultMap">
+		select  fu.realname,fla.id,fla.name,fla.amount,fla.amount,fla.period ,fla.created 
+		from fu_loan_apply fla 
+		LEFT JOIN  fu_users fu on fla.guarantee_company_id = fu.user_id
+		<include refid="queryCondition" />
+		order by fla.created desc limit
+		#{page.startOfPage},#{page.pageSize} 
+	</select>
+	<!-- 查询条件 loanInvestQueryVo-->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			
+		</trim>
+	</sql>
+	
+	<!-- 分页查询记录数 -->
+	<select id="countGuaranteeInfo" resultType="java.lang.Integer">
+		select count(*) from fu_loan_apply fla 
+		LEFT JOIN  fu_users fu on fla.guarantee_company_id = fu.user_id
+		<include refid="queryCondition" />
+	</select>
+	
+</mapper>

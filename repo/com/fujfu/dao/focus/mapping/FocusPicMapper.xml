@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.focus.FocusPicMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.focus.FocusPicVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="display_device" property="displayDevice" jdbcType="INTEGER" />
+    <result column="position" property="position" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="original_name" property="originalName" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+    <result column="mime" property="mime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+    <result column="updated" property="updated" jdbcType="INTEGER" />
+  </resultMap>
+  
+    <!-- 分页查询 -->
+  <select id="findFocusPic" resultMap="BaseResultMap">
+  	select * from fu_focus_pic where status = 0 or status = 1
+  	order by display_device asc, position asc limit #{page.startOfPage},#{page.pageSize}
+  </select>
+  <!-- 分页查询记录数 -->
+  <select id="countFocusPic" resultType="java.lang.Integer">
+  	select count(*) from fu_focus_pic where status = 0 or status = 1
+  </select>
+  
+  <sql id="Base_Column_List" >
+    id, display_device, position, title, url, imgurl, filename, original_name, size, 
+    mime, status, created, updated
+  </sql>
+    
+  <select id="findBannerByDevice" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_focus_pic
+    where display_device = #{displayDevice,jdbcType=INTEGER} and status = 0 order by position asc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_focus_pic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_focus_pic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.focus.FocusPicVO" >
+    insert into fu_focus_pic (id, display_device, position, 
+      title, url, imgurl, 
+      filename, original_name, size, 
+      mime, status, created, 
+      updated)
+    values (#{id,jdbcType=INTEGER}, #{displayDevice,jdbcType=INTEGER}, #{position,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}, 
+      #{filename,jdbcType=VARCHAR}, #{originalName,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, 
+      #{mime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{created,jdbcType=INTEGER}, 
+      #{updated,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.focus.FocusPicVO" >
+    insert into fu_focus_pic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="displayDevice != null" >
+        display_device,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+      <if test="filename != null" >
+        filename,
+      </if>
+      <if test="originalName != null" >
+        original_name,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="mime != null" >
+        mime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="displayDevice != null" >
+        #{displayDevice,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="originalName != null" >
+        #{originalName,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="mime != null" >
+        #{mime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.focus.FocusPicVO" >
+    update fu_focus_pic
+    <set >
+      <if test="displayDevice != null" >
+        display_device = #{displayDevice,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="originalName != null" >
+        original_name = #{originalName,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=INTEGER},
+      </if>
+      <if test="mime != null" >
+        mime = #{mime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.focus.FocusPicVO" >
+    updated fu_focus_pic
+    set display_device = #{displayDevice,jdbcType=INTEGER},
+      position = #{position,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      original_name = #{originalName,jdbcType=VARCHAR},
+      size = #{size,jdbcType=INTEGER},
+      mime = #{mime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      created = #{created,jdbcType=INTEGER},
+      updated = #{updated,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

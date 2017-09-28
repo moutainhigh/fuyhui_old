@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.apply.ApplyRepayMapper">
+	<resultMap id="BaseResultMap" type="com.fujfu.pojo.apply.ApplyRepayVO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="repay_status" property="repayStatus" jdbcType="TINYINT" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="apply_id" property="applyId" jdbcType="INTEGER" />
+		<result column="repay_type" property="repayType" jdbcType="VARCHAR" />
+		<result column="repay_money" property="repayMoney" jdbcType="DECIMAL" />
+		<result column="repay_interest" property="repayInterest"
+			jdbcType="DECIMAL" />
+		<result column="repay_capital" property="repayCapital"
+			jdbcType="DECIMAL" />
+		<result column="repay_remain" property="repayRemain" jdbcType="DECIMAL" />
+		<result column="repay_period" property="repayPeriod" jdbcType="TINYINT" />
+		<result column="repay_req_time" property="repayReqTime"
+			jdbcType="INTEGER" />
+		<result column="repay_done_time" property="repayDoneTime"
+			jdbcType="INTEGER" />
+		<result column="repay_total" property="repayTotal" jdbcType="DECIMAL" />
+		<result column="repay_fee" property="repayFee" jdbcType="VARCHAR" />
+		<result column="unique_no" property="uniqueNo" jdbcType="VARCHAR" />
+		<result column="add_time" property="addTime" jdbcType="INTEGER" />
+		<result column="web_pay_done_time" property="webPayDoneTime"
+			jdbcType="INTEGER" />
+		<result column="is_repaying" property="isRepaying" jdbcType="TINYINT" />
+		<result column="value_date" property="valueDate" jdbcType="INTEGER" />
+		<result column="maturity_date" property="maturityDate" jdbcType="INTEGER" />
+		<result column="repay_done_capital" property="repayDoneCapital" jdbcType="DECIMAL" />
+		<result column="repay_done_interest" property="repayDoneInterest" jdbcType="DECIMAL" />
+	</resultMap>
+	<!-- 后台系统还款记录显示 -->
+	<resultMap id="AllApplyRepayListMap" type="com.fujfu.pojo.invest.AllApplyRepayListPOJO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="apply_id" property="applyId" jdbcType="INTEGER" />
+		<result column="repay_status" property="repayStatus" jdbcType="TINYINT" />
+		<result column="repay_type" property="repayType" jdbcType="VARCHAR" />
+		<result column="repay_money" property="repayMoney" jdbcType="DECIMAL" />
+		<result column="repay_remain" property="repayRemain" jdbcType="DECIMAL" />
+		<result column="repay_fee" property="repayFee" jdbcType="VARCHAR" />
+		<result column="repay_done_time" property="repayDoneTime"
+			jdbcType="VARCHAR" />
+		<result column="repay_interest" property="repayInterest"
+			jdbcType="INTEGER" />
+		<result column="repay_capital" property="repayCapital"
+			jdbcType="INTEGER" />
+		<result column="repay_Period" property="repayPeriod" jdbcType="INTEGER" />
+		<result column="repay_req_time" property="repay_req_time"
+			jdbcType="VARCHAR" />
+		<result column="web_pay_done_time" property="webPayDoneTime"
+			jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="userName" property="userName" jdbcType="VARCHAR" />
+		<result column="corpName" property="corpName" jdbcType="VARCHAR" />
+		<result column="repay_done_capital" property="repayDoneCapital" jdbcType="DECIMAL" />
+		<result column="repay_done_interest" property="repayDoneInterest" jdbcType="DECIMAL" />
+	</resultMap>
+	<resultMap id="applyRepayPlanMap" type="com.fujfu.pojo.apply.ApplyRepayPlanPOJO" >
+	  	<result column="repay_period" property="repayPeriod" />
+	  	<result column="repay_req_time" property="repayReqTime" />
+	  	<result column="repay_capital" property="repayCapital" />
+	  	<result column="repay_interest" property="repayInterest" />
+	  	<result column="repay_done_time" property="repayDoneTime" />
+	  	<result column="repay_done_capital" property="repayDoneCapital" />
+	  	<result column="repay_done_interest" property="repayDoneInterest" />
+	  	<result column="status" property="status" />
+	  </resultMap>
+	
+	<resultMap id="userRepaySumMap" type="com.fujfu.pojo.apply.UserRepaySumPOJO">
+		<result column="sumReceipts" property="sumReceipts" jdbcType="DECIMAL" />
+		<result column="sumInterest" property="sumInterest" jdbcType="DECIMAL" />
+		<result column="sumCapital" property="sumCapital" jdbcType="DECIMAL" />
+	</resultMap>
+
+	<resultMap id="BaseResultVoMap" type="com.fujfu.pojo.apply.ApplyRepayPOJO"
+		extends="BaseResultMap">
+		<result column="companyName" property="companyName" jdbcType="VARCHAR" />
+		<result column="applyNo" property="applyNo" jdbcType="VARCHAR" />
+		<result column="applyName" property="applyName" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 根据标的id查询最新一期未还的还款计划 -->
+	<select id="findApplyRepayByApplyId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from fu_apply_repay
+		where apply_id = #{applyId} and status=0 and 
+		repay_period = (select min(repay_period) 
+		from fu_apply_repay where apply_id = #{applyId} and status=0)
+	</select>
+	
+	<!-- 根据标的id查询还款计划 -->
+  <select id="findApplyRepayPlanByApplyId" resultMap="applyRepayPlanMap">
+  	select repay_period,from_unixtime(repay_req_time,'%Y/%m/%d') as repay_req_time,case when repay_done_time is null then '-' else from_unixtime(repay_done_time,'%Y/%m/%d')   end as repay_done_time,case when repay_done_time is null then '-' else repay_done_capital end as repay_done_capital,case when repay_done_time is null then '-' else repay_done_interest end as repay_done_interest,repay_capital,repay_interest,status from fu_apply_repay 
+  	where apply_id = #{applyId} limit #{startNum},8
+  </select>
+  <!-- 根据标的id查询还款计划 -->
+  <select id="findAllApplyRepayPlanByApplyId" resultMap="applyRepayPlanMap">
+  	select repay_period,from_unixtime(repay_req_time,'%Y/%m/%d') as repay_req_time,repay_capital,repay_interest,status,repay_done_interest,repay_done_capital from fu_apply_repay 
+  	where apply_id = #{applyId}
+  </select>
+  <!-- 根据标的id统计还款计划-->
+  <select id="countApplyRepayPlanByApplyId" resultType="java.lang.Integer">
+  	select count(*) from fu_apply_repay 
+  	where apply_id = #{applyId}
+  </select>
+  
+	<!-- 分页查询条件 -->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="applyRepay.userId!=null and applyRepay.userId!=''">
+				and far.user_id like "%"#{applyRepay.userId}"%"
+			</if>
+			<if test="applyRepay.status!=null and applyRepay.status!=''">
+				and far.status !=#{applyRepay.status}
+			</if>
+		</trim>
+	</sql>
+	<!--前台我的借款借款总金额，待还总额，已还总额查询条件 -->
+	<sql id="RepaySumqueryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="status=='0'.toString() or status=='1'.toString() ">
+				and far.status= #{status} 
+			</if>
+			<if test="userId!='' and userId!=null ">
+				and far.user_id= #{userId}
+			</if>
+			<if test="applyId!='' and applyId!=null  and applyId>0 ">
+				and far.apply_Id= #{applyId}
+			</if>
+		</trim>
+	</sql>
+
+	<!--前台我的借款借款总金额，待还总额，已还总额 -->
+	<!-- 下面查的3个字段分别为 本金 ， -->
+	<select id="findUserRepaySumMap" resultMap="userRepaySumMap">
+		select
+		IFNULL(SUM(far.repay_money),0) as
+		sumReceipts,IFNULL(SUM(far.repay_interest),0) as
+		sumInterest,IFNULL(SUM(far.repay_capital),0) as sumCapital
+		from
+		fu_apply_rePay far LEFT join fu_loan_apply fla on far.apply_id =fla.id
+		<include refid="RepaySumqueryCondition" />
+    </select>
+
+	<!-- 根据id查询还款记录 -->
+	<select id="findRepayById" resultMap="BaseResultVoMap">
+		select far.*, fu.corpname as companyName,fla.order_number as applyNo from fu_apply_repay far left join fu_users fu on far.user_id = fu.user_id
+		 left join fu_loan_apply fla on far.apply_id = fla.id where far.id = #{id}
+	</select>
+
+	<!--分页查询  -->
+	<select id="findApplyRepay" resultMap="BaseResultVoMap">
+		select far.*, fu.corpname as companyName,fla.order_number as applyNo ,fla.name as applyName from fu_apply_repay far left join fu_users fu on far.user_id = fu.user_id
+		 left join fu_loan_apply fla on far.apply_id = fla.id  
+		<include refid="queryCondition" />
+		order by from_unixtime('created') desc limit
+		#{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 分页查询记录数 -->
+	<select id="countApplyRepay" resultType="java.lang.Integer">
+		select count(*) from fu_apply_repay far left join fu_users fu on far.user_id = fu.user_id
+		 left join fu_loan_apply fla on far.apply_id = fla.id  
+		<include refid="queryCondition" />
+	</select>
+	
+	<sql id="Base_Column_List">
+		id, status, repay_status, user_id, apply_id, repay_type, repay_money,
+		repay_interest,
+		repay_capital, repay_remain, repay_period, repay_req_time, repay_done_time,
+		repay_total,
+		repay_fee, unique_no, add_time, web_pay_done_time, is_repaying,value_date,maturity_date,repay_done_capital,repay_done_interest  
+	</sql>
+	<select id="findRepayByApplyidAndRepayperiod" resultMap="BaseResultMap">
+		select * from fu_apply_repay
+		where apply_id = #{applyId} and repay_period = #{repayPeriod}
+	</select>
+	<select id="findRateByApplyidAndFeename" resultType="java.math.BigDecimal">
+		select interest_rate from fu_site_fee where fee_id in (
+		select charge_fee_id from fu_site_fee_type where charge_item =(select
+		loan_type from fu_loan_apply where id= #{applyId}))
+		and fee_base = #{feeBase} and fee_name = #{feeName}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from fu_apply_repay
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from fu_apply_repay
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insertSelective" parameterType="com.fujfu.pojo.apply.ApplyRepayVO">
+		insert into fu_apply_repay
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="repayStatus != null">
+				repay_status,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="applyId != null">
+				apply_id,
+			</if>
+			<if test="repayType != null">
+				repay_type,
+			</if>
+			<if test="repayMoney != null">
+				repay_money,
+			</if>
+			<if test="repayInterest != null">
+				repay_interest,
+			</if>
+			<if test="repayCapital != null">
+				repay_capital,
+			</if>
+			<if test="repayRemain != null">
+				repay_remain,
+			</if>
+			<if test="repayPeriod != null">
+				repay_period,
+			</if>
+			<if test="repayReqTime != null">
+				repay_req_time,
+			</if>
+			<if test="repayDoneTime != null">
+				repay_done_time,
+			</if>
+			<if test="repayTotal != null">
+				repay_total,
+			</if>
+			<if test="repayFee != null">
+				repay_fee,
+			</if>
+			<if test="uniqueNo != null">
+				unique_no,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="webPayDoneTime != null">
+				web_pay_done_time,
+			</if>
+			<if test="isRepaying != null">
+				is_repaying,
+			</if>
+			<if test="valueDate != null">
+				value_date,
+			</if>
+			<if test="maturityDate != null">
+				maturity_date,
+			</if>
+			<if test="repayDoneCapital != null">
+				repay_done_capital,
+			</if>
+			<if test="repayDoneInterest != null">
+				repay_done_interest,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="repayStatus != null">
+				#{repayStatus,jdbcType=TINYINT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=INTEGER},
+			</if>
+			<if test="repayType != null">
+				#{repayType,jdbcType=VARCHAR},
+			</if>
+			<if test="repayMoney != null">
+				#{repayMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="repayInterest != null">
+				#{repayInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="repayCapital != null">
+				#{repayCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="repayRemain != null">
+				#{repayRemain,jdbcType=DECIMAL},
+			</if>
+			<if test="repayPeriod != null">
+				#{repayPeriod,jdbcType=TINYINT},
+			</if>
+			<if test="repayReqTime != null">
+				#{repayReqTime,jdbcType=INTEGER},
+			</if>
+			<if test="repayDoneTime != null">
+				#{repayDoneTime,jdbcType=INTEGER},
+			</if>
+			<if test="repayTotal != null">
+				#{repayTotal,jdbcType=DECIMAL},
+			</if>
+			<if test="repayFee != null">
+				#{repayFee,jdbcType=VARCHAR},
+			</if>
+			<if test="uniqueNo != null">
+				#{uniqueNo,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=INTEGER},
+			</if>
+			<if test="webPayDoneTime != null">
+				#{webPayDoneTime,jdbcType=INTEGER},
+			</if>
+			<if test="isRepaying != null">
+				#{isRepaying,jdbcType=TINYINT},
+			</if>
+			<if test="valueDate != null">
+				#{valueDate,jdbcType=INTEGER},
+			</if>
+			<if test="maturityDate != null">
+				#{maturityDate,jdbcType=INTEGER},
+			</if>
+			<if test="repayDoneCapital != null">
+				#{repayDoneCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="repayDoneInterest != null">
+				#{repayDoneInterest,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.apply.ApplyRepayVO">
+		update fu_apply_repay
+		<set>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="repayStatus != null">
+				repay_status = #{repayStatus,jdbcType=TINYINT},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="applyId != null">
+				apply_id = #{applyId,jdbcType=INTEGER},
+			</if>
+			<if test="repayType != null">
+				repay_type = #{repayType,jdbcType=VARCHAR},
+			</if>
+			<if test="repayMoney != null">
+				repay_money = #{repayMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="repayInterest != null">
+				repay_interest = #{repayInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="repayCapital != null">
+				repay_capital = #{repayCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="repayRemain != null">
+				repay_remain = #{repayRemain,jdbcType=DECIMAL},
+			</if>
+			<if test="repayPeriod != null">
+				repay_period = #{repayPeriod,jdbcType=TINYINT},
+			</if>
+			<if test="repayReqTime != null">
+				repay_req_time = #{repayReqTime,jdbcType=INTEGER},
+			</if>
+			<if test="repayDoneTime != null">
+				repay_done_time = #{repayDoneTime,jdbcType=INTEGER},
+			</if>
+			<if test="repayTotal != null">
+				repay_total = #{repayTotal,jdbcType=DECIMAL},
+			</if>
+			<if test="repayFee != null">
+				repay_fee = #{repayFee,jdbcType=VARCHAR},
+			</if>
+			<if test="uniqueNo != null">
+				unique_no = #{uniqueNo,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=INTEGER},
+			</if>
+			<if test="webPayDoneTime != null">
+				web_pay_done_time = #{webPayDoneTime,jdbcType=INTEGER},
+			</if>
+			<if test="isRepaying != null">
+				is_repaying = #{isRepaying,jdbcType=TINYINT},
+			</if>
+			<if test="valueDate != null">
+				value_date = #{valueDate,jdbcType=INTEGER},
+			</if>
+			<if test="maturityDate != null">
+				maturity_date = #{maturityDate,jdbcType=INTEGER},
+			</if>
+			<if test="repayDoneCapital != null">
+				repay_done_capital = #{repayDoneCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="repayDoneInterest != null">
+				repay_done_interest = #{repayDoneInterest,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 后台管理系统查询所有还款记录 -->
+	<select id="findAllApplyRepayList" resultMap="AllApplyRepayListMap">
+		select far.id
+		,fu.realname,fu.username,fu.corpname,far.apply_id,far.repay_type,far.repay_money,far.repay_remain,repay_fee,far.repay_interest,far.repay_capital
+		,far.repay_Period,from_unixtime(far.repay_req_time,'%Y-%m-%d') as
+		repay_req_time,ifnull(from_unixtime(far.repay_done_time,'%Y-%m-%d'),'') as
+		repay_done_time,from_unixtime(far.web_pay_done_time,'%Y-%m-%d') as
+		web_pay_done_time
+		,far.repay_status,far.status,far.repay_done_capital as repayDoneCapital,far.repay_done_interest as repayDoneInterest
+		from fu_apply_repay far
+		LEFT JOIN fu_users fu on far.user_id =fu.user_id
+		<include refid="queryCondition1" />
+		order by far.add_time desc limit
+		#{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 后台管理系统查询所有还款记录 -->
+	<!-- 分页查询条件 -->
+	<sql id="queryCondition1">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if
+				test="loanInvestQueryVo.apply_id!=null and loanInvestQueryVo.apply_id!='' and loanInvestQueryVo.apply_id>0 ">
+  		 <![CDATA[  and far.apply_id= #{loanInvestQueryVo.apply_id}]]>
+
+			</if>
+
+		</trim>
+	</sql>
+	<!-- 分页查询条件 -->
+
+	<!-- 分页查询记录数 -->
+	<select id="countApplyRepayList" resultType="java.lang.Integer">
+		select count(*)
+		from fu_apply_repay far
+		LEFT JOIN fu_users fu on far.user_id =fu.user_id
+		<include refid="queryCondition1" />
+	</select>
+
+	<!-- 前台账户中心交易明细查询分页查询记录数 -->
+	<select id="countUserApplyRepayTradeDetai" resultType="java.lang.Integer">
+		select count(*)
+		from fu_apply_repay far
+		where far.user_id= #{userId}
+		and far.repay_done_time
+		is not null
+		<include refid="queryCondition1" />
+	</select>
+	<!--分页查询  -->
+	<select id="findRepaymentReminder" resultMap="BaseResultVoMap">
+		select far.*, fu.corpname as companyName,fla.order_number as applyNo from fu_apply_repay far 
+		left join fu_users fu on far.user_id = fu.user_id 
+		left join fu_loan_apply fla on far.apply_id = fla.id 
+		where (unix_timestamp()+604800) > far.repay_req_time  
+		and unix_timestamp() &lt; far.repay_req_time and far.status=0 limit 
+		#{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 分页查询记录数 -->
+	<select id="countRepaymentReminder" resultType="java.lang.Integer">
+		select count(*) from fu_apply_repay far where (unix_timestamp()+604800) > far.repay_req_time  
+		and unix_timestamp() &lt; far.repay_req_time and far.status=0
+	</select>
+	
+	
+	<!-- 根据标的id查询所有未还的 -->
+	<select id="findAllApplyRepayByApplyId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from fu_apply_repay
+		where apply_id = #{applyId} and status=0
+	</select>
+	<!-- 批量更新 -->
+	<update id="batchUpdateStatus" parameterType="java.util.List">    
+        update fu_apply_repay set     
+            status=1, repay_done_time=unix_timestamp(), maturity_date=unix_timestamp() 
+        where id in     
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
+            #{item.id}  
+    	</foreach> 
+	</update>
+	<!-- 根据标的id和期数查询当期之前是否存在未还的 -->  
+	<select id="isExistNotRepayByPeriod"  resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from fu_apply_repay where apply_id = #{applyId} and repay_period &lt; #{period} and `status` =0 limit 1
+	</select>
+</mapper>

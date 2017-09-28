@@ -1,0 +1,483 @@
+@charset 'utf-8';
+/*谷歌placeholder样式*/
+::-webkit-input-placeholder 
+{
+	font-size: 16px;
+	color:#666;
+}
+/*火狐placeholder样式*/
+:-moz-placeholder
+{
+	font-size: 16px;
+	color:#666;
+}
+/*IE10+placeholder样式*/
+:-ms-input-placeholder 
+{
+	font-size: 16px;
+	color:#666;
+}
+/*安全信息-个人基本信息页面样式Start*/
+.per_rigBotContent_box
+{
+	padding: 33px 40px 100px 40px;
+	background: #fff;
+    box-shadow: 0px 11px 40px -2px #bbb;
+    -webkit-box-shadow: 0px 11px 40px -2px #bbb;
+    -moz-box-shadow: 0px 11px 40px -2px #bbb;
+    -ms-box-shadow: 0px 11px 40px -2px #bbb;
+    margin-top: -24px;
+}
+.com_perDiv 
+{
+	height: 69px;
+	line-height: 69px;
+	border-bottom: 1px solid #eaeaea;
+}
+.addressBox
+{
+	border-bottom: 0 !important;
+}
+.com_perDiv p
+{
+	float: left;
+}
+.com_perBgBox
+{
+	width: 28px;
+	height: 100%;
+	margin: 0 19px 0 18px;
+}
+.headerBg
+{
+	width: 28px;
+	height: 27px;
+	margin-top: 22px;
+	background: url(../../images/userAccount/per_head.png) no-repeat center;
+}
+.com_perTitle
+{
+	width: 56px;
+	font-size: 14px;
+	color: #5e5e5e;
+	margin-right: 154px;
+}
+.com_perTxt
+{
+	width: 189px;
+	height: 100%;
+	font-size: 14px;
+	color: #474e5d;
+	margin-right: 150px;
+}
+.addressTxt
+{
+	width: 339px !important;
+	margin-right: 0 !important;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.com_perTips 
+{
+	width: 19px;
+	height: 19px;
+	margin: 26px 198px 0 0;
+}
+.per_error_tips
+{
+	background: url(../../images/userAccount/normal_close.png) no-repeat center;
+}
+.per_success_tips
+{
+	background: url(../../images/userAccount/yes.png) no-repeat center;
+}
+.com_perState 
+{
+	font-size: 14px;
+	color: #474e5d;
+	margin-right: 136px;
+}
+.com_perSite
+{
+	width: 66px;
+	height: 100%;
+	font-size: 14px;
+	color: #0bf;
+	cursor: pointer;
+}
+.unameBg
+{
+	width: 28px;
+	height: 28px;
+	margin-top: 20px;
+	background: url(../../images/userAccount/uname.png) no-repeat center;
+}
+.pwdBg
+{
+	width: 24px;
+	height: 28px;
+	margin-top: 19px;
+	background: url(../../images/userAccount/pwds.png) no-repeat center;
+}
+.iphoneBg
+{
+	width: 19px;
+	height: 28px;
+	margin-top: 20px;
+	background: url(../../images/userAccount/per_iphone.png) no-repeat center;
+}
+.emailBg
+{
+	width: 28px;
+	height: 22px;
+	margin-top: 23px;
+	background: url(../../images/userAccount/per_email.png) no-repeat center;
+}
+.certificationBg
+{
+	width: 28px;
+	height: 25px;
+	margin-top: 23px;
+	background: url(../../images/userAccount/renzheng.png) no-repeat center;
+}
+.depositBg 
+{
+	width: 28px;
+	height: 28px;
+	margin-top: 20px;
+	background: url(../../images/userAccount/secimg.png) no-repeat center;
+}
+.bankBg 
+{
+	width: 28px;
+	height: 20px;
+	margin-top: 24px;
+	background: url(../../images/userAccount/per_bank.png) no-repeat center;
+}
+.tradePwdBg 
+{
+	width: 21px;
+	height: 28px;
+	margin-top: 18px;
+	background: url(../../images/userAccount/tradePwd.png) no-repeat center;
+}
+.addressBg 
+{
+	width: 20px;
+	height: 28px;
+	margin-top: 20px;
+	background: url(../../images/userAccount/address.png) no-repeat center;
+}
+#com_fade
+{
+	width: 100%;
+	height: 1000px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background:#000;
+	opacity: .25;
+	filter:alpha(opacity=25);
+	z-index: 11;
+}
+.com_window 
+{
+	position: fixed;
+	width: 520px;
+	top: 50%;
+	left: 50%;
+	margin-left: -260px;
+	background: #fff;
+	box-shadow: 0px 20px 64px 0px rgba(0,0,0,0.50);
+	border-radius: 20px;
+	z-index: 12;
+}
+.head_window
+{
+	height: 437px;
+	margin-top: -218.5px;
+	display: none;
+}
+.uname_window
+{
+	height: 262px;
+	margin-top: -131px;
+	display: none;
+}
+.pwd_window
+{
+	height: 398px;
+	margin-top: -199px;
+	display: none;
+}
+.iphones_window
+{
+	height: 418px;
+	margin-top: -209px;
+	display: none;
+}
+.email_window
+{
+	height: 330px;
+	margin-top: -165px;
+	display: none;
+}
+.tradePwd_window
+{
+	height: 396px;
+	margin-top: -198px;
+	display: none;
+}
+.address_window
+{
+	height: 330px;
+	margin-top: -165px;
+	display: none;
+}
+.com_wTitle
+{
+	padding:25px 20px 20px 37px;
+	border-bottom: 1px solid #e0e0e0;
+}
+.com_window_title
+{
+	font-size: 24px;
+	color: #666;
+}
+.com_window_close 
+{
+	width: 19px;
+	height: 19px;
+	background: url(../../images/userAccount/normal_close.png) no-repeat center;
+	cursor: pointer;
+}
+.com_window_close:hover
+{
+	background: url(../../images/userAccount/hover_close.png) no-repeat center;
+}
+.head_uploadBox
+{
+	width: 144px;
+	height: 144px;
+	/*position: relative;*/
+	/*background: url(../../images/userAccount/per_morenImg.png) no-repeat center;*/
+	border-radius: 50%;
+	margin: 42px auto 0px auto;
+	cursor: pointer;
+	font-size: 600px \9;
+}
+.upload_heads
+{
+	position: absolute;
+    top: 0;
+    left: 189px;
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    opacity: 0;
+    filter:alpha(opacity=0);
+    cursor: pointer;
+    background: #fff;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    font-size: 160px \9;
+}
+.uploadBox
+{
+	height: 144px;
+	position: relative;
+}
+.upload_txts
+{
+	text-align: center;
+	font-size: 16px;
+	color: #0bf;
+	margin-bottom: 20px;
+}
+.upload_infos
+{
+	text-align: center;
+	font-size: 12px;
+	color: #ff5b5b;
+}
+.com_wBtn 
+{
+	display: block;
+	margin: 22px auto 30px auto;
+	width: 110px;
+	height: 38px;
+	line-height: 38px;
+	font-size: 14px;
+	color: #fff;
+	background: #00BBFF;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	border:none;
+}
+.com_wInput
+{
+	width: 280px;
+	height: 42px;
+	margin: 0 auto;
+	position: relative;
+}
+.w_inputTxt 
+{
+	/*width: 250px;
+	height: 18px;
+	line-height: 42px;
+	background: #fff;
+	padding: 11px 15px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	outline: none;
+	color: #666;
+	font-size: 16px;*/
+	width: 265px;
+    height: 38px;
+    line-height: 38px;
+    background: #fff;
+    padding-left: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    outline: none;
+    color: #666;
+    font-size: 16px;
+}
+.w_inputTxt:hover
+{
+	border: 1px solid #00a0e9;
+}
+.com_werror
+{
+	height: 25px;
+	line-height: 25px;
+	font-size: 12px;
+	color: #ff5b5b;
+	margin-left: 138px;
+}
+.siteImg
+{
+	width: 360px;
+	height: 84px;
+	margin: 0 auto 25px auto;
+}
+.site01_bg
+{
+	background: url(../../images/userAccount/step01.png) no-repeat center;
+}
+.site02_bg
+{
+	background: url(../../images/userAccount/step02.png) no-repeat center;
+}
+.site03_bg
+{
+	background: url(../../images/userAccount/step03.png) no-repeat center;
+}
+.siteTxt
+{
+	margin-left: 137px;
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 15px;
+}
+.phone_codeBtn,.email_codeBtn,.trade_codeBtn
+{
+	position: absolute;
+	top: 5px;
+	right:5px;
+	width: 90px;
+	height: 32px;
+	line-height: 32px;
+	outline: none;
+	border:0;
+	background: #7ED321;
+	border-radius: 4px; 
+	font-size: 14px;
+	color: #fff;
+	cursor: pointer;
+}
+.siteInfos
+{
+	margin: 62px auto 48px auto;
+	font-size: 16px;
+	color: #666;
+	text-align: center;
+}
+.modeify_infos
+{
+	font-size: 16px;
+	color: #666;
+	margin: 0 0 15px 137px;
+}
+.imgCode
+{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 90px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	cursor: pointer;
+}
+#adress_select
+{
+	margin: 0 auto;
+	width: 321px;
+    height: 42px;
+}
+.adres_names
+{
+	width: 282px !important;
+}
+.adres_input
+{
+	width: 321px !important;
+}
+.tradePwdSite
+{
+	position: relative;
+}
+.tsp01
+{
+	width: 50px;
+	height: 47px;
+	z-index: 3;
+	position: absolute;
+    top: -10px;
+    left: 0;
+}
+.tsp02
+{
+	position: absolute;
+    top: 12px;
+    left: 0;
+}
+#imgShowes
+{
+	position: absolute;
+    top: 0;
+    left: 187px;
+    height: 144px;
+    width: 144px;
+    border-radius: 50%;
+}
+.riskBg
+{
+	width: 24px;
+	height: 28px;
+	margin-top: 18px;
+	background: url(../../images/userAccount/riskicon.png) no-repeat center;
+}
+/*安全信息-个人基本信息页面样式End*/
+
+
+
+/*安全信息-银行存管信息页面样式Start*/
+
+
+/*安全信息-银行存管信息页面样式End*/

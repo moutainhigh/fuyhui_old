@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.loan.AuditRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.loan.AuditRecordVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="apply_id" property="applyId" jdbcType="INTEGER" />
+    <result column="audit_time" property="auditTime" jdbcType="INTEGER" />
+    <result column="audit_person" property="auditPerson" jdbcType="VARCHAR" />
+    <result column="audit_result" property="auditResult" jdbcType="TINYINT" />
+    <result column="audit_advice" property="auditAdvice" jdbcType="VARCHAR" />
+    <result column="audit_link" property="auditLink" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, apply_id, audit_time, audit_person, audit_result, audit_advice, audit_link
+  </sql>
+  <select id="findAuditRecordByApplyId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fu_audit_record
+    where apply_id = #{applyId}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_audit_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_audit_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.loan.AuditRecordVO" >
+    insert into fu_audit_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="auditPerson != null" >
+        audit_person,
+      </if>
+      <if test="auditResult != null" >
+        audit_result,
+      </if>
+      <if test="auditAdvice != null" >
+        audit_advice,
+      </if>
+      <if test="auditLink != null" >
+        audit_link,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=INTEGER},
+      </if>
+      <if test="auditPerson != null" >
+        #{auditPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="auditResult != null" >
+        #{auditResult,jdbcType=TINYINT},
+      </if>
+      <if test="auditAdvice != null" >
+        #{auditAdvice,jdbcType=VARCHAR},
+      </if>
+      <if test="auditLink != null" >
+        #{auditLink,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.loan.AuditRecordVO" >
+    update fu_audit_record
+    <set >
+      <if test="applyId != null" >
+        apply_id = #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=INTEGER},
+      </if>
+      <if test="auditPerson != null" >
+        audit_person = #{auditPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="auditResult != null" >
+        audit_result = #{auditResult,jdbcType=TINYINT},
+      </if>
+      <if test="auditAdvice != null" >
+        audit_advice = #{auditAdvice,jdbcType=VARCHAR},
+      </if>
+      <if test="auditLink != null" >
+        audit_link = #{auditLink,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

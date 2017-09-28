@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.news.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.news.NewsVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="SMALLINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="updated" property="updated" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="createdString" property="createdString" jdbcType="INTEGER" />
+    
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.fujfu.pojo.news.NewsVO" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+     <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBsVo" type="com.fujfu.pojo.news.NewsPOJO" extends="ResultMapWithBLOBs" >
+    <result column="categoryName" property="categoryName" />
+  </resultMap>
+  
+  <!-- 分页查询条件 -->
+  <sql id="queryCondition">
+  	<trim prefix="where" prefixOverrides="and|or">
+  		<if test="newsQueryVo.title!=null and newsQueryVo.title!=''">
+			and fna.title like "%"#{newsQueryVo.title}"%"  
+		</if>
+		<if test="newsQueryVo.startTime!=null and newsQueryVo.startTime!=''">
+    <![CDATA[  and fna.created >= #{newsQueryVo.startTime}]]>
+			</if>
+			<if test="newsQueryVo.endTime!=null and newsQueryVo.endTime!=''">
+    <![CDATA[  and fna.created <= #{newsQueryVo.endTime}]]>
+			</if>
+  	</trim>
+  	    <if test="newsQueryVo.cid!=null and newsQueryVo.cid!=''">
+			and fn.cid =#{newsQueryVo.cid}  
+		</if>
+  </sql>
+  <!-- 分页查询 -->
+  <select id="findNews" resultMap="ResultMapWithBLOBsVo">
+  	select fn.id, fna.name as categoryName, fn.title, fn.updated, fn.created, fn.status, fn.keywords, fn.content ,fn.url,from_unixtime(fn.created) as createdString 
+  	 from fu_news fn inner join fu_news_category fna on fn.cid = fna.id 
+  	<include refid="queryCondition" /> 
+  	order by fn.created desc limit #{page.startOfPage},#{page.pageSize}
+  </select>
+  <!-- 分页查询记录数 -->
+  <select id="countNews" resultType="java.lang.Integer">
+  select count(*) from fu_news fn inner join fu_news_category fna on fn.cid = fna.id  
+  	<include refid="queryCondition" />
+  </select>
+  <!-- 根据id查询 -->
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBsVo" parameterType="java.lang.Integer" >
+    select fn.id, fna.`name` as categoryName, fn.title, fn.updated, fn.created, fn.status, fn.keywords, fn.content 
+  	 from fu_news fn inner join fu_news_category fna on fn.cid = fna.id 
+    where fn.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <sql id="Base_Column_List" >
+    id, cid, title, updated, created, status, keywords
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.news.NewsVO" >
+    insert into fu_news (id, cid, title, 
+      updated, created, status, 
+      keywords, content)
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=SMALLINT}, #{title,jdbcType=VARCHAR}, 
+      #{updated,jdbcType=INTEGER}, #{created,jdbcType=INTEGER}, #{status,jdbcType=BIT}, 
+      #{keywords,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.news.NewsVO" >
+    insert into fu_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=SMALLINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+       <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.news.NewsVO" >
+    update fu_news
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=SMALLINT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBsSelective" parameterType="com.fujfu.pojo.news.NewsVO" >
+    update fu_news
+    set cid = #{cid,jdbcType=SMALLINT},
+      title = #{title,jdbcType=VARCHAR},
+      updated = #{updated,jdbcType=INTEGER},
+      created = #{created,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.news.NewsVO" >
+    update fu_news
+    set cid = #{cid,jdbcType=SMALLINT},
+      title = #{title,jdbcType=VARCHAR},
+      updated = #{updated,jdbcType=INTEGER},
+      created = #{created,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      keywords = #{keywords,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

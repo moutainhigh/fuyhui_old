@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.award.UsersAwardActionMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.award.UsersAwardActionVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="reward_id" property="rewardId" jdbcType="VARCHAR" />
+    <result column="invester_id" property="investerId" jdbcType="INTEGER" />
+    <result column="fy_serialno" property="fySerialno" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, reward_id, invester_id, fy_serialno, status, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_users_award_action
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_users_award_action
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.award.UsersAwardActionVO" >
+    insert into fu_users_award_action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rewardId != null" >
+        reward_id,
+      </if>
+      <if test="investerId != null" >
+        invester_id,
+      </if>
+      <if test="fySerialno != null" >
+        fy_serialno,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rewardId != null" >
+        #{rewardId,jdbcType=VARCHAR},
+      </if>
+      <if test="investerId != null" >
+        #{investerId,jdbcType=INTEGER},
+      </if>
+      <if test="fySerialno != null" >
+        #{fySerialno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.award.UsersAwardActionVO" >
+    update fu_users_award_action
+    <set >
+      <if test="rewardId != null" >
+        reward_id = #{rewardId,jdbcType=VARCHAR},
+      </if>
+      <if test="investerId != null" >
+        invester_id = #{investerId,jdbcType=INTEGER},
+      </if>
+      <if test="fySerialno != null" >
+        fy_serialno = #{fySerialno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAwardActionByStatus" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/>
+  	from fu_users_award_action
+    where status = status 
+    <![CDATA[  and created >= #{startTime}]]> 
+    <![CDATA[  and created <= #{endTime}]]>
+    <!-- in 
+    <foreach item="item" collection="statusList" separator="," open="(" close=")" index="">    
+          #{item}    
+    </foreach> -->
+  </select>
+</mapper>

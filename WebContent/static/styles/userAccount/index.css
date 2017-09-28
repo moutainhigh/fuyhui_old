@@ -1,0 +1,553 @@
+@charset 'utf-8';
+.warp_account_center
+{
+	width: 100%;
+	padding-bottom: 90px;
+	background: #f5f5f5;
+}
+.user_account1000
+{
+	width: 1170px;
+	margin: 0 auto;
+	position: relative;
+}
+/*账户中心左侧导航菜单栏样式Start*/
+.account_leftMenu_box
+{
+	width: 192px;
+}
+.aCenter_name
+{
+	width: 163px;
+	height: 32px;
+	padding: 21px 0 0 29px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #4a4a4a;
+}
+.acc_lMenuCont_body p
+{
+	width: 149px;
+	height: 28px;
+	line-height: 28px;
+	margin-left: 29px;
+	margin-bottom: 5px;
+	padding-left: 14px;
+	cursor: pointer;
+}
+.aMenu_active.active
+{
+	width: 147px;
+	border-left: 2px solid #0bf;
+	color: #0bf;
+	font-weight: bold;
+}
+.money_overview
+{
+	font-size: 16px;
+}
+.aMenu_Noactive
+{
+	font-size: 16px;
+	color: #4a4a4a;
+	font-weight: bold;
+}
+.my_dbborrow,.apply_during,.receivable_plan,.borrow_duringes,.my_borrows,.borrow_during,.top_up,.withdrawal,.trad_detail,.my_invite,.my_coupons,.my_basic_info,.bank_info,.site_inside_info,.info_setup
+{
+	font-size: 14px;
+	color: #999;
+}
+.infos_center
+{
+	font-size: 16px;
+	color: #4a4a4a;
+	font-weight: bold;
+}
+.account_tips
+{
+	position: relative;
+}
+.info_aTips_box
+{
+	position: absolute;
+	top: 2px;
+	right: 53px;
+	width: 20px;
+	height: 15px;
+	border: 1px solid #fe2540;
+	border-radius: 4px;
+}
+.aTips_box
+{
+	position: absolute;
+	top: 3px;
+	right: 65px;
+	width: 20px;
+	height: 15px;
+	border: 1px solid #fe2540;
+	border-radius: 4px;
+}
+.coupons_aTips_nums,.info_aTips_nums
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20px;
+	height: 15px;
+	line-height: 15px;
+	text-align: center;
+	font-size: 12px;
+	color: #fe2540;
+	font-weight: normal;
+}
+/*账户中心左侧导航菜单栏样式End*/
+
+.account_rightContent_box
+{
+	width: 978px;
+}
+.acc_rigContent_name
+{
+	width: 100%;
+	height: 53px;
+	margin-top: 21px;
+	font-size: 14px;
+	color: #666;	
+}
+.acc_lMenuCont_body
+{
+	padding-top: 20px;
+}
+.my_assets_box
+{
+	height: 72px;
+	background: #fff;
+	padding: 25px 33px 25px 25px;
+	border-left: 2px solid #4a90e2;
+}
+.user_account_infoBox
+{
+	width: 268px;
+}
+.account_heads
+{
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	/*position: relative;*/
+	cursor: pointer;
+}
+.acc_upload
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	opacity: 0;
+	filter:alpha(opacity=0);
+	cursor: pointer;
+	background: #fff;
+	border: 0;
+	outline: 0;
+	z-index: 3;
+	/*font-size: 65px;*/
+}
+#imgShow
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	height: 72px;
+	width: 72px;
+	border-radius: 50%;
+	margin-top: 0 !important;
+}
+.account_usInfos
+{
+	margin-left: 17px;
+}
+.acc_userIphone
+{
+	font-size: 16px;
+	color: #4a4a4a;
+	font-weight: bold;
+	margin-bottom: 7px;
+}
+.acc_dengji
+{
+	font-size: 14px;
+	color: #999;
+	margin-bottom: 8px;
+}
+.acc_com_span
+{
+	color: #f50;
+	font-weight: bold;
+}
+.uIphone_bgImg
+{
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	background: url(../../images/userAccount/phone.png) no-repeat center;
+	margin-right: 12px;
+	cursor: pointer;
+}
+.uHead_bgImg
+{
+	display: inline-block;
+	width: 19px;
+	height: 18px;
+	background: url(../../images/userAccount/user.png) no-repeat center;
+	margin-right: 12px;
+	cursor: pointer;
+}
+.uSet_up
+{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url(../../images/userAccount/shezhi.png) no-repeat center;
+	cursor: pointer;
+}
+.total_accountBox
+{
+	width: 397px;
+	height: 72px;
+	border-left: 2px solid #efefef;
+}
+.total_accounts
+{
+	width: 198px;
+	font-size: 16px;
+	color: #999;
+	padding-left: 40px;
+}
+.total_accNums
+{
+	width: 198px;
+	text-align: left;
+	font-size: 24px;
+	margin-bottom: 6px;
+	font-weight: bold;
+	color: #f50;
+	margin-top: 7px;
+}
+.tAccounts
+{
+	margin-left: 3px;
+}
+.total_accounts p
+{
+	width: 198px;
+	text-align: left;
+}
+.total_award
+{
+	width: 159px;
+	font-size: 14px;
+	color: #999;
+	margin-top: 17px;
+}
+.total_award div
+{
+	margin-bottom: 6px;
+}
+.acc_comBtn
+{
+	width: 78px;
+	height: 34px;
+	border-radius: 4px;
+	line-height: 34px;
+	text-align: center;
+	font-size: 14px;
+	cursor: pointer;
+}
+.top_up_btn,.acc_invest
+{
+	background: #0bf;
+	color: #fff;
+	margin-right: 10px;
+}
+.withdrawal_btn
+{
+	color: #0bf;
+	background: #fff;
+	border: 1px solid #0bf;
+}
+.account_groupsBtnBox
+{
+	margin: 17px 0 0 -5px;
+}
+.account_details_box
+{
+	margin: 10px 0 22px 0;
+	height: 100px;
+}
+.acc_details_list li
+{
+	float: left;
+	width: 193px;
+	height: 57px;
+	padding: 24px 0 19px 41px;
+	background: #fff;
+}
+.acc_details_list li:hover
+{
+	box-shadow:0px 11px 40px -2px #bbb;
+	-webkit-box-shadow:0px 11px 40px -2px #bbb;
+	-moz-box-shadow:0px 11px 40px -2px #bbb;
+	-ms-box-shadow:0px 11px 40px -2px #bbb;
+}
+.acc_detItem01
+{
+	border-left: 2px solid #61be57;
+	margin-right: 11px;
+}
+.acc_detItem02
+{
+	border-left: 2px solid #f5c069;
+	margin-right: 12px;
+}
+.acc_detItem03
+{
+	border-left: 2px solid #8aecd6;
+	margin-right: 11px;
+}
+.acc_detItem04
+{
+	border-left: 2px solid #ff5500;
+	margin-right: 0px;
+}
+.com_moneyFuhao
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #323232;
+}
+.com_moneyStyle
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #323232;
+}
+.acc_detItem01 p,.acc_detItem02 p,.acc_detItem03 p,.acc_detItem04 p
+{
+	font-size: 16px;
+	color: #999;
+	margin: 2px 0 0 5px;
+}
+.acc_invest_dataBox h5
+{
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 10px;
+}
+.acc_investData_list
+{
+	height: 99px;
+	padding: 44px 0 57px 0;
+	background: #fff;
+}
+.acc_investData_list li
+{
+	float: left;
+	height: 99px;
+	padding-left: 75px;
+}
+.acc_iData_item01
+{
+	width: 250px;
+	border-right: 1px solid #ebebeb;
+}
+.acc_iData_item02
+{
+	width: 250px;
+	border-right: 1px solid #ebebeb;
+}
+.acc_iData_item03
+{
+	width: 251px;
+}
+.iDate_item01_bg
+{
+	width: 31px;
+	height: 32px;
+	background: url(../../images/userAccount/number.png) no-repeat center;
+}
+.iDate_item02_bg
+{
+	width: 38px;
+	height: 34px;
+	background: url(../../images/userAccount/pig.png) no-repeat center;
+}
+.iDate_item03_bg
+{
+	width: 35px;
+	height: 37px;
+	background: url(../../images/userAccount/award.png) no-repeat center;
+}
+.iDate_rateBox,.iDate_todayRateBox,.iDate_awardBox
+{
+	margin-left: 37px;
+}
+.iDate_rateBox p,.iDate_todayRateBox p,.iDate_awardBox p
+{
+	font-size: 16px;
+	color: #999;
+	margin: 2px 0 22px 0;
+}
+.iDate_rateBox h6,.iDate_todayRateBox h6,.iDate_awardBox h6
+{
+	font-size: 14px;
+	color: #0bf;
+	font-weight: normal;
+	cursor: pointer;
+}
+.iDate_rate,.iDate_todayRate,.iDate_awards
+{
+	font-size: 24px;
+	color: #323232;
+	font-weight: bold;
+}
+.acc_invite_projectBox h5
+{
+	font-size: 14px;
+	color: #666;
+	margin: 23px 0 8px 0;
+}
+.acc_iProject_list li
+{
+	float: left;
+	width: 318px;
+	height: 164px;
+	padding: 30px 0 16px 0;
+	background: #fff;
+	margin-right: 12px;
+}
+.acc_iProject_list li:hover
+{	
+	box-shadow: 0 4px 16px rgba(0,0,0,.6);
+	-webkit-box-shadow: 0 4px 16px rgba(0,0,0,.6);
+	-ms-box-shadow: 0 4px 16px rgba(0,0,0,.6);
+	-moz-box-shadow: 0 4px 16px rgba(0,0,0,.6);
+	transform: translateY(-3px);
+	-webkit-transform: translateY(-3px);
+	-ms-transform: translateY(-3px);
+	-moz-transform: translateY(-3px);
+	cursor: pointer;
+	transition: .5s;
+	-webkit-transition: .5s;
+	-ms-transition: .5s;
+	-moz-transition: .5s;
+}
+.iProject_item03
+{
+	margin-right: 0 !important;
+}
+.iProject_title
+{
+	width: 290px;
+	font-size: 18px;
+	color: #474e5d;
+	text-align: center;
+	/*margin-bottom: 27px;*/
+	margin: 0 auto 27px auto;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.iPro_tList
+{
+	margin-bottom: 29px;
+}
+.tList_box01
+{
+	width: 100px;
+	text-align: right;
+}
+.tList_box01 p,.tList_box02 p,.tList_box03 p
+{
+	font-size: 18px;
+	color: #474e5d;
+}
+.tList_box02
+{
+	width: 88px;
+	text-align: right;
+}
+.tList_box03
+{
+	width: 130px;
+	text-align: center;
+}
+.com_invite_pro
+{
+	font-size: 12px;
+	color: #999;
+	margin-top: 3px;
+}
+.iPro_btn
+{
+	width: 146px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	/*background: #fabb05;*/
+	font-size: 14px;
+	color: #fff;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 86px;
+}
+/*认购中按钮样式*/
+.lijiIpro
+{
+	background: #fabb05;
+}
+/*回款中按钮样式*/
+.receivable_btn
+{
+	background: #0bf;
+}
+/*已售罄 按钮样式和已结束 按钮样式*/
+.hasend_btn
+{
+	background: #d1d1d1;
+}
+/*预热中 按钮样式：*/
+.yuren_btn
+{
+	background: #ff4f3f;
+}
+.no_lijiIpro
+{
+	background: #c1c1c1;
+}
+.invite_img_list li
+{
+	float: left;
+	height: 130px;
+}
+.invite_item01
+{
+	width: 324px;
+	background: url(../../images/userAccount/adv01.png) no-repeat center;
+}
+.invite_item02
+{
+	width: 332px;
+	background: url(../../images/userAccount/adv02.png) no-repeat center;
+}
+.invite_item03
+{
+	width: 322px;
+	background: url(../../images/userAccount/adv03.png) no-repeat center;
+}
+.acc_invite_imgBox
+{
+	margin-top: 12px;
+}

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.news.NewsCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.news.NewsCategoryVO" >
+    <id column="id" property="id" jdbcType="SMALLINT" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="parent" property="parent" jdbcType="SMALLINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="created" property="created" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.fujfu.pojo.news.NewsCategoryPOJO" extends="BaseResultMap">
+    <result column="parentName" property="parentName" />
+  </resultMap>
+  
+  <!-- 分页查询条件 -->
+  <sql id="queryCondition">
+  	<trim prefix="where" prefixOverrides="and|or">
+  		t1.parent = t2.id
+  		<if test="newsCategory.name!=null and newsCategory.name!=''">
+			and t1.name like "%"#{newsCategory.name}"%"  
+		</if>
+		<if test="newsCategory.type!=null and newsCategory.type!=''">
+			and t1.type =#{newsCategory.type}  
+		</if>
+  	</trim>
+  </sql>
+  <!-- 分页查询 -->
+  <select id="findNewsCategory" resultMap="BaseResultMapVo">
+  	select t1.id,t1.name,t2.name as parentName,t1.type as type,t1.status,t1.created 
+  	from fu_news_category t1,fu_news_category t2  
+  	<include refid="queryCondition" /> 
+  	order by t1.created desc limit #{page.startOfPage},#{page.pageSize}
+  </select>
+  <!-- 分页查询记录数 -->
+  <select id="countNewsCategory" resultType="java.lang.Integer">
+  select count(*) from fu_news_category t1,fu_news_category t2  
+  	<include refid="queryCondition" />
+  </select>
+  <!-- 查询所有 -->
+  <select id="findAllNewsCategory" resultMap="BaseResultMapVo">
+  select t1.id,t1.name,t2.name as parentName,t1.type as type,t1.status,t1.created 
+  	from fu_news_category t1 left join fu_news_category t2 on t1.parent = t2.id where t1.status = 1
+  	order by t1.created asc
+  </select>
+  <!-- 根据id查询 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMapVo" parameterType="java.lang.Short" >
+     select t1.id,t1.name,t2.name as parentName,t1.type as type,t1.status,t1.created 
+  	from fu_news_category t1,fu_news_category t2 
+    where t1.parent = t2.id and t1.id = #{id}
+  </select>
+  
+  <sql id="Base_Column_List" >
+    id, name, parent, type, status, created
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from fu_news_category
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.fujfu.pojo.news.NewsCategoryVO" >
+    insert into fu_news_category (id, name, parent,type, 
+      status, created)
+    values (#{id,jdbcType=SMALLINT}, #{name,jdbcType=CHAR}, #{parent,jdbcType=SMALLINT}, #{type,jdbcType=TINYINT},
+      #{status,jdbcType=TINYINT}, #{created,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.news.NewsCategoryVO" >
+    insert into fu_news_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="parent != null" >
+        parent,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=SMALLINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="parent != null" >
+        #{parent,jdbcType=SMALLINT},
+      </if>
+       <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.news.NewsCategoryVO" >
+    update fu_news_category
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="parent != null" >
+        parent = #{parent,jdbcType=SMALLINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fujfu.pojo.news.NewsCategoryVO" >
+    update fu_news_category
+    set name = #{name,jdbcType=CHAR},
+      parent = #{parent,jdbcType=SMALLINT},
+      type = #{type,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      created = #{created,jdbcType=INTEGER}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+</mapper>

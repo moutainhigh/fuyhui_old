@@ -1,0 +1,126 @@
+.webox {
+    position: fixed;
+    _position: absolute;
+    z-index: 5000;
+    background: #fff;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+#inside {
+    background-color: #FFFFFF;
+    height: 240px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    overflow: hidden;
+}
+
+#inside iframe {
+    overflow: hidden;
+}
+
+.webox #inside h1 {
+    float: left;
+    width: 100%;
+    /*background: url(../images/dialog/box02.png) no-repeat left bottom;*/
+    height: 47px;
+    line-height: 47px;
+    -webkit-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    font-size: 18px;
+    color: #241c1c;
+    padding-left: 20px;
+    margin: 0;
+    font-weight: bold;
+    cursor: move;
+    position: relative;
+    border:1px solid #ddd;
+}
+
+.webox #inside h1 a {
+    display: block;
+    /*background: url(../images/dialog/bgClose.png) no-repeat;*/
+    width: 51px;
+    height: 47px;
+    position: absolute;
+    cursor: pointer;
+    right: 15px;
+    top: 0px;
+}
+
+.webox #inside h1 a:hover {
+    /*background: url(../images/dialog/bgClose01.png) no-repeat;*/
+}
+
+.webox .mainlist {
+    padding: 10px;
+}
+
+.webox .mainlist li {
+    list-style-type: none;
+}
+
+.webox .mainlist li span {
+    margin: 0 5px 0 0;
+}
+
+#inside .row label {
+    width: 50px;
+    text-align: right;
+    display: block;
+    float: left;
+    padding-right: 10px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+#inside .row {
+    display: table;
+    padding-bottom: 15px;
+}
+
+#inside input #Gallery_name {
+    width: 240px;
+    height: 28px;
+    border: 1px #ccc solid;
+}
+
+#inside .row textarea #Gallery_description {
+    width: 240px;
+}
+
+#inside .buttons {
+    padding-left: 60px;
+}
+
+#inside .buttons input {
+    background: #393939;
+    border: none;
+    color: #fff;
+    height: 30px;
+    width: 60px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+#friends-form .buttons {
+    padding-left: 0;
+}
+
+#webox_fade 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4999;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    filter: alpha(opacity=80);
+    -moz-opacity: .80;
+    opacity: .80;
+}

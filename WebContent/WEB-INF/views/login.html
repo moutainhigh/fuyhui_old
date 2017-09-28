@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="zh-cn">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录-富元汇</title>
+    <meta name="author" content="深圳市富之富信息技术有限公司"/>
+    <meta name="keywords" content="富元汇，P2P理财，P2C理财，P2P网贷，投资理财，P2P投资理财，个人理财，金融理财，互联网理财，理财投资，供应链金融 ">
+    <meta name="description" content="世界百强企业鸿海富士康科技集团旗下金融品牌富金富打造的互联网金融服务平台，致力于为用户提供稳健、诚信、高效的金融产品交易等互联网信息技术服务。">
+	<!-- <meta name="renderer" content="webkit|ie-stand|ie-comp"> -->
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />  -->
+ 
+	<link rel="stylesheet" type="text/css" href="../../static/styles/common/common.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/styles/user/login.css">
+    <script type="text/javascript" src='../../static/scripts/common/jquery-1.9.1.js'></script>
+    <script src="../../static/scripts/common/common.js"></script>
+    <script type="text/javascript" src='../../static/scripts/common/placeholder.js'></script>
+    <script type="text/javascript" src='../../static/scripts/user/md5.js'></script>
+    <script type="text/javascript" src='../../static/scripts/user/login.js'></script>
+</head>
+<body>
+	<!-- 登录页头部Start -->
+	<div class="user_top">
+		<div class="user_top_box">
+			<div class="fl uTop_logo" onclick="window.location.href=getContextPaths()"></div>
+			<p class="fl uLine"></p>
+			<h3 class="fl">欢迎登录</h3>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- 登录头部End -->
+
+	<!-- 登录信息Start -->
+	<div class="login_area">
+		<div class="login_body">
+			<form action="" id="login_form" method="post">
+				<div class="login_box">
+					<div class="login_title">
+						<h3 class="fl">账户登录</h3>
+						<p class="fr">
+							<span>没有账户，</span>
+							<a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/user/register'">立即注册</a>
+						</p>
+						<div class="clear"></div>
+					</div>
+					<div class="login_line"></div>
+					<!-- 手机号码 -->
+					<div class="login_groups" style="margin-top:52px;">
+						<input type="text" name="login_iphone" class="login_txt login_iphone" id="login_iphone" placeholder='手机号码' maxlength="11" onkeyup="this.value=this.value.replace(/[^0-9\.]/g,'')">
+						<!-- <span></span> -->
+						<!-- 提示语 -->
+						<div class="login_tips tps01"></div>
+					</div>
+					
+
+					<!-- 密码 -->
+					<div class="login_groups">
+						<input type="password" name="login_pwd" class="login_txt login_pwd" id="login_pwd" placeholder='密码' maxlength="16" onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\@\.\!\~\#\%\*\&\$]/g,'')">
+						<!-- <span></span> -->
+						<!-- 提示语 -->
+						<div class="login_tips tps02"></div>
+					</div>
+					<!-- 验证码 -->
+					<div class="login_groups login_code" style="display:none;">
+						<input type="text" name='uCode' class="login_txt uCode loginInput" id="uCode" placeholder='验证码' maxlength="4" onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')">
+						<img id="imgObj" class="code_box" alt="验证码" src="" />
+						<!-- 提示语 -->
+						<div class="login_tips tps03"></div>
+					</div>
+
+					<div class="login_checkBox">
+						<!-- <label for="login_checked">自动登录</label>
+						<input type="checkbox" class="login_checked" id="login_checked"> -->
+						<a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/user/forget'">忘记密码？</a>
+					</div>
+
+					<!-- 立即登录按钮 -->
+					<div class="login_btn">立即登录</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- 登录信息End -->
+	<div class="logion_redundant"></div>
+	
+
+	<!-- 登录页底部Start -->
+	<div class="user_fotter_area">
+		<div class="user_fotter">
+			<div class="user_fotter_box">
+				<ul class="user_list">
+					<li><a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/enterCompanyIntroduction'">关于我们</a></li>
+					<li><a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/enterContactUs'">联系我们</a></li>
+					<li><a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/enterNewGuideline'">新手指引</a></li>
+					<li><a href="javascript:void(0);" onclick="window.location.href=getContextPaths()+'/enterHelpCenter'">帮助中心</a></li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+		</div>
+		<div class="user_increment">
+			<p>
+				©2017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;深圳市富之富信息技术有限公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.miitbeian.gov.cn" style="cursor:pointer;color:#474e5d;" target='_blank'>粤ICP备16120381号</span>
+			</p>
+			
+		</div>
+	</div>
+	
+	<!-- 登录页底部End -->
+</body>
+</html>
+
+
+

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.apply.ApplyRecoverMapper" >
+  <resultMap id="BaseResultMap" type="com.fujfu.pojo.apply.ApplyRecoverVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="apply_id" property="applyId" jdbcType="INTEGER" />
+    <result column="recover_money" property="recoverMoney" jdbcType="DECIMAL" />
+    <result column="recover_interest" property="recoverInterest" jdbcType="DECIMAL" />
+    <result column="recover_capital" property="recoverCapital" jdbcType="DECIMAL" />
+    <result column="recover_remain" property="recoverRemain" jdbcType="DECIMAL" />
+    <result column="recover_period" property="recoverPeriod" jdbcType="INTEGER" />
+    <result column="recover_req_time" property="recoverReqTime" jdbcType="INTEGER" />
+    <result column="recover_done_time" property="recoverDoneTime" jdbcType="INTEGER" />
+    <result column="recover_fee" property="recoverFee" jdbcType="VARCHAR" />
+    <result column="recover_total" property="recoverTotal" jdbcType="DECIMAL" />
+    <result column="unique_no" property="uniqueNo" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="relay_fee" property="relayFee" jdbcType="DECIMAL" />
+    <result column="ahead_fee" property="aheadFee" jdbcType="DECIMAL" />
+    <result column="invest_id" property="investId" jdbcType="INTEGER" />
+    <result column="ordid" property="ordid" jdbcType="INTEGER" />
+    <result column="web_pay_done_time" property="webPayDoneTime" jdbcType="INTEGER" />
+    <result column="is_pnr_pay" property="isPnrPay" jdbcType="BIT" />
+    <result column="orign_recover_data" property="orignRecoverData" jdbcType="VARCHAR" />
+    <result column="ahead_pay_done_time" property="aheadPayDoneTime" jdbcType="INTEGER" />
+  	<result column="recoverTime" property="recoverTime" jdbcType="VARCHAR" />
+  	<result column="recoverDoneTimeStr" property="recoverDoneTimeStr" jdbcType="VARCHAR" />
+  	<result column="value_date" property="valueDate" jdbcType="INTEGER" />
+	<result column="maturity_date" property="maturityDate" jdbcType="INTEGER" />
+	<result column="batch_serialno" property="batchSerialno" jdbcType="VARCHAR" />
+	<result column="repay_done_capital" property="repayDoneCapital" jdbcType="DECIMAL" />
+    <result column="repay_done_interest" property="repayDoneInterest" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="recoverPlanMap" type="com.fujfu.pojo.apply.ApplyRecoverPOJO" >
+  	<result column="recover_period" property="repayPeriod" />
+  	<result column="recover_req_time" property="repayReqTime" />
+  	<result column="recover_capital" property="repayCapital" />
+  	<result column="recover_interest" property="repayInterest" />
+  	<result column="status" property="status" />
+  </resultMap>
+ <resultMap id="userRecoverSumMap" type="com.fujfu.pojo.apply.UserRecoverSumPOJO" >  
+    <result column="sumreceipts" property="sumReceipts" jdbcType="DECIMAL" />
+    <result column="suminterest" property="sumInterest" jdbcType="DECIMAL" />
+    <result column="sumcapital" property="sumCapital" jdbcType="DECIMAL" />
+  </resultMap>
+  <!--导出发送金交所excel所需信息 -->
+  <resultMap id="recoverImportExcel" type="com.fujfu.pojo.apply.RecoverImportExcelPOJO" >  
+   		<result column="repay_done_time" property="repay_done_time" jdbcType="VARCHAR" />
+		<result column="listingCode" property="listingCode" jdbcType="VARCHAR" />
+		<result column="recover_period" property="recoverPeriod" jdbcType="VARCHAR" />
+		<result column="StagingCode" property="StagingCode" jdbcType="VARCHAR" />
+		<result column="valuedate" property="valuedate" jdbcType="VARCHAR" />
+		<result column="maturitydate" property="maturitydate" jdbcType="VARCHAR" />
+		<result column="realName" property="realName" jdbcType="VARCHAR" />
+		<result column="cardTypeName" property="cardTypeName" jdbcType="VARCHAR" />
+		<result column="card_id" property="cardId" jdbcType="VARCHAR" />
+		<result column="recover_money" property="recover_money" jdbcType="VARCHAR" />
+		<result column="recover_capital" property="recover_capital" jdbcType="VARCHAR" />
+		<result column="recover_interest" property="recover_interest" jdbcType="VARCHAR" />
+		<result column="overdueInterest" property="overdueInterest" jdbcType="VARCHAR" />
+		<result column="serialno1" property="serialno1" jdbcType="VARCHAR" />
+		<result column="cashingPassage" property="cashingPassage" jdbcType="VARCHAR" />
+		<result column="serialno2" property="serialno2" jdbcType="VARCHAR" />	
+		<result column="name" property="loanName" jdbcType="VARCHAR" />	
+  </resultMap>
+  <!--导出发送金交所excel所需信息 -->
+	<select id="recoverImportExcelList" resultMap="recoverImportExcel">
+		select from_unixtime(fare.recover_done_time,'%Y%m%d%h%i%s') as repay_done_time,far.id as listingCode,fare.recover_period as recoverPeriod ,fare.id as StagingCode, from_unixtime(far.value_date,'%Y/%m/%d') as valuedate,from_unixtime(far.maturity_date,'%Y/%m/%d') as maturitydate,from_unixtime(far.repay_req_time,'%Y/%m/%d') as repay_req_time,fu.realname,case when card_Type='1' then '身份证' when card_Type='2' then '台胞证' else '港澳通行证' end as cardTypeName,
+		fu.card_id,fare.repay_done_capital+fare.repay_done_interest as recover_money,fare.repay_done_capital as recover_capital,fare.repay_done_interest as recover_interest,'0' as overdueInterest,fare.batch_serialno as serialno1, '富友支付' as cashingPassage,fare.id as serialno2,fla.name from fu_apply_recover fare left join  fu_apply_repay far on fare.apply_id =far.apply_id and fare.recover_period=far.repay_period left join fu_users fu on fare.user_id =fu.user_id left join fu_loan_apply fla on fare.apply_id =fla.id
+		where fare.apply_id=#{applyId}	and fare.recover_period=#{period}	
+	</select>
+  
+  <sql id="Base_Column_List" >
+    id, status, user_id, apply_id, recover_money, recover_interest, recover_capital, 
+    recover_remain, recover_period, recover_req_time, recover_done_time, recover_fee, 
+    recover_total, unique_no, add_time, relay_fee, ahead_fee, invest_id, ordid, web_pay_done_time, 
+    is_pnr_pay, orign_recover_data, ahead_pay_done_time,value_date,maturity_date,batch_serialno
+  </sql>
+   
+  <!-- 根据标的id查询回款计划 -->
+  <select id="findRepayByApplyId" resultMap="recoverPlanMap">
+  	select recover_period,from_unixtime(recover_req_time,'%Y/%m/%d') as recover_req_time,recover_capital,recover_interest,status from fu_apply_recover 
+  	where apply_id = #{applyId} limit #{startNum},8
+  </select>
+  <!-- 根据标的id查询回款计划 -->
+  <select id="findAllRepayByApplyId" resultMap="recoverPlanMap">
+  	select recover_period,from_unixtime(recover_req_time,'%Y/%m/%d') as recover_req_time,recover_capital,recover_interest,status from fu_apply_recover 
+  	where apply_id = #{applyId}
+  </select>
+  <!-- 根据标的id统计回款计划-->
+  <select id="countRepayByApplyId" resultType="java.lang.Integer">
+  	select count(*) from fu_apply_recover 
+  	where apply_id = #{applyId}
+  </select>
+   <select id="findAllRecoverByRecoverperiod" resultMap="BaseResultMap">
+    select *
+     from fu_apply_recover  
+    	<include refid="queryCondition" />  
+  	order by add_time desc limit #{page.startOfPage},#{page.pageSize}
+    
+  </select>
+   <select id="findloanRecoverListByConditionAndNum" resultMap="BaseResultMap">
+    select 
+<include refid="Base_Column_List" />  , from_unixtime(recover_req_time) as recoverDoneTimeStr
+ from fu_apply_recover  
+    	<include refid="queryCondition" />  
+  	order by add_time desc limit #{pageNum}, #{pageSize}
+    
+  </select>
+  <!-- 分页查询条件 -->
+  <sql id="queryCondition">
+  	<trim prefix="where" prefixOverrides="and|or">
+  		<if test="loanInvestQueryVo.invest_id!=null and loanInvestQueryVo.invest_id!='' and loanInvestQueryVo.invest_id>0 ">
+  		  and invest_id= #{loanInvestQueryVo.invest_id}		
+		</if>
+	    <if test="loanInvestQueryVo.user_id!=null and loanInvestQueryVo.user_id!='' and loanInvestQueryVo.user_id>0 ">
+  		  and user_id= #{loanInvestQueryVo.user_id}		
+	    </if>
+	    <if test="loanInvestQueryVo.farstatus!=null and loanInvestQueryVo.farstatus!='' ">
+  		  and status= #{loanInvestQueryVo.farstatus}		
+	    </if>
+	    <if test="loanInvestQueryVo.apply_id!=null and loanInvestQueryVo.apply_id!='' ">
+  		  and apply_id= #{loanInvestQueryVo.apply_id}		
+	    </if>
+  	</trim>
+  </sql>
+  <!-- 分页查询条件 -->
+    <!-- 分页查询记录数 -->
+  <select id="countApplyRecover" resultType="java.lang.Integer">
+  	select count(*) from fu_apply_recover 
+  	<include refid="queryCondition" />  
+  </select>
+   <!-- 分页查询记录数 -->
+   <select id="findRepayByApplyidAndRecoverperiod" resultMap="BaseResultMap">
+    select * from fu_apply_recover
+    where apply_id = #{applyId} and recover_period = #{recoverPeriod}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_apply_recover
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fu_apply_recover
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.fujfu.pojo.apply.ApplyRecoverVO" >
+    insert into fu_apply_recover
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="recoverMoney != null" >
+        recover_money,
+      </if>
+      <if test="recoverInterest != null" >
+        recover_interest,
+      </if>
+      <if test="recoverCapital != null" >
+        recover_capital,
+      </if>
+      <if test="recoverRemain != null" >
+        recover_remain,
+      </if>
+      <if test="recoverPeriod != null" >
+        recover_period,
+      </if>
+      <if test="recoverReqTime != null" >
+        recover_req_time,
+      </if>
+      <if test="recoverDoneTime != null" >
+        recover_done_time,
+      </if>
+      <if test="recoverFee != null" >
+        recover_fee,
+      </if>
+      <if test="recoverTotal != null" >
+        recover_total,
+      </if>
+      <if test="uniqueNo != null" >
+        unique_no,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="relayFee != null" >
+        relay_fee,
+      </if>
+      <if test="aheadFee != null" >
+        ahead_fee,
+      </if>
+      <if test="investId != null" >
+        invest_id,
+      </if>
+      <if test="ordid != null" >
+        ordid,
+      </if>
+      <if test="webPayDoneTime != null" >
+        web_pay_done_time,
+      </if>
+      <if test="isPnrPay != null" >
+        is_pnr_pay,
+      </if>
+      <if test="orignRecoverData != null" >
+        orign_recover_data,
+      </if>
+      <if test="aheadPayDoneTime != null" >
+        ahead_pay_done_time,
+      </if>
+      <if test="valueDate != null">
+		value_date,
+	 </if>
+	<if test="maturityDate != null">
+		maturity_date,
+	</if>
+	<if test="batchSerialno != null">
+		batch_serialno,
+	</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="recoverMoney != null" >
+        #{recoverMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="recoverInterest != null" >
+        #{recoverInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="recoverCapital != null" >
+        #{recoverCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="recoverRemain != null" >
+        #{recoverRemain,jdbcType=DECIMAL},
+      </if>
+      <if test="recoverPeriod != null" >
+        #{recoverPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="recoverReqTime != null" >
+        #{recoverReqTime,jdbcType=INTEGER},
+      </if>
+      <if test="recoverDoneTime != null" >
+        #{recoverDoneTime,jdbcType=INTEGER},
+      </if>
+      <if test="recoverFee != null" >
+        #{recoverFee,jdbcType=VARCHAR},
+      </if>
+      <if test="recoverTotal != null" >
+        #{recoverTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="uniqueNo != null" >
+        #{uniqueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="relayFee != null" >
+        #{relayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="aheadFee != null" >
+        #{aheadFee,jdbcType=DECIMAL},
+      </if>
+      <if test="investId != null" >
+        #{investId,jdbcType=INTEGER},
+      </if>
+      <if test="ordid != null" >
+        #{ordid,jdbcType=INTEGER},
+      </if>
+      <if test="webPayDoneTime != null" >
+        #{webPayDoneTime,jdbcType=INTEGER},
+      </if>
+      <if test="isPnrPay != null" >
+        #{isPnrPay,jdbcType=BIT},
+      </if>
+      <if test="orignRecoverData != null" >
+        #{orignRecoverData,jdbcType=VARCHAR},
+      </if>
+      <if test="aheadPayDoneTime != null" >
+        #{aheadPayDoneTime,jdbcType=INTEGER},
+      </if>
+      <if test="valueDate != null">
+		#{valueDate,jdbcType=INTEGER},
+	</if>
+	<if test="maturityDate != null">
+		#{maturityDate,jdbcType=INTEGER},
+	</if>
+	<if test="batchSerialno != null">
+		#{batchSerialno,jdbcType=INTEGER},
+	</if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.apply.ApplyRecoverVO" >
+    update fu_apply_recover
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="applyId != null" >
+        apply_id = #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="recoverMoney != null" >
+        recover_money = #{recoverMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="recoverInterest != null" >
+        recover_interest = #{recoverInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="recoverCapital != null" >
+        recover_capital = #{recoverCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="recoverRemain != null" >
+        recover_remain = #{recoverRemain,jdbcType=DECIMAL},
+      </if>
+      <if test="recoverPeriod != null" >
+        recover_period = #{recoverPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="recoverReqTime != null" >
+        recover_req_time = #{recoverReqTime,jdbcType=INTEGER},
+      </if>
+      <if test="recoverDoneTime != null" >
+        recover_done_time = #{recoverDoneTime,jdbcType=INTEGER},
+      </if>
+      <if test="recoverFee != null" >
+        recover_fee = #{recoverFee,jdbcType=VARCHAR},
+      </if>
+      <if test="recoverTotal != null" >
+        recover_total = #{recoverTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="uniqueNo != null" >
+        unique_no = #{uniqueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="relayFee != null" >
+        relay_fee = #{relayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="aheadFee != null" >
+        ahead_fee = #{aheadFee,jdbcType=DECIMAL},
+      </if>
+      <if test="investId != null" >
+        invest_id = #{investId,jdbcType=INTEGER},
+      </if>
+      <if test="ordid != null" >
+        ordid = #{ordid,jdbcType=INTEGER},
+      </if>
+      <if test="webPayDoneTime != null" >
+        web_pay_done_time = #{webPayDoneTime,jdbcType=INTEGER},
+      </if>
+      <if test="isPnrPay != null" >
+        is_pnr_pay = #{isPnrPay,jdbcType=BIT},
+      </if>
+      <if test="orignRecoverData != null" >
+        orign_recover_data = #{orignRecoverData,jdbcType=VARCHAR},
+      </if>
+      <if test="aheadPayDoneTime != null" >
+        ahead_pay_done_time = #{aheadPayDoneTime,jdbcType=INTEGER},
+      </if>
+      <if test="valueDate != null">
+		value_date = #{valueDate,jdbcType=INTEGER},
+	</if>
+	<if test="maturityDate != null">
+		maturity_date = #{maturityDate,jdbcType=INTEGER},
+	</if>
+	<if test="batchSerialno != null">
+		batch_serialno = #{batchSerialno,jdbcType=VARCHAR},
+	</if>
+	<if test="repayDoneCapital != null">
+	    repay_done_capital = #{repayDoneCapital,jdbcType=DECIMAL},
+	</if>
+	<if test="repayDoneInterest != null">
+		repay_done_interest = #{repayDoneInterest,jdbcType=DECIMAL},
+	</if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <!--前台我的债权所有债权累计收益，累计代收利息，本金查询 -->
+	<select id="findUserRecoverSumMap" resultMap="userRecoverSumMap">
+		select
+		IFNULL(SUM(far.recover_money),0) as sumreceipts,IFNULL(SUM(far.recover_interest),0) as suminterest,IFNULL(SUM(far.recover_capital),0) as sumcapital
+		from fu_apply_recover far
+		where far.user_id= #{userId}
+		and far.status= #{status}
+	</select>
+   <!--前台我的债权单笔债权累计收益，累计代收利息，本金查询 -->
+	<select id="findUserRecoverSumMap1" resultMap="userRecoverSumMap">
+		select
+		IFNULL(SUM(far.recover_money),0) as sumreceipts,IFNULL(SUM(far.recover_interest),0) as suminterest,IFNULL(SUM(far.recover_capital),0) as sumcapital
+		from fu_apply_recover far
+		where far.user_id= #{userId}
+		and far.status= #{status}
+		and far.invest_id = #{investId}
+	</select>
+  
+	<!-- 前台账户中心交易明细查询分页查询记录数 -->
+	<select id="countUserRecoverTradeDetai" resultType="java.lang.Integer">
+		select count(*)  
+		from fu_apply_recover far
+		where far.user_id= #{userId}
+		<include refid="queryCondition" />  
+	</select>
+	<!-- 根据apply_id和userid查询fu_apply_recover表的用户回款计划分组记录 -->
+	<select id="findRecoverGroupByUserid" resultMap="BaseResultMap">
+		select recover_period, recover_req_time,SUM(recover_capital) as recover_capital,SUM(recover_interest) as recover_interest,SUM(recover_money) as recover_money
+		from fu_apply_recover where apply_id =#{applyId} and user_id =#{userId} GROUP  by recover_period, recover_req_time
+	</select>
+	
+	<!-- 根据标的id查询所有未还的 -->
+	<select id="findAllApplyRecoverByApplyId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from fu_apply_recover
+		where apply_id = #{applyId} and status=0
+	</select>
+	<!-- 批量更新 -->
+	<update id="batchUpdateStatus" parameterType="java.util.List">    
+        update fu_apply_recover set     
+            status=1, recover_done_time=unix_timestamp()  
+        where id in     
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
+            #{item.id}  
+    	</foreach>
+	</update>  
+</mapper>

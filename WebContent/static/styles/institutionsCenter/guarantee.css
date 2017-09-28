@@ -1,0 +1,374 @@
+@charset 'utf-8';
+
+/*机构中心-担保项目页面样式Start*/
+.guarantee_box
+{
+	width: 100%;
+	height: 928px;
+	background: #FFFFFF;
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	border-radius: 2px;
+	margin-top: -24px;
+}
+.guar_titleBox,.advan_title
+{
+	height: 41px;
+	line-height: 41px;
+	background: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	color: #474e5d;
+	border-bottom: 1px solid #b4b4b4;
+}
+.guar_titleBox p,.advan_title p
+{
+	text-align: center;
+	width: 139px;
+}
+.earch_guarBox,.each_advanBox
+{
+	height: 69px;
+	line-height: 69px;
+	border-bottom: 1px solid #eaeaea;
+	cursor: pointer;
+}
+.earch_guarBox:hover,.each_advanBox:hover
+{
+	background: #f2f2f2;
+}
+.earch_guarBox p,.each_advanBox p
+{
+	font-size: 14px;
+	color: #474e5d;
+	width: 139px;
+	text-align: center;
+}
+.delays,.repayment
+{
+	color: #0bf !important;
+	cursor: pointer;
+}
+.page_box
+{
+	bottom: 236px !important;
+}
+/*机构中心-担保项目页面样式End*/
+
+
+
+/*机构中心-待垫付页面样式Start*/
+.advance_searchBox
+{
+	padding: 15px 14px 15px 36px;
+	border-left: 2px solid #f5a623;
+	background: #fff;
+	margin: -24px 0 10px 0;
+}
+.search_div
+{
+	font-size: 14px;
+	color: #666;
+	margin-right: 14px;
+	margin-top: 10px;
+}
+.search_grounp input
+{
+	width: 180px;
+	height: 8px;
+	line-height: 40px;
+	padding: 15px;
+	font-size: 14px;
+	color: #666;
+	outline: none;
+	border-radius: 4px;
+	background: #fff;
+	border:1px solid #d1d1d1;
+	margin-right: 46px;
+}
+.advan_exportBtn
+{
+	width: 110px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #0bf;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #fff;
+	cursor: pointer;
+}
+.advan_contentBox
+{
+	height: 828px;
+	padding-top: 32px;
+	background: #fff;
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	-webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	-ms-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	-moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	border-radius: 2px;
+}
+.advan_borrow_num,.advan_borrow_title,.guar_title,.guar_num
+{
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.advan_page
+{
+	bottom: 140px !important;
+}
+/*机构中心-待垫付页面样式End*/
+
+
+
+/*机构中心-担保详情页面样式Start*/
+.gurDetail_box
+{
+	height: 898px;
+	padding: 30px 0 0 0;
+	background: #fff;
+	margin-top: -24px;
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	-webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	-ms-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	-moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+	border-radius: 2px;
+}
+.gur_borrow_infos
+{
+	padding: 0 39px 10px 32px;
+	border-bottom: 5px solid #d8d8d8;
+}
+.comtitle
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #474e5d;
+	margin-bottom: 10px;
+}
+.gur_hr
+{
+	width: 20px;
+	height: 2px;
+	background: #a4a7af;
+	margin-bottom: 30px;
+}
+.gur_divs
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #474e5d;
+	margin-bottom: 20px;
+}
+.gur_detailp01
+{
+	width: 312px;
+	text-align: left;
+}
+.gur_detailp02
+{
+	width: 272px;
+	text-align: left;
+}
+.repayment_plan_table
+{
+	padding: 30px 0 0 0;
+}
+.repayBox
+{
+	background: #f2f2f2;
+	padding: 18px 0 18px 29px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #474e5d;
+}
+.real_ment,.dai_ment
+{
+	width: 268px;
+	text-align: left;
+}
+.repay_table
+{
+	padding: 0 39px 0 39px;
+}
+.gur_table_title
+{
+	height: 44px;
+	line-height: 44px;
+	border-bottom: 1px solid #b4b4b4;
+	font-size: 14px;
+	color: #474e5d;
+	font-weight: bold;
+}
+.gur_table_title p,.earch_repayBox p
+{
+	width: 180px;
+	text-align: center;
+}
+.earch_repayBox
+{
+	height: 51px;
+	line-height: 51px;
+	font-size: 14px;
+	color: #474e5d;
+	border-bottom: 1px solid #eaeaea;
+	cursor: pointer;
+}
+.earch_repayBox:hover
+{
+	background: #f2f2f2;
+}
+.gurdet_page
+{
+	bottom: 110px !important;
+}
+/*机构中心-担保详情页面样式End*/
+
+
+/*机构中心-交易明细页面样式Start*/
+.instra_chonzhi
+{
+	width: 78px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #0bf;
+    color: #fff;
+    margin: 20px 22px 0 70px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.instra_witrecharge
+{
+	width: 78px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #0bf;
+    border:1px solid #0bf;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.each_tab_tr p,.tra_type_title p,.timeBox_left p
+{
+	font-size: 14px;
+}
+/*机构中心-交易明细页面样式End*/
+
+
+/*机构中心-安全信息页面样式Start*/
+.insper_title
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 2px solid #0bf;
+	font-size: 18px;
+	color: #474e5d;
+}
+.per_headerBox,.per_unameBox
+{
+	margin-top: 20px;
+}
+.insper_title p
+{
+	width: 138px;
+	height: 100%;
+	cursor: pointer;
+	text-align: center;
+}
+.insper_title p.active
+{
+	background: #0bf;
+	color: #fff;
+}
+.enterBg
+{
+	width: 24px;
+    height: 23px;
+    margin-top: 20px;
+    background: url(../../images/userAccount/enterprise.png) no-repeat center;
+}
+.farenBg
+{
+	width: 21px;
+    height: 23px;
+    margin-top: 20px;
+    background: url(../../images/userAccount/enter_name.png) no-repeat center;
+}
+.enterpriseInfos
+{
+	padding: 60px 27px 200px 12px;
+}
+.con_ent_title
+{
+	width: 110px;
+	text-align: left;
+	font-size: 16px;
+	font-weight: bold;
+	color: #474e5d;
+}
+.ent_hr
+{
+	width: 20px;
+	height: 2px;
+	background: #a4a7af;
+	margin-top: 12px;
+}
+.entInfoBox
+{
+	margin-bottom: 49px;
+}
+.businessBox
+{
+	margin-bottom: 73px;
+}
+.shesuBox
+{
+	margin-bottom: 78px;
+}
+.con_ent_contxt
+{
+	width: 746px;
+	font-size: 14px;
+	color: #666;
+}
+.con_ent_contxt p
+{
+	line-height: 24px;
+}
+/*机构中心-安全信息页面样式End*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.iDate_item03_bg
+{
+	width: 35px;
+	height: 37px;
+	background: url(../../images/userAccount/award.png) no-repeat center;
+}
+

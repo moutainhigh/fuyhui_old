@@ -1,0 +1,573 @@
+@charset 'utf-8';
+/*充值页面样式Start*/
+.warp_account_center
+{
+	padding-bottom: 40px !important;
+}
+.rech_rigBotContent_box,.wit_rigBotContent_box
+{
+	padding: 0 0 122px 0;
+    background: #fff;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+    -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+    -moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+    -ms-box-shadow: 0 0 5px 0 rgba(0,0,0,0.30);
+    margin-top: -24px;
+	border-radius: 2px;
+	border:1px solid #d7d7d7 \9;
+}
+.rech_tab_title
+{
+	height: 50px;
+	line-height: 50px;
+	font-size: 18px;
+	color: #474e5d;
+	border-bottom: 2px solid #0bf;
+}
+.rech_tab_title p
+{
+	width: 138px;
+	height: 100%;
+	text-align: center;
+	cursor: pointer;
+}
+.rech_tab_title p.active
+{
+	background: #0bf;
+	color: #fff;
+}
+.tup_up_area
+{
+	padding:0 55px;
+}
+#quick_content,#eb_content
+{
+	height: 480px;
+	padding-left: 81px;
+}
+.bind_card
+{
+	width: 280px;
+	height: 52px;
+	line-height: 52px;
+	text-align: center;
+	background: #0bf;
+	font-size: 18px;
+	color: #fff;
+	border-radius: 8px;
+	cursor: pointer;
+	margin-top: 71px;
+}
+.bank_comment_box
+{
+	padding-top: 24px;
+	padding-left: 16px;
+	border-top: 1px solid #eaeaea;
+}
+.bank_comment_box h3
+{
+	font-size: 18px;
+	color: #666;
+}
+.bank_txt_item
+{
+	margin-top: 20px;
+	font-size: 12px;
+	color: #666;
+}
+.relbind_bank_top
+{
+	margin: 61px 0 50px 0;
+	height: 78px;
+	width: 500px;
+	border:1px solid #0bf;
+	position: relative;
+}
+.com_bank_icon
+{
+	width: 50px;
+	height: 50px;
+	margin: 15px;
+}
+/*建行*/
+.bakn_jh
+{
+	background: url(../../images/bank/jianhang.png) no-repeat center;
+}
+/*工行*/
+.bakn_gh
+{
+	background: url(../../images/bank/gongshang.png) no-repeat center;
+}
+/*光大*/
+.bakn_gd
+{
+	background: url(../../images/bank/guangda.png) no-repeat center;
+}
+/*广发*/
+.bakn_gf
+{
+	background: url(../../images/bank/guangfa.png) no-repeat center;
+}
+/*恒丰*/
+.bakn_hf
+{
+	background: url(../../images/bank/henghang.png) no-repeat center;
+}
+/*华夏*/
+.bakn_hx
+{
+	background: url(../../images/bank/huaxia.png) no-repeat center;
+}
+/*交通银行*/
+.bakn_jt
+{
+	background: url(../../images/bank/jiaohang.png) no-repeat center;
+}
+/*民生银行*/
+.bakn_ms
+{
+	background: url(../../images/bank/mingsheng.png) no-repeat center;
+}
+/*农行*/
+.bakn_nh
+{
+	background: url(../../images/bank/nonghang.png) no-repeat center;
+}
+/*其他农村银行*/
+.bakn_otherNh
+{
+	background: url(../../images/bank/otherhang.png) no-repeat center;
+}
+/*平安银行*/
+.bakn_pa
+{
+	background: url(../../images/bank/pingan.png) no-repeat center;
+}
+/*浦发银行*/
+.bakn_pf
+{
+	background: url(../../images/bank/pufa.png) no-repeat center;
+}
+/*微商银行*/
+.bakn_ws
+{
+	background: url(../../images/bank/weishang.png) no-repeat center;
+}
+/*兴业银行*/
+.bakn_xy
+{
+	background: url(../../images/bank/xingye.png) no-repeat center;
+}
+/*邮政银行*/
+.bakn_yz
+{
+	background: url(../../images/bank/youchu.png) no-repeat center;
+}
+/*招商银行*/
+.bakn_zs
+{
+	background: url(../../images/bank/zhaohang.png) no-repeat center;
+}
+/*中行*/
+.bakn_zh
+{
+	background: url(../../images/bank/zhonghang.png) no-repeat center;
+}
+/*中信*/
+.bakn_zx
+{
+	background: url(../../images/bank/zhongxin.png) no-repeat center;
+}
+/*上海农村商业银行*/
+.shny
+{
+	background: url(../../images/bank/shnongye.png) no-repeat center;
+}
+/*洛阳市商业银行*/
+.nuoyangsy_img
+{
+	background: url(../../images/bank/nynongye.png) no-repeat center;
+}
+/*北京银行*/
+.beijing_img
+{
+	background: url(../../images/bank/bjing.png) no-repeat center;
+}
+/*宁波银行*/
+.nbobank
+{
+	background: url(../../images/bank/ningbo.png) no-repeat center;
+}
+/*天津银行*/
+.tianjing
+{
+	background: url(../../images/bank/tianjing.png) no-repeat center;
+}
+.bank_title,.witbank_title
+{
+	margin: 28px 44px 0 0;
+	font-size: 18px;
+	color: #323232;
+	font-weight: bold;
+}
+.bank_hr
+{
+	margin: 16px 33px 0 0;
+	width: 2px;
+	height: 48px;
+	background: #ccc;
+	opacity: .5;
+	filter:alpha(opacity=50);
+}
+.bank_infose,.witbank_infose
+{
+	margin-top: 22px;
+	font-size: 20px;
+	color: #323232;
+	line-height: 20px;
+}
+.bank_id_name,.witbank_id_name
+{
+	font-size: 12px;
+	color: #323232;
+	margin-left: 2px;
+	margin-top: 3px;
+}
+.bank_ids,.witbank_ids
+{
+	height: 20px;
+	line-height: 20px;
+}
+.bank_right
+{
+	position: absolute;
+	bottom: 0;
+	right: -1px;
+	width: 29px;
+	height: 30px;
+	background: url(../../images/userAccount/yes02.png) no-repeat center;
+}
+.relbind_bank_middle
+{
+	margin-bottom: 38px;
+	font-size: 16px;
+}
+.relbind_bank_middle span:first-child
+{
+	font-size: 14px !important;
+	color: #323232;
+	margin-right: 12px;
+}
+.bank_balance
+{
+	color: #ff5353;
+}
+.re_error,.eb_error
+{
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	color: #ff5353;
+	margin-left: 72px;
+}
+.relbind_bank_bot p,.ebank_middle p
+{
+	font-size: 14px;
+	color:#323232;
+	margin-right: 16px;
+	margin-top: 12px;
+}
+.top_up_amount,.ebtop_up_amount,.withdrawal_amount
+{
+	width: 256px;
+	height: 18px;
+	line-height: 42px;
+	padding: 11px 0 11px 15px;
+	outline: none;
+	background: #FFFFFF;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #666;
+	margin-right: 16px;
+}
+.bot_infos,.ebbot_infos
+{
+	margin-top: 12px;
+	font-size: 16px;
+}
+.bot_infos span:first-child,.ebbot_infos span:first-child
+{
+	font-size: 14px !important;
+	color: #323232;
+	margin-right: 12px;
+}
+.hand_cost,.ebhand_cost,.wit_cost
+{
+	color: #ff5353;
+}
+.confirm_top_up,.eb_top_upBtn
+{
+	width: 273px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+	background: #00BBFF;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 72px;
+	border:0;
+}
+.confirm_top_up input
+{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	border:0;
+	background: #0bf;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	line-height: 42px;
+}
+
+.eb_balance
+{
+	margin: 91px 0 38px 0;
+	font-size: 16px;
+}
+.eb_balance span:first-child
+{
+	font-size: 14px !important;
+	color: #323232;
+	margin-right: 12px;
+}
+.eb_balance_amount
+{
+	color: #ff5353;
+}
+#rec_fade
+{
+	width: 100%;
+    height: 1000px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: .25;
+    filter: alpha(opacity=25);
+    z-index: 11;
+}
+.recharge_window
+{
+	width: 520px;
+	height: 265px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -132.5px;
+	margin-left: -260px;
+	background: #FFFFFF;
+	box-shadow: 0 20px 64px 0 rgba(0,0,0,0.50);
+	-webkit-box-shadow: 0 20px 64px 0 rgba(0,0,0,0.50);
+	-moz-box-shadow: 0 20px 64px 0 rgba(0,0,0,0.50);
+	-ms-box-shadow: 0 20px 64px 0 rgba(0,0,0,0.50);
+	border-radius: 20px;
+	display: none;
+	z-index: 12;
+}
+.rec_titles
+{
+	padding: 20px 20px 20px 37px;
+	border-bottom: 1px solid #efefef;
+}
+.rec_titles h3
+{
+	font-size: 24px;
+	color: #666;
+}
+.rec_closes
+{
+	width: 19px;
+	height: 19px;
+	cursor: pointer;
+	background: url(../../images/userAccount/normal_close.png) no-repeat center;
+}
+.rec_closes:hover
+{
+	background: url(../../images/userAccount/hover_close.png) no-repeat center;
+}
+.rec_content
+{
+	padding: 30px 72px 30px 63px;
+}
+.alertImg
+{
+	width: 50px;
+	height: 46px;
+	background: url(../../images/userAccount/alertInfo.png) no-repeat center;
+}
+.alertTxt
+{
+	width: 300px;
+	margin-left: 35px;
+	font-size: 16px;
+	color: #666;
+	line-height: 24px;
+}
+.rec_btns
+{
+	margin: 0 120px 0 150px;
+}
+.rec_success
+{
+	width: 110px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	background: #00BBFF;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #fff;
+	margin-right: 28px;
+	cursor: pointer;
+}
+.rec_question
+{
+	width: 110px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	border:1px solid #00BBFF;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #0bf;
+	cursor: pointer;
+}
+.ee_bank_box
+{
+	margin-left: 81px;
+	padding-bottom: 428px;
+}
+.tab
+{
+	width: 520px;
+	margin-top: 20px;
+	font-size: 12px;
+	color: #666;
+	border:1px solid #999;
+	border-collapse: collapse;
+}
+tr,td,th
+{
+	text-align: center;
+	border:1px solid #999;
+	height: 30px;
+}
+.w_tab
+{
+	margin-top: 20px;
+	font-size: 12px;
+	color: #666;
+	border:1px solid #999;
+	border-collapse: collapse;
+}
+.w_tab td
+{
+	width: 60px;
+}
+.t_width
+{
+	width: 70px;
+}
+/*充值页面样式End*/
+
+
+
+/*提现页面样式Start*/
+.wit_bank_increment
+{
+	padding: 106px 0 55px 0;
+}
+.wit_bank_increment p
+{
+	font-size: 14px;
+	color: #323232;
+	margin-right: 15px;
+	margin-top: 14px;
+}
+.open_accmount
+{
+	width: 280px;
+	height: 52px;
+	line-height: 52px;
+	text-align: center;
+	cursor: pointer;
+	background: #00BBFF;
+	border-radius: 8px; 
+	font-size: 18px;
+	color: #fff;
+}
+.relbind_bank_bot p
+{
+	font-size: 14px;
+    color: #323232;
+    margin-right: 16px;
+    margin-top: 12px;
+}
+.wit_error
+{
+	height: 28px;
+	line-height: 28px;
+	font-size: 12px;
+	color: #ff5353;
+	padding-left: 73px;
+}
+.confirm_withdrawal
+{
+	width: 273px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+	background: #00BBFF;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 72px;
+	margin-bottom: 117px;
+}
+#wit_input
+{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	font-size: 18px;
+	color: #fff;
+	background: #00BBFF;
+	border-radius: 4px;
+	cursor: pointer;
+	border:0;
+}
+#wit_content
+{
+	padding: 0 0 117px 41px;
+	height: 480px;
+}
+.witBind_bank_top
+{
+	margin: 0 0 40px 0;
+    height: 78px;
+    width: 500px;
+    border: 1px solid #0bf;
+    position: relative;
+}
+/*提现页面样式End*/
+
+
+

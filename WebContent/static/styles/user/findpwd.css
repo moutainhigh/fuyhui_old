@@ -1,0 +1,156 @@
+@charset 'utf-8';
+.find_pwd_area
+{
+	width: 100%;
+	background: #fff;
+}
+.find_pwd_box
+{
+	width: 1170px;
+	margin: 0 auto;
+}
+.authenticate
+{
+	width: 100%;
+	padding: 80px 0 142px 0;
+	display: block;
+}
+.authenticate p
+{
+	width: 460px;
+	height: 85px;
+	background: url(../../images/user/step01.png) no-repeat center;
+	margin: 0 0 55px 349px;
+}
+.groups_div
+{
+	width: 350px;
+	margin-left: 408px;
+    position: relative;
+}
+.check_txt
+{
+	width: 318px;
+    height: 18px;
+    background: #fff;
+    padding: 11px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    outline: none;
+}
+.check_txt:hover
+{
+	border: 1px solid #00a0e9;
+}
+/*错误提示语的样式*/
+.check_tips,.reset_tips
+{
+	height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #ff1c1c;
+    padding-left: 13px;
+}
+/*信息填写失败时的输入框边框样式*/
+.error
+{
+	border: 1px solid #ff1c1c !important;
+}
+/*信息填写成功时显示的图片样式*/
+.check_success
+{
+	position: absolute;
+	top: 15px;
+	right: -19px;
+	display: inline-block;
+	width: 14px;
+	height: 11px;
+	background: url(../../images/user/register_success.png) no-repeat center;
+}
+/*信息填写失败时显示的图片样式*/
+.check_error
+{
+	position: absolute;
+	top: 15px;
+	right: -19px;
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background: url(../../images/user/register_error.png) no-repeat center;
+}
+.code_box
+{
+	width: 90px;
+    height: 32px;
+    line-height: 32px;
+    background: #ccc;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.phone_codeBtn
+{
+	position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 90px;
+    height: 32px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 4px;
+    background: #7ED321;
+    font-size: 14px;
+    color: #fff;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+.next_btn,.reset_nextBtn,.complete_btn
+{
+	width: 350px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    background: #00BBFF;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 408px;
+}
+
+.resetCode
+{
+	display: none;
+	width: 100%;
+	padding: 80px 0 210px 0;
+}
+.resetCode p
+{
+	width: 461px;
+	height: 85px;
+	background: url(../../images/user/step02.png) no-repeat center;
+	margin: 0 0 55px 349px;	
+}
+.complete
+{
+	display: none;
+	width: 100%;
+    padding: 80px 0 276px 0;
+}
+.complete p
+{
+	width: 459px;
+	height: 85px;
+	background: url(../../images/user/step03.png) no-repeat center;
+	margin: 0 0 55px 349px;	
+}
+.complete h6
+{
+	font-size: 16px;
+	color: #5b5a68;
+	margin: 53px 0 53px 512px;
+}

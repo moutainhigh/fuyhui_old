@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fujfu.dao.user.UserMapper">
+	<resultMap id="BaseResultMap" type="com.fujfu.pojo.user.UserVO">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="affix" property="affix" jdbcType="VARCHAR" />
+		<result column="card_type" property="cardType" jdbcType="BIT" />
+		<result column="card_id" property="cardId" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="ever_upd_username" property="everUpdUsername"
+			jdbcType="BIT" />
+		<result column="vip" property="vip" jdbcType="BIT" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+		<result column="errornum" property="errornum" jdbcType="TINYINT" />
+		<result column="is_lock" property="isLock" jdbcType="INTEGER" />
+		<result column="lock_time" property="lockTime" jdbcType="INTEGER" />
+		<result column="uniqid" property="uniqid" jdbcType="CHAR" />
+		<result column="app_uniqid" property="appUniqid" jdbcType="CHAR" />
+		<result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+		<result column="target" property="target" jdbcType="VARCHAR" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		<result column="reg_ip" property="regIp" jdbcType="CHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="login_times" property="loginTimes" jdbcType="BIT" />
+		<result column="last_login_time" property="lastLoginTime"
+			jdbcType="INTEGER" />
+		<result column="reg_area" property="regArea" jdbcType="VARCHAR" />
+		<result column="created" property="created" jdbcType="INTEGER" />
+		<result column="city_id" property="city_id" jdbcType="VARCHAR" />
+		<result column="parent_bank_id" property="parent_bank_id" jdbcType="VARCHAR" />
+		<result column="bank_nm" property="bank_nm" jdbcType="VARCHAR" />
+		<result column="capAcntNo" property="capAcntNo" jdbcType="VARCHAR" />
+		<result column="userType" property="userType" jdbcType="VARCHAR" />
+		<result column="corpName" property="corpName" jdbcType="VARCHAR" />
+		<result column="country_id" property="country_id" jdbcType="VARCHAR" />
+		<result column="corp_intro" property="corpIntro" jdbcType="VARCHAR" />
+		<result column="bus_situation" property="busSituation" jdbcType="VARCHAR" />
+		<result column="jzhloginid" property="jzhloginid" jdbcType="VARCHAR" />
+		<result column="userNameStatus" property="userNameStatus" jdbcType="INTEGER" />
+		<result column="countryCode1" property="countryCode1" jdbcType="VARCHAR" />
+		<result column="countryCode2" property="countryCode2" jdbcType="VARCHAR" />
+		<result column="countryCode3" property="countryCode3" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="startUserName" property="startUserName" jdbcType="VARCHAR" />	
+		<result column="is_inside" property="isInside" jdbcType="INTEGER" />
+		<result column="contact_person" property="contactPerson" jdbcType="VARCHAR" />
+		<result column="contact_mobile" property="contactMobile" jdbcType="VARCHAR" />
+		<result column="assessment_result" property="assessmentResult" jdbcType="VARCHAR" />
+		<result column="card_id_pic" property="cardPic" jdbcType="VARCHAR" />
+		<result column="bank_card_pic" property="bankCardPic" jdbcType="VARCHAR" />
+		<result column="card2_id_pic" property="card2Pic" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="findAllUserId" resultType="int">
+		select user_id from
+		fu_users
+	</select>
+	<!-- 分页查询条件 -->
+	<sql id="queryCondition">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="userQueryVo.mobile!=null and userQueryVo.mobile!=''">
+				and mobile like "%"#{userQueryVo.mobile}"%"
+			</if>
+			<if test="userQueryVo.startTime!=null and userQueryVo.startTime!=''">
+    <![CDATA[  and created >= #{userQueryVo.startTime}]]>
+			</if>
+			<if test="userQueryVo.endTime!=null and userQueryVo.endTime!=''">
+    <![CDATA[  and created <= #{userQueryVo.endTime}]]>
+			</if>
+			<if test="userQueryVo.userType!=null and userQueryVo.userType!=''">
+    			and userType = #{userQueryVo.userType}
+			</if>
+			<if test="userQueryVo.corpName!=null and userQueryVo.corpName!=''">
+    <![CDATA[  and corpName = #{userQueryVo.corpName}]]>
+			</if>
+			<if test="userQueryVo.userName!=null and userQueryVo.userName!=''">
+    <![CDATA[  and userName = #{userQueryVo.userName}]]>
+			</if>
+		</trim>
+	</sql>
+	<!-- 分页查询 -->
+	<select id="findUser" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from fu_users
+		<include refid="queryCondition" />
+		order by created desc limit
+		#{page.startOfPage},#{page.pageSize}
+	</select>
+	<!-- 分页查询记录数 -->
+	<select id="countUser" resultType="java.lang.Integer">
+		select count(*) from fu_users <include refid="queryCondition" />
+	</select>
+	<!-- 通过用户id查询用户信息 -->
+	<select id="getUserByUserId" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from fu_users
+		where user_id = #{userId}
+	</select>
+	<!-- 通过用户手机号查询用户信息 -->
+	<select id="getUserByMobile" parameterType="String" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from fu_users where mobile = #{mobile}
+	</select>
+	<!-- 验证邮箱是否已注册 -->
+	<select id="getCountByEmail" parameterType="String" resultType="java.lang.Integer">
+		select count(id) from fu_users where email = #{email}
+	</select>
+	<!-- 根据富友登录号查询user信息 -->
+	<select id="getUserByjzhLoginId" parameterType="String" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from fu_users where jzhloginid = #{jzhloginid}
+	</select>
+	<!-- 通过标的id查询用户信息 -->
+	<select id="findInvestorByBidId" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from
+		fu_users where user_id in
+		(select user_id from fu_loan_investment where
+		apply_id=#{applyId})
+	</select>
+	<!-- 修改用户密码 -->
+	<update id="updatePassword" parameterType="com.fujfu.pojo.user.UserVO">
+		update fu_users set
+		password = #{password}
+		where
+		mobile = #{mobile}
+	</update>
+	<!-- 检查用户名和手机号码是否匹配 -->
+	<select id="checkUserMatchMobile" parameterType="String"
+		resultType="int">
+		select count(username) from fu_users where username =
+		#{username} and mobile
+		= #{mobile}
+	</select>
+	<!-- 检查用户是否存在 -->
+	<select id="checkUserExist" parameterType="String" resultType="int">
+		select count(username) from fu_users where username = #{username}
+	</select>
+	<!-- 检查证件号是否存在 -->
+	<select id="checkCardIdExist" parameterType="String" resultType="int">
+		select count(user_id) from fu_users where card_type = #{cardType} and card_id=#{cardId}
+	</select>
+	<!-- 用户登录 -->
+	<select id="userLogin" parameterType="String" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> 
+		from fu_users
+		where
+		(username = #{username} and password = #{password})
+		or
+		(mobile = #{username} and password = #{password})
+	</select>
+	<!-- 检查用户名是否存在 -->
+	<select id="checkUsername" parameterType="String" resultType="java.lang.Integer">
+		select count(username) from fu_users where username = #{username}
+	</select>
+	<!-- 检查手机号是否存在 -->
+	<select id="checkMobile" parameterType="String" resultType="java.lang.Integer">
+		select count(mobile) from fu_users where mobile = #{mobile}
+	</select>
+	<!-- 检查企业名称是否存在 -->
+	<select id="checkUserCorpNameExist" parameterType="String" resultType="int">
+		select count(user_id) from fu_users where corpName = #{corpName}
+	</select>
+	<!-- 检查银行卡号是否存在 -->
+	<select id="checkUserActnoExist" parameterType="String" resultType="int">
+		select count(user_id) from fu_users where capAcntNo = #{capAcntNo}
+	</select>
+	<!-- 根据用户类型查询用户信息 -->
+	<select id="findUserByType" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from fu_users where userType = #{userType}
+	</select>
+
+	<sql id="Base_Column_List">
+		user_id, username, password, realname, card_id, mobile,
+		email, status,
+		ever_upd_username,
+		vip, score, errornum, is_lock,
+		lock_time, uniqid, app_uniqid,
+		pay_password,
+		target,
+		avatar, reg_ip,
+		country, province, city, login_times, last_login_time,
+		reg_area,
+		created,
+		city_id,
+		parent_bank_id,
+		bank_nm,
+		capAcntNo,
+		userType,
+		corpName,
+		country_id,
+		corp_intro,
+		bus_situation,jzhloginid,userNameStatus ,countryCode1,countryCode2,countryCode3,address,startUserName,is_inside,card_type,contact_person,contact_mobile,assessment_result,card_id_pic,bank_card_pic,card2_id_pic  
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="com.fujfu.pojo.user.UserVO">
+		select
+		<include refid="Base_Column_List" />
+		from fu_users
+		where user_id = #{userId,jdbcType=INTEGER}
+		and password =
+		#{password,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="com.fujfu.pojo.user.UserVO">
+		delete from
+		fu_users
+		where user_id = #{userId,jdbcType=INTEGER}
+		and password =
+		#{password,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" useGeneratedKeys="true" keyProperty="userId" parameterType="com.fujfu.pojo.user.UserVO">
+		insert into fu_users
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="realname != null">
+				realname,
+			</if>
+			<if test="cardId != null">
+				card_id,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="everUpdUsername != null">
+				ever_upd_username,
+			</if>
+			<if test="vip != null">
+				vip,
+			</if>
+			<if test="score != null">
+				score,
+			</if>
+			<if test="errornum != null">
+				errornum,
+			</if>
+			<if test="isLock != null">
+				is_lock,
+			</if>
+			<if test="lockTime != null">
+				lock_time,
+			</if>
+			<if test="uniqid != null">
+				uniqid,
+			</if>
+			<if test="appUniqid != null">
+				app_uniqid,
+			</if>
+			<if test="payPassword != null">
+				pay_password,
+			</if>
+			<if test="target != null">
+				target,
+			</if>
+			<if test="avatar != null">
+				avatar,
+			</if>
+			<if test="regIp != null">
+				reg_ip,
+			</if>
+			<if test="country != null">
+				country,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="loginTimes != null">
+				login_times,
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time,
+			</if>
+			<if test="regArea != null">
+				reg_area,
+			</if>
+			<if test="affix != null">
+				affix,
+			</if>
+			<if test="cardType != null">
+				card_type,
+			</if>
+			<if test="created != null">
+				created,
+			</if>
+			<if test="city_id != null">
+				city_id,
+			</if>
+			<if test="parent_bank_id != null">
+				parent_bank_id,
+			</if>
+			<if test="bank_nm != null">
+				bank_nm,
+			</if>
+			<if test="capAcntNo != null">
+				capAcntNo,
+			</if>
+			<if test="userType != null">
+				userType,
+			</if>
+			<if test="corpName != null">
+				corpName,
+			</if>
+			<if test="corpName != null">
+				country_id,
+			</if>
+			<if test="corpIntro != null">
+				corp_intro,
+			</if>
+			<if test="busSituation != null">
+				bus_situation,
+			</if>
+			<if test="jzhloginid != null">
+				jzhloginid,
+			</if>
+			<if test="startUserName != null">
+				startUserName,
+			</if>
+			<if test="isInside != null">
+				is_inside,
+			</if>
+			<if test="contactPerson != null">
+				contact_person,
+			</if>
+			<if test="contactMobile != null">
+				contact_mobile,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="assessmentResult != null">
+				assessment_result,
+			</if>
+			<if test="cardPic != null">
+				card_id_pic,
+			</if>
+			<if test="bankCardPic != null">
+				bank_card_pic,
+			</if>
+			<if test="card2Pic != null">
+				card2_id_pic,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				#{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="cardId != null">
+				#{cardId,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="everUpdUsername != null">
+				#{everUpdUsername,jdbcType=BIT},
+			</if>
+			<if test="vip != null">
+				#{vip,jdbcType=BIT},
+			</if>
+			<if test="score != null">
+				#{score,jdbcType=INTEGER},
+			</if>
+			<if test="errornum != null">
+				#{errornum,jdbcType=TINYINT},
+			</if>
+			<if test="isLock != null">
+				#{isLock,jdbcType=INTEGER},
+			</if>
+			<if test="lockTime != null">
+				#{lockTime,jdbcType=INTEGER},
+			</if>
+			<if test="uniqid != null">
+				#{uniqid,jdbcType=CHAR},
+			</if>
+			<if test="appUniqid != null">
+				#{appUniqid,jdbcType=CHAR},
+			</if>
+			<if test="payPassword != null">
+				#{payPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="target != null">
+				#{target,jdbcType=VARCHAR},
+			</if>
+			<if test="avatar != null">
+				#{avatar,jdbcType=VARCHAR},
+			</if>
+			<if test="regIp != null">
+				#{regIp,jdbcType=CHAR},
+			</if>
+			<if test="country != null">
+				#{country,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTimes != null">
+				#{loginTimes,jdbcType=BIT},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=INTEGER},
+			</if>
+			<if test="regArea != null">
+				#{regArea,jdbcType=VARCHAR},
+			</if>
+			<if test="affix != null">
+				#{affix,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				#{cardType,jdbcType=BIT},
+			</if>
+			<if test="created != null">
+				#{created,jdbcType=INTEGER},
+			</if>
+			<if test="city_id != null">
+			    #{city_id,jdbcType=VARCHAR},
+			</if>
+			<if test="parent_bank_id != null">
+		        #{parent_bank_id,jdbcType=VARCHAR},
+		    </if>
+		    <if test="bank_nm != null">
+		        #{bank_nm,jdbcType=VARCHAR},
+		    </if>
+		    <if test="capAcntNo != null">
+		        #{capAcntNo,jdbcType=VARCHAR},
+		    </if>
+		    <if test="userType != null">
+		        #{userType,jdbcType=VARCHAR},
+		    </if>
+		     <if test="corpName != null">
+		        #{corpName,jdbcType=VARCHAR},
+		    </if>
+            <if test="country_id != null">
+		        #{country_id,jdbcType=VARCHAR},
+		    </if>
+			 <if test="corpIntro != null">
+		        #{corpIntro,jdbcType=VARCHAR},
+		    </if>
+            <if test="busSituation != null">
+		        #{busSituation,jdbcType=VARCHAR},
+		    </if>
+		     <if test="jzhloginid != null">
+		        #{jzhloginid,jdbcType=VARCHAR},
+		    </if>
+		    <if test="startUserName != null">
+		        #{startUserName,jdbcType=VARCHAR},
+		    </if>
+		    <if test="isInside != null">
+				#{is_inside,jdbcType=INTEGER},
+			</if>
+			<if test="contactPerson != null">
+				#{contactPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="contactMobile != null">
+				#{contactMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="assessmentResult != null">
+				#{assessmentResult,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPic != null">
+				#{card_id_pic,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCardPic != null">
+				#{bank_card_pic,jdbcType=VARCHAR},
+			</if>
+			<if test="card2Pic != null">
+				#{card2_id_pic,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fujfu.pojo.user.UserVO">
+		update fu_users
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				realname = #{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="cardId != null">
+				card_id = #{cardId,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="everUpdUsername != null">
+				ever_upd_username = #{everUpdUsername,jdbcType=BIT},
+			</if>
+			<if test="vip != null">
+				vip = #{vip,jdbcType=BIT},
+			</if>
+			<if test="score != null">
+				score = #{score,jdbcType=INTEGER},
+			</if>
+			<if test="errornum != null">
+				errornum = #{errornum,jdbcType=TINYINT},
+			</if>
+			<if test="isLock != null">
+				is_lock = #{isLock,jdbcType=INTEGER},
+			</if>
+			<if test="lockTime != null">
+				lock_time = #{lockTime,jdbcType=INTEGER},
+			</if>
+			<if test="uniqid != null">
+				uniqid = #{uniqid,jdbcType=CHAR},
+			</if>
+			<if test="appUniqid != null">
+				app_uniqid = #{appUniqid,jdbcType=CHAR},
+			</if>
+			<if test="payPassword != null">
+				pay_password = #{payPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="target != null">
+				target = #{target,jdbcType=VARCHAR},
+			</if>
+			<if test="avatar != null">
+				avatar = #{avatar,jdbcType=VARCHAR},
+			</if>
+			<if test="regIp != null">
+				reg_ip = #{regIp,jdbcType=CHAR},
+			</if>
+			<if test="country != null">
+				country = #{country,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTimes != null">
+				login_times = #{loginTimes,jdbcType=BIT},
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time = #{lastLoginTime,jdbcType=INTEGER},
+			</if>
+			<if test="regArea != null">
+				reg_area = #{regArea,jdbcType=VARCHAR},
+			</if>
+			<if test="affix != null">
+				affix = #{affix,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				card_type = #{cardType,jdbcType=BIT},
+			</if>
+			<if test="created != null">
+				created = #{created,jdbcType=INTEGER},
+			</if>
+			<if test="city_id != null">
+			   city_id = #{city_id,jdbcType=VARCHAR},
+			</if>
+			<if test="parent_bank_id != null">
+			   parent_bank_id = #{parent_bank_id,jdbcType=VARCHAR},
+		    </if>
+		    <if test="bank_nm != null">
+		       bank_nm = #{bank_nm,jdbcType=VARCHAR},
+		    </if>
+		    <if test="capAcntNo != null">
+		       capAcntNo = #{capAcntNo,jdbcType=VARCHAR},
+		    </if>
+		    <if test="userType != null">
+		       userType = #{userType,jdbcType=VARCHAR},
+		    </if>
+		     <if test="corpName != null">
+		       corpName = #{corpName,jdbcType=VARCHAR},
+		    </if>
+		    <if test="country_id != null">
+		       country_id = #{country_id,jdbcType=VARCHAR},
+		    </if>
+			<if test="corpIntro != null">
+		       corp_intro = #{corpIntro,jdbcType=VARCHAR},
+		    </if>
+		    <if test="busSituation != null">
+		       bus_situation = #{busSituation,jdbcType=VARCHAR},
+		    </if>
+		    <if test="jzhloginid != null">
+		       jzhloginid = #{jzhloginid,jdbcType=VARCHAR},
+		    </if>
+		    <if test="userNameStatus != null">
+		       userNameStatus = #{userNameStatus,jdbcType=INTEGER},
+		    </if>
+		    <if test="countryCode1 != null">
+		       countryCode1 = #{countryCode1,jdbcType=VARCHAR},
+		    </if>
+		    <if test="countryCode2 != null">
+		       countryCode2 = #{countryCode2,jdbcType=VARCHAR},
+		    </if>
+		    <if test="countryCode3 != null">
+		       countryCode3 = #{countryCode3,jdbcType=VARCHAR},
+		    </if>
+		    <if test="address != null">
+		       address = #{address,jdbcType=VARCHAR},
+		    </if>
+		     <if test="contactPerson != null">
+		       contact_person = #{contactPerson,jdbcType=VARCHAR},
+		    </if>
+		     <if test="contactMobile != null">
+		       contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+		    </if>
+		   <if test="address != null">
+		       address = #{address,jdbcType=VARCHAR},
+		    </if>
+		    <if test="assessmentResult != null">
+		       assessment_result = #{assessmentResult,jdbcType=VARCHAR},
+		    </if>
+		    <if test="isInside != null">
+		       is_inside = #{isInside},
+		    </if>
+		     <if test="cardPic != null">
+		       card_id_pic = #{cardPic},
+		    </if>
+		     <if test="bankCardPic != null">
+		       bank_card_pic = #{bankCardPic},
+		    </if>
+		    <if test="card2Pic != null">
+		       card2_id_pic = #{card2Pic},
+		    </if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+</mapper>

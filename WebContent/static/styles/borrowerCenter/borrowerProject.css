@@ -1,0 +1,74 @@
+@charset 'utf-8';
+p,span{margin: 0;padding: 0;}
+.fl{float: left;}
+/*借款项目*/
+.loancon
+{
+	width: 978px;
+	height: 928px;
+	background: #FFFFFF;
+    box-shadow: 0px 11px 40px -2px #bbb;
+    -webkit-box-shadow: 0px 11px 40px -2px #bbb;
+    -moz-box-shadow: 0px 11px 40px -2px #bbb;
+    -ms-box-shadow: 0px 11px 40px -2px #bbb;
+    margin-top: -24px;
+}
+.loancon .loanpro-tab{width: 100%;color: #474E5D;font-size: 14px;text-align: center;border-collapse: collapse;}
+.loancon .loanpro-tab thead tr{width: 100%;height: 40px;}
+.loancon .loanpro-tab thead tr th{border-bottom: 1px solid #B4B4B4;}
+.loancon .loanpro-tab tbody tr{width: 100%;height: 70px;}
+.loancon .loanpro-tab tbody tr:hover{background: #F2F2F2;cursor: pointer;}
+.loancon .loanpro-tab tbody tr td{border-bottom: 1px solid #EAEAEA;}
+.loancon .loanpro-tab tbody tr td.status{color: #00BBFF;}
+
+
+
+
+/*借款项目-详情*/
+.loancon .loan-info{ padding-left: 32px;padding-right: 32px;width: 914px;height: 218px;border-bottom: 5px solid #D8D8D8;}
+.loancon .ploan{padding-top: 30px;font-size: 16px;color: #474E5D;margin-bottom: 14px;}
+.loancon .bor-loan{width: 18px;height: 2px;background: #474E5D;}
+.loancon .loan-info .loaninfo-con{width:100%;height: auto;margin-top: 21px;}
+.loancon .loaninfo-con .con{width: 218px;height: 108px;color:#666666;font-size: 14px;line-height: 36px;margin-right: 82px;}
+.loancon-detail .repayment-con{height: 80px;margin-left: 32px;margin-right: 32px;}
+.loancon-detail .money-sort{width: 100%;height: 58px;background: #F2F2F2;line-height: 58px;font-size: 16px;color: #474E5D;}
+.loancon-detail .money-sort .sort-con{width: 172px;display: inline-block;margin-right: 138px;font-size: 16px;color: #474E5D;}
+.loancon-detail .money-sort .sort-con1{margin-left: 32px;}
+.loancon-detail .repayment-tab{width: 900px;margin: 0 auto;text-align: center;border-collapse: collapse;font-size: 14px;color: #474E5D;}
+.loancon-detail .repayment-tab thead tr{width: 100%;height: 44px;border-bottom: 1px solid #B4B4B4;}
+.loancon-detail .repayment-tab tbody tr{width: 100%;height: 52px;border-bottom: 1px solid #EAEAEA;}
+.loancon-detail .repayment-tab tbody tr:hover{background: #F2F2F2;cursor: pointer;}
+
+
+
+/*逾期项目*/
+.delay-con{width: 976px;height: 68px;line-height: 68px;border-left: 2px solid #F6A623;font-size: 14px;color: #666666;margin-bottom: 10px;background: #FFFFFF;}
+.delay-con .label1{margin-left: 36px;display: inline-block;margin-right: 12px;}
+.delay-con .label2{margin-left: 50px;margin-right: 12px;}
+.delay-con input{width: 196px;height: 38px;outline: none;border: 1px solid #D1D1D1;border-radius: 4px;padding-left: 14px;}
+.delay-con .export-btn{width: 110px;height: 38px;line-height: 38px;color: #FFFFFF;font-size: 14px;display: inline-block;text-align: center;background: #00BBFF;  border-radius: 4px;margin-left: 198px;}
+.delay-tabcon{width: 978px;height: 860px;background: #FFFFFF;
+    box-shadow: 0px 11px 40px -2px #bbb;
+    -webkit-box-shadow: 0px 11px 40px -2px #bbb;
+    -moz-box-shadow: 0px 11px 40px -2px #bbb;
+    -ms-box-shadow: 0px 11px 40px -2px #bbb;
+}
+.delay-tabcon .delay-tab{width: 100%;text-align: center;border-collapse: collapse;font-size: 14px;color: #474E5D;}
+.delay-tab thead tr{height: 74px;border-bottom: 1px solid #B4B4B4;}
+.delay-tab tbody tr{width: 100%;height: 70px;border-bottom: 1px solid #EAEAEA;}
+.delay-tab tbody tr:hover{background: #F2F2F2;cursor: pointer;}
+
+
+
+/*借款项目-详情（弹层）*/
+/*弹出层的样式*/
+.hide-body{width: 100%;height: 100%;background: #000;opacity: 0.25;position: fixed;top: 0;left: 0;z-index: 1000;display: none;}
+.hide-con{width: 520px;height: 264px;position: fixed;left: 50%;top: 50%;margin-left: -260px;margin-top: -132px;background: #FFFFFF;box-shadow: 0 20px 64px 0 rgba(0,0,0,0.50);border-radius: 20px;z-index: 10000;display: none;}
+.hide-con .top-head{width: 100%;height: 62px;border-bottom: 1px solid #979797;line-height: 62px;font-size: 24px;color: #666666;}
+.hide-con .top-head .tit-delay{margin-left: 38px;}
+.hide-con .top-head .close{float: right;margin-right: 30px;width: 19px;height: 19px;background: url(../../images/userAccount/normal_close.png) no-repeat;margin-top: 24px;}
+.hide-con .top-head .close:hover{background: url(../../images/userAccount/hover_close.png) no-repeat;cursor: pointer;}
+.hide-con .con-cen p{font-size: 16px;color: #9A9A9A; line-height: 32px;}
+.hide-con .con-cen p label{color: #666666;width: 120px;height: 96px;}
+.hide-con .con-cen p .span-ri{margin-left: 48px;display: inline-block;}
+.hide-con .btn-con .btn-submit{width: 110px;height: 38px;line-height: 38px;text-align: center;font-size: 14px;color: #FFFFFF;background: #00BBFF;display: inline-block;border-radius: 4px;}
